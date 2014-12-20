@@ -109,9 +109,7 @@ namespace AudioSwitcher {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}
-        ///{1}
-        ///Ready.
+        ///   Looks up a localized string similar to Ready.
         /// </summary>
         internal static string DisplayName_Active {
             get {
@@ -120,9 +118,7 @@ namespace AudioSwitcher {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}
-        ///{1}
-        ///Disabled.
+        ///   Looks up a localized string similar to Disabled.
         /// </summary>
         internal static string DisplayName_Disabled {
             get {
@@ -131,9 +127,7 @@ namespace AudioSwitcher {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}
-        ///{1}
-        ///Not present.
+        ///   Looks up a localized string similar to Not present.
         /// </summary>
         internal static string DisplayName_NotPresent {
             get {
@@ -142,9 +136,7 @@ namespace AudioSwitcher {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}
-        ///{1}
-        ///Not plugged in.
+        ///   Looks up a localized string similar to Not plugged in.
         /// </summary>
         internal static string DisplayName_Unplugged {
             get {

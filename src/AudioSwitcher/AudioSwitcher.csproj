@@ -42,6 +42,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Shortcut">
+      <HintPath>..\packages\Shortcut.2.0.0\lib\Shortcut.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -146,6 +149,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandBinding.cs" />
+    <None Include="packages.config" />
     <None Include="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

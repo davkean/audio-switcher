@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------
 using System;
 using System.Drawing;
+using System.Text;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.Drawing;
 
@@ -27,7 +28,7 @@ namespace AudioSwitcher.Presentation.CommandModel.Commands
 
         public override void UpdateStatus()
         {
-            Text = String.Format(GetDisplayFormat(), _device.DeviceDescription, _device.DeviceFriendlyName);
+            Text = GetDisplayText();
             Image = GetImage();
             IsEnabled = _device.IsActive;
 
@@ -54,7 +55,17 @@ namespace AudioSwitcher.Presentation.CommandModel.Commands
             }
         }
 
-        private string GetDisplayFormat()
+        private string GetDisplayText()
+        {
+            StringBuilder text = new StringBuilder();
+            text.AppendLine(_device.DeviceDescription);         // Headphones (Black)
+            text.AppendLine(_device.DeviceFriendlyName);        // High Definition Audio Device
+            text.AppendLine(GetDisplayState());                 // Ready
+
+            return text.ToString();
+        }
+
+        private string GetDisplayState()
         {
             switch (_device.State)
             {
