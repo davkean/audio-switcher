@@ -126,6 +126,7 @@
     <Compile Include="AudioSwitcher\Presentation\CommandModel\Commands\ShowDisabledDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\ToolStripExtensions.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\ToolStripNativeRenderer.cs" />
+    <Compile Include="AudioSwitcher\Presentation\UI\UIServices.cs" />
     <Compile Include="AudioSwitcher\Win32\InteropServices\Win32Marshal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AudioSwitcher\Program.cs" />
