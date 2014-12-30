@@ -144,7 +144,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandBinding.cs" />
-    <None Include="packages.config" />
     <None Include="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
