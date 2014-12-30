@@ -60,7 +60,7 @@ namespace AudioSwitcher.Presentation.CommandModel.Commands
             StringBuilder text = new StringBuilder();
             text.AppendLine(_device.DeviceDescription);         // Headphones (Black)
             text.AppendLine(_device.DeviceFriendlyName);        // High Definition Audio Device
-            text.AppendLine(GetDisplayState());                 // Ready
+            text.Append(GetDisplayState());                     // Ready
 
             return text.ToString();
         }
