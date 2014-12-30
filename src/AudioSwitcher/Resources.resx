@@ -159,6 +159,9 @@ Not plugged in</value>
   <data name="Headphones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\Headphones.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HeadphonesTrayIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\HeadphonesTray.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Microphone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\Microphone.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
