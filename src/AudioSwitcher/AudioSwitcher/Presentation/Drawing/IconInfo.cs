@@ -115,7 +115,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
         private int _bitCount;
         /// <summary>
-        /// Gets icon bits per pixel (0 if < 8bpp).
+        /// Gets icon bits per pixel (0 if &lt; 8bpp).
         /// </summary>
         public int BitCount
         {
