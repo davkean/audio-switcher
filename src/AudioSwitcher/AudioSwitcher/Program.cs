@@ -10,6 +10,7 @@ namespace AudioSwitcher
 {
     internal class Program
     {
+        [STAThread]
         public static void Main()
         {
             var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());

@@ -9,7 +9,7 @@ namespace AudioSwitcher.Presentation.UI.Interop
 {
     internal class DllImports
     {
-        [DllImport(ExternalDll.User32, CharSet = CharSet.Auto, ExactSpelling = true)]
+        [DllImport(ExternalDll.User32, ExactSpelling = true)]
         public static extern bool SetForegroundWindow(HandleRef hWnd);
 
         [DllImport(ExternalDll.Uxtheme)]
