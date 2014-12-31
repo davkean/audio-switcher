@@ -4,8 +4,9 @@
 using System;
 using System.Windows.Forms;
 using AudioSwitcher.ApplicationModel;
+using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.Presentation.CommandModel.Commands
+namespace AudioSwitcher.ApplicationModel.Commands
 {
     internal class ExitCommand : Command
     {

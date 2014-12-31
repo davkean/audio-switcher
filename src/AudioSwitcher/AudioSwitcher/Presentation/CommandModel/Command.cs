@@ -25,7 +25,7 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public virtual bool IsChecked
+        public bool IsChecked
         {
             get { return _isChecked; }
             set 
@@ -38,7 +38,7 @@ namespace AudioSwitcher.Presentation.CommandModel
             }
         }
 
-        public virtual bool IsBulleted
+        public bool IsBulleted
         {
             get { return _isBulleted; }
             set

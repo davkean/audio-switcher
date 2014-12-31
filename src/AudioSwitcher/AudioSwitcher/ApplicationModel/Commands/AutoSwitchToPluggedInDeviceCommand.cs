@@ -2,14 +2,9 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
-using System.Security;
-using Microsoft.Win32;
-using AudioSwitcher.Win32;
-using System.Reflection;
-using System.IO;
-using System.Windows.Forms;
+using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.Presentation.CommandModel.Commands
+namespace AudioSwitcher.ApplicationModel.Commands
 {
     internal class AutoSwitchToPluggedInDeviceCommand : Command
     {

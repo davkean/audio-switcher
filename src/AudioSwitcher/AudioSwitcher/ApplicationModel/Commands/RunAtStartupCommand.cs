@@ -4,10 +4,11 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Win32;
 using Microsoft.Win32;
 
-namespace AudioSwitcher.Presentation.CommandModel.Commands
+namespace AudioSwitcher.ApplicationModel.Commands
 {
     internal class RunAsStartupCommand : Command
     {

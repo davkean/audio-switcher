@@ -5,7 +5,7 @@ using System;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.Presentation.CommandModel.Commands
+namespace AudioSwitcher.ApplicationModel.Commands
 {
     internal class SetAsDefaultMultimediaDeviceCommand : SetAsDefaultDeviceCommand
     {

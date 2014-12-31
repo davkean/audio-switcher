@@ -4,7 +4,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using AudioSwitcher.Audio;
-using AudioSwitcher.Presentation.CommandModel.Commands;
+using AudioSwitcher.ApplicationModel.Commands;
 
 namespace AudioSwitcher.Presentation.UI
 {

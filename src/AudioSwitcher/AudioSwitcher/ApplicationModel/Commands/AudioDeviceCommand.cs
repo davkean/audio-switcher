@@ -5,9 +5,10 @@ using System;
 using System.Drawing;
 using System.Text;
 using AudioSwitcher.Audio;
+using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.Drawing;
 
-namespace AudioSwitcher.Presentation.CommandModel.Commands
+namespace AudioSwitcher.ApplicationModel.Commands
 {
     // Displays an audio device in the context menu, clicking the device causes it to be marked as "default"
     internal class AudioDeviceCommand : Command

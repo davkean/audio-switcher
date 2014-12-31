@@ -3,8 +3,9 @@
 // -----------------------------------------------------------------------
 using System;
 using System.Drawing;
+using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.Presentation.CommandModel.Commands
+namespace AudioSwitcher.ApplicationModel.Commands
 {
     internal class ShowUnpluggedDevicesCommand : Command
     {
