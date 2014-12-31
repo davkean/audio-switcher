@@ -163,7 +163,7 @@ namespace AudioSwitcher.Presentation.Drawing
         /// Extracts the raw data of the resource from the module.
         /// </summary>
         /// <param name="hModule">The module handle.</param>
-        /// <param name="resrouceName">The name of the resource.</param>
+        /// <param name="resourceName">The name of the resource.</param>
         /// <param name="resourceType">The type of the resource.</param>
         /// <returns>The resource raw data.</returns>
         private static byte[] GetResourceData(SafeModuleHandle hModule, ResourceName resourceName, ResourceTypes resourceType)
@@ -205,7 +205,7 @@ namespace AudioSwitcher.Presentation.Drawing
         /// Extracts the raw data of the resource from the module.
         /// </summary>
         /// <param name="hModule">The module handle.</param>
-        /// <param name="resrouceName">The identifier of the resource.</param>
+        /// <param name="resourceId">The identifier of the resource.</param>
         /// <param name="resourceType">The type of the resource.</param>
         /// <returns>The resource raw data.</returns>
         private static byte[] GetResourceData(SafeModuleHandle hModule, int resourceId, ResourceTypes resourceType)

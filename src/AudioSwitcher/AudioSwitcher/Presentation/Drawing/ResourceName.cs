@@ -50,7 +50,7 @@ namespace AudioSwitcher.Presentation.Drawing
             private set { _value = value; }
         }
 
-        /// <summary
+        /// <summary>
         /// Gets whether the resource is an integer resource.
         /// </summary>
         public bool IsIntResource
@@ -61,7 +61,7 @@ namespace AudioSwitcher.Presentation.Drawing
         /// <summary>
         /// Initializes a new AudioSwitcher.Presentation.Drawing.ResourceName object.
         /// </summary>
-        /// <param name="lpszName">Specifies the resource name. For more ifnormation, see the Remarks section.</param>
+        /// <param name="lpName">Specifies the resource name. For more ifnormation, see the Remarks section.</param>
         /// <remarks>
         /// If the high bit of lpszName is not set (=0), lpszName specifies the integer identifier of the givin resource.
         /// Otherwise, it is a pointer to a null terminated string.

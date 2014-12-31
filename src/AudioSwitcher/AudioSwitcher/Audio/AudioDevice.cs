@@ -59,7 +59,7 @@ namespace AudioSwitcher.Audio
                 if (Properties.TryGetValue(PropertyKeys.PKEY_Device_DeviceDesc, out value))
                     return (string)value;
 
-                return string.Empty; ;
+                return string.Empty;
             }
         }
 
