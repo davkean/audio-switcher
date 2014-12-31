@@ -171,7 +171,7 @@ namespace AudioSwitcher.Presentation.Drawing
             //Find the resource in the module.
             IntPtr hResInfo = IntPtr.Zero;
             try { hResInfo = DllImports.FindResource(hModule, resourceName.Value, resourceType); }
-            finally { resourceName.Free(); }
+            finally { resourceName.Dispose(); }
             if (hResInfo == IntPtr.Zero)
             {
                 throw new Win32Exception();

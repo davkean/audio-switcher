@@ -9,54 +9,11 @@ namespace AudioSwitcher.Presentation.Drawing
     /// <summary>
     /// Represents a resource name (either integer resource or string resource).
     /// </summary>
-    public class ResourceName : IDisposable
+    internal class ResourceName : IDisposable
     {
-        private int? _id;
-        /// <summary>
-        /// Gets the resource identifier, returns null if the resource is not an integer resource.
-        /// </summary>
-        public int? Id
-        {
-            get { return _id; }
-            private set { _id = value; }
-        }
-
-        private string _name;
-        /// <summary>
-        /// Gets the resource name, returns null if the resource is not a string resource.
-        /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            private set { _name = value; }
-        }
-
+        private readonly int? _id;
+        private readonly string _name;
         private IntPtr _value;
-        /// <summary>
-        /// Gets a pointer to resource name that can be used in FindResource function.
-        /// </summary>
-        public IntPtr Value
-        {
-            get
-            {
-                if (this.IsIntResource)
-                    return new IntPtr(this.Id.Value);
-
-                if (this._value == IntPtr.Zero)
-                    this._value = Marshal.StringToHGlobalAuto(this.Name);
-
-                return _value;
-            }
-            private set { _value = value; }
-        }
-
-        /// <summary>
-        /// Gets whether the resource is an integer resource.
-        /// </summary>
-        public bool IsIntResource
-        {
-            get { return (this.Id != null); }
-        }
 
         /// <summary>
         /// Initializes a new AudioSwitcher.Presentation.Drawing.ResourceName object.
@@ -72,44 +29,78 @@ namespace AudioSwitcher.Presentation.Drawing
         {
             if (((uint)lpName >> 16) == 0)  //Integer resource
             {
-                this.Id = lpName.ToInt32();
-                this.Name = null;
+                _id = lpName.ToInt32();
+                _name = null;
             }
             else
             {
-                this.Id = null;
-                this.Name = Marshal.PtrToStringAuto(lpName);
+                _id = null;
+                _name = Marshal.PtrToStringAuto(lpName);
             }
         }
+
+        /// <summary>
+        /// Gets the resource identifier, returns null if the resource is not an integer resource.
+        /// </summary>
+        public int? Id
+        {
+            get { return _id; }
+        }
+
+        
+        /// <summary>
+        /// Gets the resource name, returns null if the resource is not a string resource.
+        /// </summary>
+        public string Name
+        {
+            get { return _name; }
+        }
+
+        
+        /// <summary>
+        /// Gets a pointer to resource name that can be used in FindResource function.
+        /// </summary>
+        public IntPtr Value
+        {
+            get
+            {
+                if (IsIntResource)
+                    return new IntPtr(Id.Value);
+
+                if (_value == IntPtr.Zero)
+                    _value = Marshal.StringToHGlobalAuto(Name);
+
+                return _value;
+            }
+        }
+
+        /// <summary>
+        /// Gets whether the resource is an integer resource.
+        /// </summary>
+        public bool IsIntResource
+        {
+            get { return (Id != null); }
+        }
+
+
         /// <summary>
         /// Destructs the ResourceName object.
         /// </summary>
         ~ResourceName()
         {
-            Dispose();
+            Dispose(false);
         }
+
         /// <summary>
         /// Returns a System.String that represents the current AudioSwitcher.Presentation.Drawing.ResourceName.
         /// </summary>
         /// <returns>Returns a System.String that represents the current AudioSwitcher.Presentation.Drawing.ResourceName.</returns>
         public override string ToString()
         {
-            if (this.IsIntResource)
-                return "#" + this.Id.ToString();
+            if (IsIntResource)
+                return "#" + Id.ToString();
 
-            return this.Name;
-        }
-        /// <summary>
-        /// Releases the pointer to the resource name.
-        /// </summary>
-        public void Free()
-        {
-            if (this._value != IntPtr.Zero)
-            {
-                try { Marshal.FreeHGlobal(this._value); }
-                catch { }
-                this._value = IntPtr.Zero;
-            }
+            return Name;
         }
         
         /// <summary>
@@ -117,7 +108,23 @@ namespace AudioSwitcher.Presentation.Drawing
         /// </summary>
         public void Dispose()
         {
-            Free();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_value != IntPtr.Zero)
+            {
+                try 
+                { 
+                    Marshal.FreeHGlobal(_value); 
+                }
+                finally
+                {
+                    _value = IntPtr.Zero;
+                }
+            }
         }
     }
 }
