@@ -17,7 +17,11 @@ Ian van der Linde ([@Ianvdl](http://github.com/ianvdl))
 Abdallah Gomah ([@Abdallah-Gomah](http://www.codeproject.com/Members/Abdallah-Gomah))
 * Provided the code to [extract large icons from native resources](http://www.codeproject.com/Articles/32617/Extracting-Icons-from-EXE-DLL-and-Icon-Manipulatio)
 
-NAudio (http://naudio.codeplex.com/)
+NAudio (http://naudio.codeplex.com)
 * Provided the original code to manipulate and query the Windows Core Audio API
+ 
+svotar (https://code.google.com/p/szotar)
+* Provided the original code for the native Toolstrip renderer
+
 
 
