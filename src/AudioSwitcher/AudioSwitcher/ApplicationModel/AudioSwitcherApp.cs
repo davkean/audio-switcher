@@ -43,7 +43,6 @@ namespace AudioSwitcher.ApplicationModel
                 service.Value.Startup();
             }
 
-            Application.EnableVisualStyles();
             Application.Run();
         }
 
