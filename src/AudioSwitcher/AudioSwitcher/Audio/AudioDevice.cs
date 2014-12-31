@@ -130,7 +130,6 @@ namespace AudioSwitcher.Audio
             }
         }
 
-
         public override string ToString()
         {
             return FriendlyName;
