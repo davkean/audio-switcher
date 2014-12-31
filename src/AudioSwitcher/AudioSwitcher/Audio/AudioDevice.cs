@@ -45,7 +45,7 @@ namespace AudioSwitcher.Audio
             get
             {
                 if (_propertyStore == null)
-                    _propertyStore = GetPropertyInformation();
+                    _propertyStore = OpenPropertyStore();
 
                 return _propertyStore;
             }
@@ -136,7 +136,7 @@ namespace AudioSwitcher.Audio
             return FriendlyName;
         }
 
-        private PropertyStore GetPropertyInformation()
+        private PropertyStore OpenPropertyStore()
         {
             IPropertyStore underlyingPropertyStore;
             Marshal.ThrowExceptionForHR(_underlyingDevice.OpenPropertyStore(StorageAccessMode.Read, out underlyingPropertyStore));
