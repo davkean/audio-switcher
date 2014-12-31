@@ -11,5 +11,8 @@ namespace AudioSwitcher.Presentation.UI.Interop
     {
         [DllImport(ExternalDll.User32, CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern bool SetForegroundWindow(HandleRef hWnd);
+
+        [DllImport(ExternalDll.Uxtheme)]
+        public extern static int GetThemeMargins(IntPtr hTheme, IntPtr hdc, int iPartId, int iStateId, int iPropId, IntPtr rect, out MARGINS pMargins);
     }
 }

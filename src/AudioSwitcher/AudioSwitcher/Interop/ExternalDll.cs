@@ -9,5 +9,6 @@ namespace AudioSwitcher.Interop
     {
         public const string Kernel32  = "kernel32.dll";
         public const string User32  = "user32.dll";
+        public const string Uxtheme = "uxtheme.dll";
     }
 }
