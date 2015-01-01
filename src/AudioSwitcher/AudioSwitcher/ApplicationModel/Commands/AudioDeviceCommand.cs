@@ -2,12 +2,10 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
-using System.Drawing;
 using System.Text;
-using System.Windows.Forms;
+using AudioSwitcher.ApplicationModel.ViewModels;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
-using AudioSwitcher.Presentation.Drawing;
 
 namespace AudioSwitcher.ApplicationModel.Commands
 {
@@ -16,11 +14,13 @@ namespace AudioSwitcher.ApplicationModel.Commands
     {
         private readonly AudioDeviceManager _deviceManager;
         private readonly AudioDevice _device;
+        private readonly AudioDeviceViewModel _viewModel;
 
         public AudioDeviceCommand(AudioDeviceManager deviceManager, AudioDevice device)
         {
             _deviceManager = deviceManager;
             _device = device;
+            _viewModel = new AudioDeviceViewModel(deviceManager, device);
         }
 
         public override void Run()
@@ -31,89 +31,18 @@ namespace AudioSwitcher.ApplicationModel.Commands
         public override void UpdateStatus()
         {
             Text = GetDisplayText();
-            Image = GetImage();
+            Image = _viewModel.Image;
             IsEnabled = _device.IsActive;
         }
 
         private string GetDisplayText()
         {
             StringBuilder text = new StringBuilder();
-            text.AppendLine(_device.DeviceDescription);         // Headphones (Black)
-            text.AppendLine(_device.DeviceFriendlyName);        // High Definition Audio Device
-            text.Append(GetDisplayState());                     // Ready
+            text.AppendLine(_viewModel.Description);         // Headphones (Black)
+            text.AppendLine(_viewModel.FriendlyName);        // High Definition Audio Device
+            text.Append(_viewModel.StateDisplayName);        // Ready
 
             return text.ToString();
-        }
-
-        private string GetDisplayState()
-        {
-            switch (_device.State)
-            {
-                case AudioDeviceState.Active:
-                    return Resources.DisplayName_Active;
-
-                case AudioDeviceState.Disabled:
-                    return Resources.DisplayName_Disabled;
-
-                case AudioDeviceState.NotPresent:
-                    return Resources.DisplayName_NotPresent;
-
-                case AudioDeviceState.Unplugged:
-                    return Resources.DisplayName_Unplugged;
-            }
-
-            return String.Empty;
-        }
-
-        private Image GetOverlayImage()
-        {
-            if (_deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Multimedia))
-            {
-                return Resources.DefaultMultimediaDevice.ToBitmap();
-
-            }
-            else if (_deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Communications))
-            {
-                return Resources.DefaultCommunicationsDevice.ToBitmap();
-            }
-
-            switch (_device.State)
-            {
-                case AudioDeviceState.Disabled:
-                    return Resources.Disabled;
-
-                case AudioDeviceState.NotPresent:
-                    return Resources.NotPresent.ToBitmap();
-
-                case AudioDeviceState.Unplugged:
-                    return Resources.Unplugged;
-            }
-
-            return null;
-        }
-
-        private Image GetImage()
-        {
-            if (String.IsNullOrEmpty(_device.DeviceClassIconPath))
-                return null;
-
-            Icon icon;
-            if (!ShellIcon.TryExtractIconByIdOrIndex(_device.DeviceClassIconPath, new Size(48, 48), out icon))
-                return null;
-
-            using (icon)
-            {
-                Image overlayImage = GetOverlayImage();
-
-                if (overlayImage != null)
-                {
-                    return DrawingServices.Overlay(icon.ToBitmap(), overlayImage);
-                }
-                else
-                {
-                    return icon.ToBitmap();
-                }
-            }
         }
     }
 }

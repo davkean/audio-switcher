@@ -136,6 +136,15 @@
   <data name="DisplayName_Active" xml:space="preserve">
     <value>Ready</value>
   </data>
+  <data name="DisplayName_DefaultCommunicationsDevice" xml:space="preserve">
+    <value>Default communications device</value>
+  </data>
+  <data name="DisplayName_DefaultDevice" xml:space="preserve">
+    <value>Default device</value>
+  </data>
+  <data name="DisplayName_DefaultMultimediaDevice" xml:space="preserve">
+    <value>Default multimedia device</value>
+  </data>
   <data name="DisplayName_Disabled" xml:space="preserve">
     <value>Disabled</value>
   </data>

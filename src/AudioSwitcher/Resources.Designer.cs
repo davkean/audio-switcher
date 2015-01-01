@@ -118,6 +118,33 @@ internal class Resources {
     }
     
     /// <summary>
+    ///   Looks up a localized string similar to Default communications device.
+    /// </summary>
+    internal static string DisplayName_DefaultCommunicationsDevice {
+        get {
+            return ResourceManager.GetString("DisplayName_DefaultCommunicationsDevice", resourceCulture);
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized string similar to Default device.
+    /// </summary>
+    internal static string DisplayName_DefaultDevice {
+        get {
+            return ResourceManager.GetString("DisplayName_DefaultDevice", resourceCulture);
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized string similar to Default multimedia device.
+    /// </summary>
+    internal static string DisplayName_DefaultMultimediaDevice {
+        get {
+            return ResourceManager.GetString("DisplayName_DefaultMultimediaDevice", resourceCulture);
+        }
+    }
+    
+    /// <summary>
     ///   Looks up a localized string similar to Disabled.
     /// </summary>
     internal static string DisplayName_Disabled {

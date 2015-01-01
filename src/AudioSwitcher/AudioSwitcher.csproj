@@ -80,6 +80,7 @@
     <Compile Include="AudioSwitcher\ApplicationModel\StartupServices\SaveSettingsOnShutdownService.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\SingleInstanceApp.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\StartupServices\NotificationIconService.cs" />
+    <Compile Include="AudioSwitcher\ApplicationModel\ViewModels\AudioDeviceViewModel.cs" />
     <Compile Include="AudioSwitcher\Audio\DefaultAudioDeviceEventArgs.cs" />
     <Compile Include="AudioSwitcher\Audio\AudioDeviceStateEventArgs.cs" />
     <Compile Include="AudioSwitcher\Audio\AudioDeviceRemovedEventArgs.cs" />
