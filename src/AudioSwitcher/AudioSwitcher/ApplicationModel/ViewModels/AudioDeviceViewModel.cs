@@ -104,12 +104,12 @@ namespace AudioSwitcher.ApplicationModel.ViewModels
             if ((_defaultState & DeviceDefaultState.Multimedia) == DeviceDefaultState.Multimedia)
             {   // Sound control panel shows the same icon between all and multimedia
 
-                return Resources.DefaultMultimediaDevice.ToBitmap();
+                return Resources.DefaultMultimediaDevice;
             }
             
             if ((_defaultState & DeviceDefaultState.Communications) == DeviceDefaultState.Communications)
             {
-                return Resources.DefaultCommunicationsDevice.ToBitmap();
+                return Resources.DefaultCommunicationsDevice;
             }
 
             switch (_device.State)
@@ -118,7 +118,7 @@ namespace AudioSwitcher.ApplicationModel.ViewModels
                     return Resources.Disabled;
 
                 case AudioDeviceState.NotPresent:
-                    return Resources.NotPresent.ToBitmap();
+                    return Resources.NotPresent;
 
                 case AudioDeviceState.Unplugged:
                     return Resources.Unplugged;

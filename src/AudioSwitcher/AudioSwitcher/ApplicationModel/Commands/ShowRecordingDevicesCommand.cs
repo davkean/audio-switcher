@@ -11,7 +11,7 @@ namespace AudioSwitcher.ApplicationModel.Commands
         public ShowRecordingDevicesCommand()
         {
             Text = Resources.ShowRecordingDevices;
-            Image = Resources.Microphone.ToBitmap();
+            Image = Resources.RecordingDevice;
         }
 
         public override void UpdateStatus()

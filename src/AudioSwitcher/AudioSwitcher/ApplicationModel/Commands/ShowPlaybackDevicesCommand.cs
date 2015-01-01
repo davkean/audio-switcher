@@ -11,7 +11,7 @@ namespace AudioSwitcher.ApplicationModel.Commands
         public ShowPlaybackDevicesCommand()
         {
             Text = Resources.ShowPlaybackDevices;
-            Image = Resources.Headphones.ToBitmap();
+            Image = Resources.PlaybackDevice;
         }
 
         public override void UpdateStatus()

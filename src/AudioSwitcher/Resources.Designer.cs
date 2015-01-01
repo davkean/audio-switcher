@@ -79,22 +79,22 @@ internal class Resources {
     }
     
     /// <summary>
-    ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+    ///   Looks up a localized resource of type System.Drawing.Bitmap.
     /// </summary>
-    internal static System.Drawing.Icon DefaultCommunicationsDevice {
+    internal static System.Drawing.Bitmap DefaultCommunicationsDevice {
         get {
             object obj = ResourceManager.GetObject("DefaultCommunicationsDevice", resourceCulture);
-            return ((System.Drawing.Icon)(obj));
+            return ((System.Drawing.Bitmap)(obj));
         }
     }
     
     /// <summary>
-    ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+    ///   Looks up a localized resource of type System.Drawing.Bitmap.
     /// </summary>
-    internal static System.Drawing.Icon DefaultMultimediaDevice {
+    internal static System.Drawing.Bitmap DefaultMultimediaDevice {
         get {
             object obj = ResourceManager.GetObject("DefaultMultimediaDevice", resourceCulture);
-            return ((System.Drawing.Icon)(obj));
+            return ((System.Drawing.Bitmap)(obj));
         }
     }
     
@@ -181,36 +181,6 @@ internal class Resources {
     }
     
     /// <summary>
-    ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-    /// </summary>
-    internal static System.Drawing.Icon Headphones {
-        get {
-            object obj = ResourceManager.GetObject("Headphones", resourceCulture);
-            return ((System.Drawing.Icon)(obj));
-        }
-    }
-    
-    /// <summary>
-    ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-    /// </summary>
-    internal static System.Drawing.Icon HeadphonesTrayIcon {
-        get {
-            object obj = ResourceManager.GetObject("HeadphonesTrayIcon", resourceCulture);
-            return ((System.Drawing.Icon)(obj));
-        }
-    }
-    
-    /// <summary>
-    ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-    /// </summary>
-    internal static System.Drawing.Icon Microphone {
-        get {
-            object obj = ResourceManager.GetObject("Microphone", resourceCulture);
-            return ((System.Drawing.Icon)(obj));
-        }
-    }
-    
-    /// <summary>
     ///   Looks up a localized string similar to No devices selected.
     /// </summary>
     internal static string NoDevices {
@@ -240,10 +210,40 @@ internal class Resources {
     /// <summary>
     ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
     /// </summary>
-    internal static System.Drawing.Icon NotPresent {
+    internal static System.Drawing.Icon NotificationArea {
+        get {
+            object obj = ResourceManager.GetObject("NotificationArea", resourceCulture);
+            return ((System.Drawing.Icon)(obj));
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized resource of type System.Drawing.Bitmap.
+    /// </summary>
+    internal static System.Drawing.Bitmap NotPresent {
         get {
             object obj = ResourceManager.GetObject("NotPresent", resourceCulture);
-            return ((System.Drawing.Icon)(obj));
+            return ((System.Drawing.Bitmap)(obj));
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized resource of type System.Drawing.Bitmap.
+    /// </summary>
+    internal static System.Drawing.Bitmap PlaybackDevice {
+        get {
+            object obj = ResourceManager.GetObject("PlaybackDevice", resourceCulture);
+            return ((System.Drawing.Bitmap)(obj));
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized resource of type System.Drawing.Bitmap.
+    /// </summary>
+    internal static System.Drawing.Bitmap RecordingDevice {
+        get {
+            object obj = ResourceManager.GetObject("RecordingDevice", resourceCulture);
+            return ((System.Drawing.Bitmap)(obj));
         }
     }
     

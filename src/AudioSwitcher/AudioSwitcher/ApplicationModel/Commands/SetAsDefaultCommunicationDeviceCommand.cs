@@ -13,7 +13,7 @@ namespace AudioSwitcher.ApplicationModel.Commands
             : base(manager, device, AudioDeviceRole.Communications)
         {
             Text = Resources.SetAsDefaultComunicationDevice;
-            Image = Resources.DefaultCommunicationsDevice.ToBitmap();
+            Image = Resources.DefaultCommunicationsDevice;
         }
     }
 }

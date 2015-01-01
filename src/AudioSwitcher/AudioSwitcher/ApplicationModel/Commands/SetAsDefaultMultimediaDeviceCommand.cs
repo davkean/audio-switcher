@@ -13,7 +13,7 @@ namespace AudioSwitcher.ApplicationModel.Commands
             : base(manager, device, AudioDeviceRole.Console)
         {
             Text = Resources.SetAsDefaultMultimediaDevice;
-            Image = Resources.DefaultMultimediaDevice.ToBitmap();
+            Image = Resources.DefaultMultimediaDevice;
         }
     }
 }

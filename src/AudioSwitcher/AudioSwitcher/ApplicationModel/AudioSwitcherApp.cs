@@ -30,7 +30,7 @@ namespace AudioSwitcher.ApplicationModel
 
         public Icon Icon
         {
-            get { return Resources.HeadphonesTrayIcon; }
+            get { return Resources.NotificationArea; }
         }
 
         public void Run()

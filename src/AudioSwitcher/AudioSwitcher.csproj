@@ -197,28 +197,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\DefaultCommunicationsDevice.ico" />
+    <None Include="Images\Disabled_16x16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\DefaultMultimediaDevice.ico" />
+    <None Include="Images\Unplugged_16x16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\Headphones.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Microphone.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Disabled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\Unplugged.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\NotPresent.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\HeadphonesTray.ico" />
+    <None Include="Images\NotificationArea.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -238,7 +223,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\DefaultCommunicationsDevice_16x16.png" />
+    <Content Include="Images\DefaultMultimediaDevice_16x16.png" />
     <Content Include="Images\Executable.ico" />
+    <Content Include="Images\PlaybackDevice_16x16.png" />
+    <Content Include="Images\RecordingDevice_16x16.png" />
+    <None Include="Images\NotPresent_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

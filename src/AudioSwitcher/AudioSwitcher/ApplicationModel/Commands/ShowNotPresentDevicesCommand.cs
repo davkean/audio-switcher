@@ -11,7 +11,7 @@ namespace AudioSwitcher.ApplicationModel.Commands
         public ShowNotPresentDevices()
         {
             Text = Resources.ShowNotPresentDevices;
-            Image = Resources.NotPresent.ToBitmap();
+            Image = Resources.NotPresent;
         }
 
         public override void UpdateStatus()

@@ -125,13 +125,13 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="DefaultCommunicationsDevice" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\DefaultCommunicationsDevice.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\DefaultCommunicationsDevice_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DefaultMultimediaDevice" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\DefaultMultimediaDevice.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\DefaultMultimediaDevice_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\Disabled_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DisplayName_Active" xml:space="preserve">
     <value>Ready</value>
@@ -157,15 +157,6 @@
   <data name="Exit" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
-  <data name="Headphones" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Headphones.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HeadphonesTrayIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\HeadphonesTray.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Microphone" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Microphone.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NoDevices" xml:space="preserve">
     <value>No devices selected</value>
   </data>
@@ -175,8 +166,17 @@
   <data name="NoRecordingDevices" xml:space="preserve">
     <value>No recording devices</value>
   </data>
+  <data name="NotificationArea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\NotificationArea.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NotPresent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\NotPresent.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\NotPresent_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlaybackDevice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\PlaybackDevice_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RecordingDevice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\RecordingDevice_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RunAtStartup" xml:space="preserve">
     <value>&amp;Run at Windows startup</value>
@@ -209,6 +209,6 @@
     <value>Audio Switcher</value>
   </data>
   <data name="Unplugged" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Unplugged.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\Unplugged_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
