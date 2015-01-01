@@ -18,5 +18,8 @@ namespace AudioSwitcher.ApplicationModel.Commands
         public const string ToggleShowUnpluggedDevices                  = "Appearance.ToggleShowUnpluggedDevices";
 
         public const string Exit                                        = "Application.Exit";
+
+        public const string SetAsDefaultCommunicationDevice             = "Device.SetAsDefaultCommunicationDevice";
+        public const string SetAsDefaultMultimediaDevice                = "Device.SetAsDefaultMultimediaDevice";
     }
 }

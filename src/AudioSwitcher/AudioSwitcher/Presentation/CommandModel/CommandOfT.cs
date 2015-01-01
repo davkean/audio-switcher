@@ -1,15 +1,12 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
 using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.CompilerServices;
 
 namespace AudioSwitcher.Presentation.CommandModel
 {
-    // Represents a command that takes no argument
-    internal abstract class Command : CommandBase
+    // Represents a command that takes an argument
+    internal abstract class Command<T> : CommandBase
     {
         protected Command()
         {
@@ -17,23 +14,23 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         public override sealed void Run(object argument)
         {
-            if (argument != null)
+            if (!(argument is T))
                 throw new ArgumentException();
 
-            Run();
+            Run((T)argument);
         }
 
         public override sealed void UpdateStatus(object argument)
         {
-            if (argument != null)
+            if (!(argument is T))
                 throw new ArgumentException();
 
-            UpdateStatus();
+            UpdateStatus((T)argument);
         }
 
-        public abstract void Run();
+        public abstract void Run(T argument);
 
-        public virtual void UpdateStatus()
+        public virtual void UpdateStatus(T argument)
         {
         }
     }

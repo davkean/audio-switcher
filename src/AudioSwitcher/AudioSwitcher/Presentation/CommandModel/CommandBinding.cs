@@ -12,15 +12,33 @@ namespace AudioSwitcher.Presentation.CommandModel
     // Responsible for sync'ing between a Command and a AudioToolStripMenuitem
     internal class CommandBinding
     {
+        private static readonly Func<object> NoArgumentGetter = () => { return null; };
+
         private readonly AudioToolStripMenuItem _item;
         private readonly ToolStripDropDown _dropDown;
         private readonly Command _command;
+        private readonly Func<object> _argumentGetter;
 
         public CommandBinding(ToolStripDropDown dropDown, AudioToolStripMenuItem item, Command command)
+            : this(dropDown, item, command, (Func<object>)null)
         {
+        }
+
+        public CommandBinding(ToolStripDropDown dropDown, AudioToolStripMenuItem item, Command command, Func<object> argumentGetter)
+        {
+            if (dropDown == null)
+                throw new ArgumentNullException("dropDown");
+
+            if (item == null)
+                throw new ArgumentNullException("item");
+
+            if (command == null)
+                throw new ArgumentNullException("command");
+
             _dropDown = dropDown;
             _item = item;
             _command = command;
+            _argumentGetter = argumentGetter ?? NoArgumentGetter;
 
             RegisterEvents();
             UpdateCommand();
@@ -53,12 +71,12 @@ namespace AudioSwitcher.Presentation.CommandModel
         private void OnItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 			if (e.ClickedItem == _item)
-				_command.Run();
+                _command.Run(_argumentGetter());
         }
 
         private void UpdateCommand()
         {
-            _command.UpdateStatus();
+            _command.UpdateStatus(_argumentGetter());
             SyncProperty(_command, CommandProperty.IsEnabled);
             SyncProperty(_command, CommandProperty.IsBulleted);
             SyncProperty(_command, CommandProperty.IsChecked);
@@ -69,7 +87,7 @@ namespace AudioSwitcher.Presentation.CommandModel
         }
         private void OnContextMenuStripOpening(object sender, CancelEventArgs e)
         {
-            _command.UpdateStatus();
+            UpdateCommand();
         }
 
         private void OnCommandPropertyChanged(object sender, PropertyChangedEventArgs e)

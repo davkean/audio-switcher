@@ -3,8 +3,6 @@
 // -----------------------------------------------------------------------
 using System;
 using System.ComponentModel.Composition;
-using System.Windows.Forms;
-using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.ApplicationModel.Commands

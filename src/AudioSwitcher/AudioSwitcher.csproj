@@ -74,6 +74,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandBase.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandAttribute.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\CommandId.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\IApplication.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="AudioSwitcher\Interop\ExternalDll.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandBinding.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandManager.cs" />
+    <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandOfT.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandProperty.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleAutomaticallySwitchToPluggedInDeviceCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleRunAtWindowsStartupCommand.cs" />

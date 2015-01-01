@@ -31,7 +31,7 @@ namespace AudioSwitcher.ApplicationModel.Startup
             _notifyIcon = new AudioNotifyIcon();
             _notifyIcon.Title = _application.Title;
             _notifyIcon.Icon = _application.NotificationAreaIcon;
-            _notifyIcon.LeftClickContextMenuStrip = LeftClickContextMenuProvider.CreateContextMenu(_deviceManager);
+            _notifyIcon.LeftClickContextMenuStrip = LeftClickContextMenuProvider.CreateContextMenu(_deviceManager, _commandManager);
             _notifyIcon.RightClickContextMenuStrip = RightClickContextMenuProvider.CreateContextMenu(_commandManager);
         }
 

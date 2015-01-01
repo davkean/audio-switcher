@@ -8,33 +8,26 @@ using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.ApplicationModel.Commands
 {
-    internal abstract class SetAsDefaultDeviceCommand : Command
+    internal abstract class SetAsDefaultDeviceCommand : Command<AudioDevice>
     {
         private readonly AudioDeviceManager _manager;
-        private readonly AudioDevice _device;
         private readonly AudioDeviceRole _role;
 
-        protected SetAsDefaultDeviceCommand(AudioDeviceManager manager, AudioDevice device, AudioDeviceRole role)
+        protected SetAsDefaultDeviceCommand(AudioDeviceManager manager, AudioDeviceRole role)
         {
             _manager = manager;
-            _device = device;
             _role = role;
         }
 
-        public AudioDevice Device
+        public override void UpdateStatus(AudioDevice argument)
         {
-            get { return _device; }
+            IsChecked = _manager.IsDefaultAudioDevice(argument, _role);
+            IsEnabled = argument.IsActive && !IsChecked;
         }
 
-        public override void UpdateStatus()
+        public override void Run(AudioDevice argument)
         {
-            IsChecked = _manager.IsDefaultAudioDevice(_device, _role);
-            IsEnabled = _device.IsActive && !IsChecked;
-        }
-
-        public override void Run()
-        {
-            _manager.SetDefaultAudioDevice(_device, _role);
+            _manager.SetDefaultAudioDevice(argument, _role);
         }
     }
 }
