@@ -13,7 +13,7 @@ namespace AudioSwitcher.ApplicationModel.Startup
     [Export(typeof(IStartupService))]
     internal class NotificationIconService : IStartupService, IDisposable
     {
-        private AudioNotifyIcon _trayIcon;
+        private AudioNotifyIcon _notifyIcon;
         private readonly AudioDeviceManager _deviceManager;
         private readonly CommandManager _commandManager;
         private readonly IApplication _application;
@@ -28,16 +28,16 @@ namespace AudioSwitcher.ApplicationModel.Startup
 
         public void Startup()
         {
-            _trayIcon = new AudioNotifyIcon();
-            _trayIcon.Title = _application.Title;
-            _trayIcon.Icon = _application.NotificationAreaIcon;
-            _trayIcon.LeftClickContextMenuStrip = LeftClickContextMenuProvider.CreateContextMenu(_deviceManager);
-            _trayIcon.RightClickContextMenuStrip = RightClickContextMenuProvider.CreateContextMenu(_commandManager);
+            _notifyIcon = new AudioNotifyIcon();
+            _notifyIcon.Title = _application.Title;
+            _notifyIcon.Icon = _application.NotificationAreaIcon;
+            _notifyIcon.LeftClickContextMenuStrip = LeftClickContextMenuProvider.CreateContextMenu(_deviceManager);
+            _notifyIcon.RightClickContextMenuStrip = RightClickContextMenuProvider.CreateContextMenu(_commandManager);
         }
 
         public void Dispose()
         {
-            _trayIcon.Dispose();
+            _notifyIcon.Dispose();
         }
     }
 }
