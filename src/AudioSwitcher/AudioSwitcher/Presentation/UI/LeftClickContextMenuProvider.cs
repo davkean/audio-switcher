@@ -62,12 +62,8 @@ namespace AudioSwitcher.Presentation.UI
                 Func<object> argumentGetter = () => device;
 
                 ToolStripDropDown dropDown = strip.AddNestedCommand(commandManager, CommandId.SetAsDefaultDevice, argumentGetter);
-                                
-                if (device.IsActive)
-                {
-                    dropDown.AddCommand(commandManager, CommandId.SetAsDefaultMultimediaDevice, argumentGetter);
-                    dropDown.AddCommand(commandManager, CommandId.SetAsDefaultCommunicationDevice, argumentGetter);
-                }
+                dropDown.AddCommand(commandManager, CommandId.SetAsDefaultMultimediaDevice, argumentGetter);
+                dropDown.AddCommand(commandManager, CommandId.SetAsDefaultCommunicationDevice, argumentGetter);
             }
         }
 

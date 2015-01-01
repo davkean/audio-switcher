@@ -18,7 +18,7 @@ namespace AudioSwitcher.Presentation.UI
 
         public AudioContextMenu()
         {
-            Renderer = new ToolStripNativeRenderer(ToolbarTheme.Toolbar);
+            Renderer = new ToolStripNativeRenderer(ToolbarTheme.Toolbar) { RenderArrowOnDisabledItems = false };
             ShowCheckMargin = false;
         }
 
