@@ -15,7 +15,6 @@ namespace AudioSwitcher.Presentation.UI
         public static AudioContextMenu CreateContextMenu(CommandManager commandManager)
         {
             AudioContextMenu context = new AudioContextMenu();
-            context.DefaultDropDownDirection = ToolStripDropDownDirection.Left;
 
             ToolStripDropDown settingsContext = context.AddNestedItem(Resources.Settings);
             settingsContext.AddCommand(commandManager, CommandId.ToggleRunAtWindowsStartup);
