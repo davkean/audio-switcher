@@ -99,75 +99,75 @@ internal class Resources {
     }
     
     /// <summary>
-    ///   Looks up a localized resource of type System.Drawing.Bitmap.
-    /// </summary>
-    internal static System.Drawing.Bitmap Disabled {
-        get {
-            object obj = ResourceManager.GetObject("Disabled", resourceCulture);
-            return ((System.Drawing.Bitmap)(obj));
-        }
-    }
-    
-    /// <summary>
     ///   Looks up a localized string similar to Ready.
     /// </summary>
-    internal static string DisplayName_Active {
+    internal static string DeviceState_Active {
         get {
-            return ResourceManager.GetString("DisplayName_Active", resourceCulture);
+            return ResourceManager.GetString("DeviceState_Active", resourceCulture);
         }
     }
     
     /// <summary>
     ///   Looks up a localized string similar to Default communications device.
     /// </summary>
-    internal static string DisplayName_DefaultCommunicationsDevice {
+    internal static string DeviceState_DefaultCommunicationsDevice {
         get {
-            return ResourceManager.GetString("DisplayName_DefaultCommunicationsDevice", resourceCulture);
+            return ResourceManager.GetString("DeviceState_DefaultCommunicationsDevice", resourceCulture);
         }
     }
     
     /// <summary>
     ///   Looks up a localized string similar to Default device.
     /// </summary>
-    internal static string DisplayName_DefaultDevice {
+    internal static string DeviceState_DefaultDevice {
         get {
-            return ResourceManager.GetString("DisplayName_DefaultDevice", resourceCulture);
+            return ResourceManager.GetString("DeviceState_DefaultDevice", resourceCulture);
         }
     }
     
     /// <summary>
     ///   Looks up a localized string similar to Default multimedia device.
     /// </summary>
-    internal static string DisplayName_DefaultMultimediaDevice {
+    internal static string DeviceState_DefaultMultimediaDevice {
         get {
-            return ResourceManager.GetString("DisplayName_DefaultMultimediaDevice", resourceCulture);
+            return ResourceManager.GetString("DeviceState_DefaultMultimediaDevice", resourceCulture);
         }
     }
     
     /// <summary>
     ///   Looks up a localized string similar to Disabled.
     /// </summary>
-    internal static string DisplayName_Disabled {
+    internal static string DeviceState_Disabled {
         get {
-            return ResourceManager.GetString("DisplayName_Disabled", resourceCulture);
+            return ResourceManager.GetString("DeviceState_Disabled", resourceCulture);
         }
     }
     
     /// <summary>
     ///   Looks up a localized string similar to Not present.
     /// </summary>
-    internal static string DisplayName_NotPresent {
+    internal static string DeviceState_NotPresent {
         get {
-            return ResourceManager.GetString("DisplayName_NotPresent", resourceCulture);
+            return ResourceManager.GetString("DeviceState_NotPresent", resourceCulture);
         }
     }
     
     /// <summary>
     ///   Looks up a localized string similar to Not plugged in.
     /// </summary>
-    internal static string DisplayName_Unplugged {
+    internal static string DeviceState_Unplugged {
         get {
-            return ResourceManager.GetString("DisplayName_Unplugged", resourceCulture);
+            return ResourceManager.GetString("DeviceState_Unplugged", resourceCulture);
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized resource of type System.Drawing.Bitmap.
+    /// </summary>
+    internal static System.Drawing.Bitmap Disabled {
+        get {
+            object obj = ResourceManager.GetObject("Disabled", resourceCulture);
+            return ((System.Drawing.Bitmap)(obj));
         }
     }
     

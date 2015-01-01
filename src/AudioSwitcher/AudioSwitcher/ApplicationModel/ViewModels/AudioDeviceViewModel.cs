@@ -44,32 +44,32 @@ namespace AudioSwitcher.ApplicationModel.ViewModels
 
                 if ((_defaultState & DeviceDefaultState.All) == DeviceDefaultState.All)
                 {
-                    return Resources.DisplayName_DefaultDevice;
+                    return Resources.DeviceState_DefaultDevice;
                 }
 
                 if ((_defaultState & DeviceDefaultState.Multimedia) == DeviceDefaultState.Multimedia)
                 {
-                    return Resources.DisplayName_DefaultMultimediaDevice;
+                    return Resources.DeviceState_DefaultMultimediaDevice;
                 }
 
                 if ((_defaultState & DeviceDefaultState.Communications) == DeviceDefaultState.Communications)
                 {
-                    return Resources.DisplayName_DefaultCommunicationsDevice;
+                    return Resources.DeviceState_DefaultCommunicationsDevice;
                 }
 
                 switch (_device.State)
                 {
                     case AudioDeviceState.Active:
-                        return Resources.DisplayName_Active;
+                        return Resources.DeviceState_Active;
 
                     case AudioDeviceState.Disabled:
-                        return Resources.DisplayName_Disabled;
+                        return Resources.DeviceState_Disabled;
 
                     case AudioDeviceState.NotPresent:
-                        return Resources.DisplayName_NotPresent;
+                        return Resources.DeviceState_NotPresent;
 
                     case AudioDeviceState.Unplugged:
-                        return Resources.DisplayName_Unplugged;
+                        return Resources.DeviceState_Unplugged;
                 }
 
                 return String.Empty;
