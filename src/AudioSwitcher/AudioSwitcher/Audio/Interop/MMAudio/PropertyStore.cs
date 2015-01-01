@@ -39,6 +39,15 @@ namespace AudioSwitcher.Audio
         private readonly IPropertyStore _underlyingStore;
 
         /// <summary>
+        /// Creates a new property store
+        /// </summary>
+        /// <param name="store">IPropertyStore COM interface</param>
+        internal PropertyStore(IPropertyStore store)
+        {
+           _underlyingStore = store;
+        }
+
+        /// <summary>
         /// Property Count
         /// </summary>
         public int Count
@@ -155,15 +164,6 @@ namespace AudioSwitcher.Audio
             PropertyKey key = Get(index);
             Marshal.ThrowExceptionForHR(_underlyingStore.GetValue(ref key, out result));
             return result;
-        }
-
-        /// <summary>
-        /// Creates a new property store
-        /// </summary>
-        /// <param name="store">IPropertyStore COM interface</param>
-        internal PropertyStore(IPropertyStore store)
-        {
-            this._underlyingStore = store;
         }
     }
 }
