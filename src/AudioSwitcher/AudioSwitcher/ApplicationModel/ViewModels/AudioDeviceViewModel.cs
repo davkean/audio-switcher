@@ -35,7 +35,7 @@ namespace AudioSwitcher.ApplicationModel.ViewModels
             {
                 // To mimic the Sound control panel, we display a device's 
                 // default state first, and only then fall back to the actual
-                // device's state.
+                // device's state if it's not a default device.
 
                 if ((_defaultState & DeviceDefaultState.All) == DeviceDefaultState.All)
                 {
