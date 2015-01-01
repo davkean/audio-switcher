@@ -2,32 +2,48 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
-using System.Linq;
+using System.ComponentModel.Composition;
+using System.Text;
+using AudioSwitcher.ApplicationModel.ViewModels;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.ApplicationModel.Commands
 {
-    internal abstract class SetAsDefaultDeviceCommand : Command<AudioDevice>
+    // Displays an audio device in the context menu, clicking the device causes it to be marked as "default"
+    [Command(CommandId.SetAsDefaultDevice, IsDynamic=true)]
+    internal class SetAsDefaultDeviceCommand : Command<AudioDevice>
     {
-        private readonly AudioDeviceManager _manager;
-        private readonly AudioDeviceRole _role;
+        private readonly AudioDeviceManager _deviceManager;
 
-        protected SetAsDefaultDeviceCommand(AudioDeviceManager manager, AudioDeviceRole role)
+        [ImportingConstructor]
+        public SetAsDefaultDeviceCommand(AudioDeviceManager deviceManager)
         {
-            _manager = manager;
-            _role = role;
-        }
-
-        public override void UpdateStatus(AudioDevice argument)
-        {
-            IsChecked = _manager.IsDefaultAudioDevice(argument, _role);
-            IsEnabled = argument.IsActive && !IsChecked;
+            _deviceManager = deviceManager;
         }
 
         public override void Run(AudioDevice argument)
         {
-            _manager.SetDefaultAudioDevice(argument, _role);
+            _deviceManager.SetDefaultAudioDevice(argument);
+        }
+
+        public override void UpdateStatus(AudioDevice argument)
+        {
+            AudioDeviceViewModel viewModel = new AudioDeviceViewModel(_deviceManager, argument);
+
+            Text = GetDisplayText(viewModel);
+            Image = viewModel.Image;
+            IsEnabled = viewModel.IsEnabled;
+        }
+
+        private string GetDisplayText(AudioDeviceViewModel viewModel)
+        {
+            StringBuilder text = new StringBuilder();
+            text.AppendLine(viewModel.Description);         // Headphones (Black)
+            text.AppendLine(viewModel.FriendlyName);        // High Definition Audio Device
+            text.Append(viewModel.StateDisplayName);        // Ready
+
+            return text.ToString();
         }
     }
 }

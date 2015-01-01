@@ -16,15 +16,16 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         private readonly AudioToolStripMenuItem _item;
         private readonly ToolStripDropDown _dropDown;
-        private readonly Command _command;
+        private readonly Lifetime<ICommand> _lifetime;
+        private readonly ICommand _command;
         private readonly Func<object> _argumentGetter;
 
-        public CommandBinding(ToolStripDropDown dropDown, AudioToolStripMenuItem item, Command command)
+        public CommandBinding(ToolStripDropDown dropDown, AudioToolStripMenuItem item, Lifetime<ICommand> command)
             : this(dropDown, item, command, (Func<object>)null)
         {
         }
 
-        public CommandBinding(ToolStripDropDown dropDown, AudioToolStripMenuItem item, Command command, Func<object> argumentGetter)
+        public CommandBinding(ToolStripDropDown dropDown, AudioToolStripMenuItem item, Lifetime<ICommand> command, Func<object> argumentGetter)
         {
             if (dropDown == null)
                 throw new ArgumentNullException("dropDown");
@@ -37,7 +38,8 @@ namespace AudioSwitcher.Presentation.CommandModel
 
             _dropDown = dropDown;
             _item = item;
-            _command = command;
+            _command = command.Instance;
+            _lifetime = command;
             _argumentGetter = argumentGetter ?? NoArgumentGetter;
 
             RegisterEvents();
@@ -66,6 +68,8 @@ namespace AudioSwitcher.Presentation.CommandModel
         {
 			if (e.Item == _item)
 				RegisterEvents(register: false);
+
+            _lifetime.Dispose();
         }
 
         private void OnItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -97,7 +101,7 @@ namespace AudioSwitcher.Presentation.CommandModel
             SyncProperty(command, e.PropertyName);
         }
 
-        private void SyncProperty(Command command, string propertyName)
+        private void SyncProperty(ICommand command, string propertyName)
         {
             switch (propertyName)
             {

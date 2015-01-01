@@ -21,5 +21,9 @@ namespace AudioSwitcher.ApplicationModel.Commands
 
         public const string SetAsDefaultCommunicationDevice             = "Device.SetAsDefaultCommunicationDevice";
         public const string SetAsDefaultMultimediaDevice                = "Device.SetAsDefaultMultimediaDevice";
+        public const string SetAsDefaultDevice                          = "Device.SetAsDefaultDevice";
+        public const string NoDevices                                   = "Device.NoDevices";
+        public const string NoRecordingDevices                          = "Device.NoRecordingDevices";
+        public const string NoPlaybackDevices                           = "Device.NoPlaybackDevices";
     }
 }

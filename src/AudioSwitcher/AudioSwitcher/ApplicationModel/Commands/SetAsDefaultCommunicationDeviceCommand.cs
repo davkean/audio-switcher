@@ -9,7 +9,7 @@ using AudioSwitcher.Presentation.CommandModel;
 namespace AudioSwitcher.ApplicationModel.Commands
 {
     [Command(CommandId.SetAsDefaultCommunicationDevice)]
-    internal class SetAsDefaultCommunicationDeviceCommand : SetAsDefaultDeviceCommand
+    internal class SetAsDefaultCommunicationDeviceCommand : SetAsDefaultDeviceCommandBase
     {
         [ImportingConstructor]
         public SetAsDefaultCommunicationDeviceCommand(AudioDeviceManager manager)

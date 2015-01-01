@@ -17,19 +17,19 @@ namespace AudioSwitcher.Presentation.UI
 
         public static ToolStripMenuItem AddCommand(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId, Func<object> argumentGetter)
         {
-            Command command = commandManager.FindCommand(commandId);
+            Lifetime<ICommand> command = commandManager.FindCommand(commandId);
             if (command == null)
                 throw new ArgumentException();
 
             return AddCommand(dropDown, command, argumentGetter);
         }
 
-        public static ToolStripMenuItem AddCommand(this ToolStripDropDown dropDown, Command command)
+        private static ToolStripMenuItem AddCommand(this ToolStripDropDown dropDown, Lifetime<ICommand> command)
         {
             return AddCommand(dropDown, command, (Func<object>)null);
         }
 
-        public static ToolStripMenuItem AddCommand(this ToolStripDropDown dropDown, Command command, Func<object> argumentGetter)
+        private static ToolStripMenuItem AddCommand(this ToolStripDropDown dropDown, Lifetime<ICommand> command, Func<object> argumentGetter)
         {
             AudioToolStripMenuItem item = new AudioToolStripMenuItem();
             item.Tag = command;
@@ -51,9 +51,9 @@ namespace AudioSwitcher.Presentation.UI
             return item.DropDown;
         }
 
-        public static ToolStripDropDown AddNestedCommand(this ToolStripDropDown dropDown, Command command)
+        public static ToolStripDropDown AddNestedCommand(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId, Func<object> argumentGetter)
         {
-            ToolStripMenuItem item = dropDown.AddCommand(command);
+            ToolStripMenuItem item = dropDown.AddCommand(commandManager, commandId, argumentGetter);
 
             return item.DropDown;
         }

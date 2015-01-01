@@ -12,9 +12,10 @@ namespace AudioSwitcher.Presentation.CommandModel
     internal class CommandAttribute : ExportAttribute
     {
         private readonly string _id;
+        private bool _isDynamic;
 
         public CommandAttribute(string id)
-            : base(typeof(Command))
+            : base(typeof(ICommand))
         {
             _id = id;
         }
@@ -22,6 +23,12 @@ namespace AudioSwitcher.Presentation.CommandModel
         public string Id
         {
             get { return _id;  }
+        }
+
+        public bool IsDynamic
+        {
+            get { return _isDynamic; }
+            set { _isDynamic = value; }
         }
     }
 }

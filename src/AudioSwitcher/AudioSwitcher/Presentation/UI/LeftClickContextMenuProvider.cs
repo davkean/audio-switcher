@@ -1,12 +1,12 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AudioSwitcher.Audio;
 using AudioSwitcher.ApplicationModel.Commands;
+using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
-using System;
 
 namespace AudioSwitcher.Presentation.UI
 {
@@ -27,14 +27,14 @@ namespace AudioSwitcher.Presentation.UI
 
         private static void OnContextMenuOpening(AudioDeviceManager deviceManager, CommandManager commandManager, AudioContextMenu strip)
         {
-            AddDeviceCommands(deviceManager, commandManager, strip, AudioDeviceKind.Playback, Settings.Default.ShowPlaybackDevices, Resources.NoPlaybackDevices);
-            AddDeviceCommands(deviceManager, commandManager, strip, AudioDeviceKind.Recording, Settings.Default.ShowRecordingDevices, Resources.NoRecordingDevices);
+            AddDeviceCommands(deviceManager, commandManager, strip, AudioDeviceKind.Playback, Settings.Default.ShowPlaybackDevices, CommandId.NoPlaybackDevices);
+            AddDeviceCommands(deviceManager, commandManager, strip, AudioDeviceKind.Recording, Settings.Default.ShowRecordingDevices, CommandId.NoRecordingDevices);
 
             if (strip.Items.Count == 0)
-                strip.AddCommand(new DisabledCommand(Resources.NoDevices));
+                strip.AddCommand(commandManager, CommandId.NoDevices);
         }
 
-        private static void AddDeviceCommands(AudioDeviceManager deviceManager, CommandManager commandManager, ContextMenuStrip strip, AudioDeviceKind kind, bool condition, string noDeviceText)
+        private static void AddDeviceCommands(AudioDeviceManager deviceManager, CommandManager commandManager, ContextMenuStrip strip, AudioDeviceKind kind, bool condition, string noDeviceCommandId)
         {
             if (condition)
             {
@@ -43,7 +43,7 @@ namespace AudioSwitcher.Presentation.UI
                 AudioDeviceCollection devices = GetDevices(deviceManager, kind);
                 if (devices.Count == 0)
                 {
-                    strip.AddCommand(new DisabledCommand(noDeviceText));
+                    strip.AddCommand(commandManager, noDeviceCommandId);
                 }
                 else
                 {
@@ -59,12 +59,12 @@ namespace AudioSwitcher.Presentation.UI
         {
             foreach (AudioDevice device in devices.Where(d => d.State == state))
             {
-                ToolStripDropDown dropDown = strip.AddNestedCommand(new AudioDeviceCommand(deviceManager, device));
-                                
-                if (device.State == AudioDeviceState.Active)
-                {
-                    Func<object> argumentGetter = () => device;
+                Func<object> argumentGetter = () => device;
 
+                ToolStripDropDown dropDown = strip.AddNestedCommand(commandManager, CommandId.SetAsDefaultDevice, argumentGetter);
+                                
+                if (device.IsActive)
+                {
                     dropDown.AddCommand(commandManager, CommandId.SetAsDefaultMultimediaDevice, argumentGetter);
                     dropDown.AddCommand(commandManager, CommandId.SetAsDefaultCommunicationDevice, argumentGetter);
                 }

@@ -74,7 +74,9 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandBase.cs" />
+    <Compile Include="AudioSwitcher\ApplicationModel\Commands\NoRecordingDevicesCommand.cs" />
+    <Compile Include="AudioSwitcher\LifetimeOfT.cs" />
+    <Compile Include="AudioSwitcher\Presentation\CommandModel\Command.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandAttribute.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\CommandId.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\IApplication.cs" />
@@ -120,9 +122,10 @@
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleAutomaticallySwitchToPluggedInDeviceCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleRunAtWindowsStartupCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\SetAsDefaultCommunicationDeviceCommand.cs" />
-    <Compile Include="AudioSwitcher\ApplicationModel\Commands\SetAsDefaultDeviceCommand.cs" />
+    <Compile Include="AudioSwitcher\ApplicationModel\Commands\SetAsDefaultDeviceCommandBase.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\SetAsDefaultMultimediaDeviceCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowNotPresentDevicesCommand.cs" />
+    <Compile Include="AudioSwitcher\Presentation\CommandModel\ICommand.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\ICommandMetadata.cs" />
     <Compile Include="AudioSwitcher\Presentation\Drawing\DrawingServices.cs" />
     <Compile Include="AudioSwitcher\Presentation\Drawing\IconExtractor.cs" />
@@ -143,7 +146,6 @@
     <Compile Include="AudioSwitcher\Presentation\UI\AudioContextMenu.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AudioSwitcher\Presentation\CommandModel\Command.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\DisabledCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowPlaybackDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowRecordingDevicesCommand.cs" />
@@ -156,7 +158,7 @@
     <Compile Include="AudioSwitcher\Presentation\UI\RightClickContextMenuProvider.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\LeftClickContextMenuProvider.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ExitCommand.cs" />
-    <Compile Include="AudioSwitcher\ApplicationModel\Commands\AudioDeviceCommand.cs" />
+    <Compile Include="AudioSwitcher\ApplicationModel\Commands\SetAsDefaultDeviceCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowUnpluggedDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowDisabledDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\ToolStripExtensions.cs" />

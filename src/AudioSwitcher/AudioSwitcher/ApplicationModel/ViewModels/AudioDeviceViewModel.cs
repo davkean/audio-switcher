@@ -19,6 +19,11 @@ namespace AudioSwitcher.ApplicationModel.ViewModels
             _defaultState = CalculateDeviceDefaultState(deviceManager, device);
         }
 
+        public bool IsEnabled
+        {
+            get { return _device.IsActive; }
+        }
+
         public string Description
         {
             get { return _device.DeviceDescription; }

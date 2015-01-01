@@ -11,5 +11,10 @@ namespace AudioSwitcher.Presentation.CommandModel
         {
             get;
         }
+
+        bool IsDynamic
+        {
+            get;
+        }
     }
 }
