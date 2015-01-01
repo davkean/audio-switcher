@@ -12,10 +12,7 @@ namespace AudioSwitcher.ApplicationModel.Commands
         public ShowDisabledDevicesCommand()
         {
             Text = Resources.ShowDisabledDevices;
-
-            Bitmap bitmap = Resources.Disabled;
-            bitmap.MakeTransparent();
-            Image = bitmap;
+            Image = Resources.Disabled;
         }
 
         public override void UpdateStatus()

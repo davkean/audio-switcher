@@ -117,6 +117,7 @@
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\SetAsDefaultDeviceCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\SetAsDefaultMultimediaDeviceCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ShowNotPresentDevicesCommand.cs" />
+    <Compile Include="AudioSwitcher\Presentation\Drawing\DrawingServices.cs" />
     <Compile Include="AudioSwitcher\Presentation\Drawing\IconExtractor.cs" />
     <Compile Include="AudioSwitcher\Presentation\Drawing\IconInfo.cs" />
     <Compile Include="AudioSwitcher\Presentation\Drawing\Interop\DllImports.cs" />

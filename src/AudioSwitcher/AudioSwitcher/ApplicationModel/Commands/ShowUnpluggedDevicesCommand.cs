@@ -12,9 +12,7 @@ namespace AudioSwitcher.ApplicationModel.Commands
         public ShowUnpluggedDevicesCommand()
         {
             Text = Resources.ShowUnpluggedDevices;
-            Bitmap bitmap = Resources.Unplugged;
-            bitmap.MakeTransparent();
-            Image = bitmap;
+            Image = Resources.Unplugged;
         }
 
         public override void UpdateStatus()

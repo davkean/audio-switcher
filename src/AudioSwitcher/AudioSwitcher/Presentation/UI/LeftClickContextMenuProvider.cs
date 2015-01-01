@@ -17,7 +17,6 @@ namespace AudioSwitcher.Presentation.UI
 
             strip.IsDynamic = true; // We dynamically add the devices when the menu is opened
             strip.AutoCloseWhenItemWithDropDownClicked = true; // When something clicks the "Device" we autoclose 
-            strip.ShowCheckMargin = true;
             strip.ShowImageMargin = true;
             strip.Opening += (sender, e) => OnContextMenuOpening(manager, strip);
 

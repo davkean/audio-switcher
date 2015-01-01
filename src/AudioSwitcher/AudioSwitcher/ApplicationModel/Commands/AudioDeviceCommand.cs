@@ -4,6 +4,7 @@
 using System;
 using System.Drawing;
 using System.Text;
+using System.Windows.Forms;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.Drawing;
@@ -32,28 +33,6 @@ namespace AudioSwitcher.ApplicationModel.Commands
             Text = GetDisplayText();
             Image = GetImage();
             IsEnabled = _device.IsActive;
-
-            UpdateCheckedStatus();
-        }
-
-        private void UpdateCheckedStatus()
-        {
-            if (_deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Multimedia))
-            {
-                IsChecked = true;
-                CheckedImage = Resources.DefaultMultimediaDevice.ToBitmap();
-                
-            }
-            else if (_deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Communications))
-            {
-                IsChecked = true;
-                CheckedImage = Resources.DefaultCommunicationsDevice.ToBitmap();
-            }
-            else
-            {
-                IsChecked = false;
-                CheckedImage = null;
-            }
         }
 
         private string GetDisplayText()
@@ -79,10 +58,38 @@ namespace AudioSwitcher.ApplicationModel.Commands
                 case AudioDeviceState.NotPresent:
                     return Resources.DisplayName_NotPresent;
 
-                default:
                 case AudioDeviceState.Unplugged:
                     return Resources.DisplayName_Unplugged;
             }
+
+            return String.Empty;
+        }
+
+        private Image GetOverlayImage()
+        {
+            if (_deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Multimedia))
+            {
+                return Resources.DefaultMultimediaDevice.ToBitmap();
+
+            }
+            else if (_deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Communications))
+            {
+                return Resources.DefaultCommunicationsDevice.ToBitmap();
+            }
+
+            switch (_device.State)
+            {
+                case AudioDeviceState.Disabled:
+                    return Resources.Disabled;
+
+                case AudioDeviceState.NotPresent:
+                    return Resources.NotPresent.ToBitmap();
+
+                case AudioDeviceState.Unplugged:
+                    return Resources.Unplugged;
+            }
+
+            return null;
         }
 
         private Image GetImage()
@@ -96,7 +103,16 @@ namespace AudioSwitcher.ApplicationModel.Commands
 
             using (icon)
             {
-                return icon.ToBitmap();
+                Image overlayImage = GetOverlayImage();
+
+                if (overlayImage != null)
+                {
+                    return DrawingServices.Overlay(icon.ToBitmap(), overlayImage);
+                }
+                else
+                {
+                    return icon.ToBitmap();
+                }
             }
         }
     }
