@@ -223,11 +223,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\DefaultCommunicationsDevice_16x16.png" />
-    <Content Include="Images\DefaultMultimediaDevice_16x16.png" />
-    <Content Include="Images\Executable.ico" />
-    <Content Include="Images\PlaybackDevice_16x16.png" />
-    <Content Include="Images\RecordingDevice_16x16.png" />
+    <None Include="Images\DefaultCommunicationsDevice_16x16.png" />
+    <None Include="Images\DefaultMultimediaDevice_16x16.png" />
+    <None Include="Images\Executable.ico" />
+    <None Include="Images\PlaybackDevice_16x16.png" />
+    <None Include="Images\RecordingDevice_16x16.png" />
     <None Include="Images\NotPresent_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
