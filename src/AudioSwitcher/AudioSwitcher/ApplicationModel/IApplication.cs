@@ -13,7 +13,7 @@ namespace AudioSwitcher.ApplicationModel
             get;
         }
 
-        Icon Icon
+        Icon NotificationAreaIcon
         {
             get;
         }

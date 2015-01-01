@@ -28,7 +28,7 @@ namespace AudioSwitcher.ApplicationModel
             get { return Resources.Title; }
         }
 
-        public Icon Icon
+        public Icon NotificationAreaIcon
         {
             get { return Resources.NotificationArea; }
         }
