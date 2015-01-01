@@ -10,6 +10,13 @@ namespace AudioSwitcher.Presentation.UI
 {
     internal static partial class ToolStripExtensions
     {
+        public static ToolStripMenuItem AddCommand(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId)
+        {
+            Command command = commandManager.FindCommand(commandId);
+
+            return AddCommand(dropDown, command);
+        }
+
         public static ToolStripMenuItem AddCommand(this ToolStripDropDown dropDown, Command command)
         {
             AudioToolStripMenuItem item = new AudioToolStripMenuItem();

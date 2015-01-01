@@ -2,13 +2,16 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
+using System.ComponentModel.Composition;
 using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.ApplicationModel.Commands
 {
-    internal class ShowPlaybackDevicesCommand : Command
+    [Command(CommandId.ToggleShowPlaybackDevices)]
+    internal class ToggleShowPlaybackDevicesCommand : Command
     {
-        public ShowPlaybackDevicesCommand()
+        [ImportingConstructor]
+        public ToggleShowPlaybackDevicesCommand()
         {
             Text = Resources.ShowPlaybackDevices;
             Image = Resources.PlaybackDevice;

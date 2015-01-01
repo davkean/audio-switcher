@@ -2,14 +2,16 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
-using System.Drawing;
+using System.ComponentModel.Composition;
 using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.ApplicationModel.Commands
 {
-    internal class ShowUnpluggedDevicesCommand : Command
+    [Command(CommandId.ToggleShowUnpluggedDevices)]
+    internal class ToggleShowUnpluggedDevicesCommand : Command
     {
-        public ShowUnpluggedDevicesCommand()
+        [ImportingConstructor]
+        public ToggleShowUnpluggedDevicesCommand()
         {
             Text = Resources.ShowUnpluggedDevices;
             Image = Resources.Unplugged;

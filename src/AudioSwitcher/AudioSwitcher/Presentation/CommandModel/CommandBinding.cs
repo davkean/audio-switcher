@@ -21,7 +21,6 @@ namespace AudioSwitcher.Presentation.CommandModel
             _dropDown = dropDown;
             _item = item;
             _command = command;
-         
 
             RegisterEvents();
             UpdateCommand();

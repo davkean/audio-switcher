@@ -72,9 +72,9 @@ internal class Resources {
     /// <summary>
     ///   Looks up a localized string similar to &amp;Automatically switch to plugged in device.
     /// </summary>
-    internal static string AutoSwitchToPluggedInDevice {
+    internal static string AutomaticallySwitchToPluggedInDevice {
         get {
-            return ResourceManager.GetString("AutoSwitchToPluggedInDevice", resourceCulture);
+            return ResourceManager.GetString("AutomaticallySwitchToPluggedInDevice", resourceCulture);
         }
     }
     

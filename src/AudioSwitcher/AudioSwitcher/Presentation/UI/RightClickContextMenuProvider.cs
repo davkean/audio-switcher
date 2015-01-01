@@ -4,6 +4,7 @@
 using System.Windows.Forms;
 using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.ApplicationModel.Commands;
+using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
 
 namespace AudioSwitcher.Presentation.UI
@@ -11,28 +12,28 @@ namespace AudioSwitcher.Presentation.UI
     // Handles creating the context menu for the right-click menu
     internal class RightClickContextMenuProvider
     {
-        public static AudioContextMenu CreateContextMenu(IApplication application)
+        public static AudioContextMenu CreateContextMenu(CommandManager commandManager)
         {
             AudioContextMenu context = new AudioContextMenu();
             context.DefaultDropDownDirection = ToolStripDropDownDirection.Left;
 
             ToolStripDropDown settingsContext = context.AddNestedItem(Resources.Settings);
-            settingsContext.AddCommand(new RunAsStartupCommand());
+            settingsContext.AddCommand(commandManager, CommandId.ToggleRunAtWindowsStartup);
             settingsContext.AddSeparator();
-            settingsContext.AddCommand(new AutoSwitchToPluggedInDeviceCommand());
+            settingsContext.AddCommand(commandManager, CommandId.ToggleAutomaticallySwitchToPluggedInDevice);
 
             context.AddSeparator();
 
             ToolStripDropDown showContext = context.AddNestedItem(Resources.Appearance);
-            showContext.AddCommand(new ShowPlaybackDevicesCommand());
-            showContext.AddCommand(new ShowRecordingDevicesCommand());
+            showContext.AddCommand(commandManager, CommandId.ToggleShowPlaybackDevices);
+            showContext.AddCommand(commandManager, CommandId.ToggleShowRecordingDevices);
             showContext.AddSeparator();
-            showContext.AddCommand(new ShowUnpluggedDevicesCommand());
-            showContext.AddCommand(new ShowDisabledDevicesCommand());
-            showContext.AddCommand(new ShowNotPresentDevices());
+            showContext.AddCommand(commandManager, CommandId.ToggleShowUnpluggedDevices);
+            showContext.AddCommand(commandManager, CommandId.ToggleShowDisabledDevices);
+            showContext.AddCommand(commandManager, CommandId.ToggleShowNotPresentDevices);
 
             context.AddSeparator();
-            context.AddCommand(new ExitCommand(application));
+            context.AddCommand(commandManager, CommandId.Exit);
 
             return context;
         }

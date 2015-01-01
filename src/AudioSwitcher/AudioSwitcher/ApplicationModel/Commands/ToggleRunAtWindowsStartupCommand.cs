@@ -2,6 +2,7 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Windows.Forms;
 using AudioSwitcher.Presentation.CommandModel;
@@ -10,12 +11,14 @@ using Microsoft.Win32;
 
 namespace AudioSwitcher.ApplicationModel.Commands
 {
-    internal class RunAsStartupCommand : Command
+    [Command(CommandId.ToggleRunAtWindowsStartup)]
+    internal class ToggleRunAtWindowsStartupCommand : Command
     {
         private readonly static string RunAsWindowsStartupValue = '"' + Application.ExecutablePath + "\" -silent";
         private readonly static string RunAtWindowsStartupValueName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
 
-        public RunAsStartupCommand()
+        [ImportingConstructor]
+        public ToggleRunAtWindowsStartupCommand()
         {
             Text = Resources.RunAtStartup;
         }

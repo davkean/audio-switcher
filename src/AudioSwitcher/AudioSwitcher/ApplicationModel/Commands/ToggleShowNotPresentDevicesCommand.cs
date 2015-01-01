@@ -2,13 +2,16 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
+using System.ComponentModel.Composition;
 using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.ApplicationModel.Commands
 {
-    internal class ShowNotPresentDevices : Command
+    [Command(CommandId.ToggleShowNotPresentDevices)]
+    internal class ToggleShowNotPresentDevicesCommand : Command
     {
-        public ShowNotPresentDevices()
+        [ImportingConstructor]
+        public ToggleShowNotPresentDevicesCommand()
         {
             Text = Resources.ShowNotPresentDevices;
             Image = Resources.NotPresent;

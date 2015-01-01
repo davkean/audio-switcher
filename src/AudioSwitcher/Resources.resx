@@ -120,7 +120,7 @@
   <data name="Appearance" xml:space="preserve">
     <value>&amp;Appearance</value>
   </data>
-  <data name="AutoSwitchToPluggedInDevice" xml:space="preserve">
+  <data name="AutomaticallySwitchToPluggedInDevice" xml:space="preserve">
     <value>&amp;Automatically switch to plugged in device</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
