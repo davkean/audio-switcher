@@ -6,7 +6,7 @@ using System;
 namespace AudioSwitcher.Presentation.CommandModel
 {
     /// <summary>
-    ///     Represents the export metadata of a <see cref="Command"/>.
+    ///     Represents the export metadata of a <see cref="ICommand"/>.
     /// </summary>
     public interface ICommandMetadata
     {
