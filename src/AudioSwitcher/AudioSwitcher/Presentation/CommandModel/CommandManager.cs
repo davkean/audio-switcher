@@ -66,7 +66,7 @@ namespace AudioSwitcher.Presentation.CommandModel
             }
 
             cache = true;
-            return new Lifetime<ICommand>(() => context.Value, () => { });
+            return new Lifetime<ICommand>(() => context.Value, (Action)null);
         }
     }
 }
