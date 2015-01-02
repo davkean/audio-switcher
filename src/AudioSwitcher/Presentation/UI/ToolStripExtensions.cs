@@ -13,24 +13,24 @@ namespace AudioSwitcher.Presentation.UI
     {
         public static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId)
         {
-            return dropDown.BindCommand(commandManager, commandId, (Func<object>)null);
+            return dropDown.BindCommand(commandManager, commandId, (object)null);
         }
 
-        public static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId, Func<object> argumentGetter)
+        public static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId, object argument)
         {
             Lifetime<ICommand> command = commandManager.FindCommand(commandId);
             if (command == null)
                 throw new ArgumentException();
 
-            return dropDown.BindCommand(command, argumentGetter);
+            return dropDown.BindCommand(command, argument);
         }
 
-        private static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, Lifetime<ICommand> command, Func<object> argumentGetter)
+        private static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, Lifetime<ICommand> command, object argument)
         {
             ToolStripMenuItem item = dropDown.Add(string.Empty);
 
             // Should be kept alive by the strip and command hookups.
-            new MenuItemCommandBinding(dropDown, item, command, argumentGetter);
+            new MenuItemCommandBinding(dropDown, item, command, argument);
 
             return item;
         }

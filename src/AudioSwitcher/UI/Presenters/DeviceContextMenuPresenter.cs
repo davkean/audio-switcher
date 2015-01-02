@@ -64,11 +64,9 @@ namespace AudioSwitcher.UI.Presenters
         {
             foreach (AudioDevice device in devices.Where(d => d.State == state))
             {
-                Func<object> argumentGetter = () => device;
-
-                ToolStripMenuItem menu = ContextMenu.BindCommand(_commandManager, CommandId.SetAsDefaultDevice, argumentGetter);
-                menu.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, argumentGetter);
-                menu.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, argumentGetter);
+                ToolStripMenuItem menu = ContextMenu.BindCommand(_commandManager, CommandId.SetAsDefaultDevice, device);
+                menu.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, device);
+                menu.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, device);
             }
         }
 

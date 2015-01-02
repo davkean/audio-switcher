@@ -13,20 +13,18 @@ namespace AudioSwitcher.Presentation.UI
     // Responsible for sync'ing between a Command and a ToolStripMenuItem
     internal class MenuItemCommandBinding
     {
-        private static readonly Func<object> NoArgumentGetter = () => { return null; };
-
         private readonly ToolStripMenuItem _item;
         private readonly ToolStripDropDown _dropDown;
         private readonly Lifetime<ICommand> _lifetime;
         private readonly ICommand _command;
-        private readonly Func<object> _argumentGetter;
+        private readonly object _argument;
 
         public MenuItemCommandBinding(ToolStripDropDown dropDown, ToolStripMenuItem item, Lifetime<ICommand> command)
             : this(dropDown, item, command, (Func<object>)null)
         {
         }
 
-        public MenuItemCommandBinding(ToolStripDropDown dropDown, ToolStripMenuItem item, Lifetime<ICommand> command, Func<object> argumentGetter)
+        public MenuItemCommandBinding(ToolStripDropDown dropDown, ToolStripMenuItem item, Lifetime<ICommand> command, object argument)
         {
             if (dropDown == null)
                 throw new ArgumentNullException("dropDown");
@@ -41,7 +39,7 @@ namespace AudioSwitcher.Presentation.UI
             _item = item;
             _command = command.Instance;
             _lifetime = command;
-            _argumentGetter = argumentGetter ?? NoArgumentGetter;
+            _argument = argument;
 
             RegisterEvents();
             UpdateCommand();
@@ -76,12 +74,12 @@ namespace AudioSwitcher.Presentation.UI
         private void OnItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 			if (e.ClickedItem == _item)
-                _command.Run(_argumentGetter());
+                _command.Run(_argument);
         }
 
         private void UpdateCommand()
         {
-            _command.UpdateStatus(_argumentGetter());
+            _command.UpdateStatus(_argument);
             SyncProperty(_command, CommandProperty.IsEnabled);
             SyncProperty(_command, CommandProperty.IsChecked);
             SyncProperty(_command, CommandProperty.Text);
