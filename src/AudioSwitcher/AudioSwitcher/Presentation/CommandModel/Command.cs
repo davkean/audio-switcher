@@ -20,7 +20,13 @@ namespace AudioSwitcher.Presentation.CommandModel
         private Image _checkedImage;
 
         protected Command()
+            : this((string)null)
         {
+        }
+
+        protected Command(string text)
+        {
+            Text = text;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

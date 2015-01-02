@@ -9,7 +9,13 @@ namespace AudioSwitcher.Presentation.CommandModel
     internal abstract class Command<T> : Command, ICommand
     {
         protected Command()
+            : this((string)null)
         {
+        }
+
+        protected Command(string text)
+            : base(text)
+        {   
         }
 
         public override sealed void Run()

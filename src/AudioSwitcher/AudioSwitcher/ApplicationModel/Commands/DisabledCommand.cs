@@ -9,9 +9,9 @@ namespace AudioSwitcher.ApplicationModel.Commands
     internal class DisabledCommand : Command
     {
         public DisabledCommand(string text)
+            : base(text)
         {
             IsEnabled = false;
-            Text = text;
         }
 
         public override void Run()
