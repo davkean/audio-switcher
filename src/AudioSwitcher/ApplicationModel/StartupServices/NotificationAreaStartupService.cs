@@ -4,6 +4,7 @@
 using System;
 using System.ComponentModel.Composition;
 using AudioSwitcher.Audio;
+using AudioSwitcher.Presentation;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
 using AudioSwitcher.UI.Presenters;
@@ -11,26 +12,19 @@ using AudioSwitcher.UI.Presenters;
 namespace AudioSwitcher.ApplicationModel.Startup
 {
     [Export(typeof(IStartupService))]
-    internal class NotificationIconStartupService : IStartupService, IDisposable
+    internal class NotificationIconStartupService : IStartupService
     {
-        private readonly ExportFactory<NotificationIconPresenter> _factory;
-        private ExportLifetimeContext<NotificationIconPresenter> _lifetime;
+        private readonly PresenterManager _presenterManager;
 
         [ImportingConstructor]
-        public NotificationIconStartupService(ExportFactory<NotificationIconPresenter> factory)
+        public NotificationIconStartupService(PresenterManager presenterManager)
         {
-            _factory = factory;
+            _presenterManager = presenterManager;
         }
 
         public void Startup()
         {
-            _lifetime = _factory.CreateExport();
-            _lifetime.Value.Show();
-        }
-
-        public void Dispose()
-        {
-            _lifetime.Dispose();
+            _presenterManager.ShowNonModal(PresenterId.NotificationArea);
         }
     }
 }

@@ -3,7 +3,9 @@
 // -----------------------------------------------------------------------
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using AudioSwitcher.Presentation.UI.Interop;
@@ -11,40 +13,41 @@ using AudioSwitcher.Presentation.UI.Interop;
 namespace AudioSwitcher.Presentation.UI
 {
     // Represents a context menu strip that adds additional behavior for audio switcher
-    internal class AudioContextMenu : ContextMenuStrip
+    internal class AudioContextMenuStrip : ContextMenuStrip
     {
-        private bool _isDynamic;
         private bool _autoCloseWhenItemWithDropDownClicked;
 
-        public AudioContextMenu()
+        public AudioContextMenuStrip()
         {
             Renderer = new ToolStripNativeRenderer(ToolbarTheme.Toolbar) { RenderArrowOnDisabledItems = false };
             ShowCheckMargin = false;
+            ShowImageMargin = true;
+        }
+
+        public bool WorkingAreaConstrained
+        {
+            get;
+            set;
         }
 
         public void ShowInSystemTray(Point screenLocation)
         {
-            if (Visible)
+            // Prevents the context menu from causing the app to show in the taskbar
+            DllImports.SetForegroundWindow(new HandleRef(this, Handle));
+
+            if (WorkingAreaConstrained)
             {
-                this.Close(ToolStripDropDownCloseReason.AppFocusChange);
+                base.Show(screenLocation);
             }
             else
             {
-
-                // Prevents the context menu from causing the app to show in the taskbar
-                DllImports.SetForegroundWindow(new HandleRef(this, Handle));
-                base.Show(screenLocation, ToolStripDropDownDirection.AboveLeft);
-            }
-        }
-
-        public bool IsDynamic
-        {
-            get { return _isDynamic; }
-            set
-            {
-                _isDynamic = value;
-
-                Reset();
+                // HACK: The ContextMenuStrip does some trickery that only the NotifyIcon can call
+                // that allows it to be shown outside of the working area of the desktop and over
+                // the top of the taskbar. To mimic that same thing, we need to call the same method 
+                // that NotifyIcon uses.
+                MethodInfo info = typeof(AudioContextMenuStrip).GetMethod("ShowInTaskbar", BindingFlags.NonPublic | BindingFlags.Public | System.Reflection.BindingFlags.Instance, null, new Type[] { typeof(int), typeof(int) }, null);
+                Debug.Assert(info != null);
+                info.Invoke(this, new object[] { screenLocation.X, screenLocation.Y });
             }
         }
 
@@ -52,23 +55,6 @@ namespace AudioSwitcher.Presentation.UI
         {
             get { return _autoCloseWhenItemWithDropDownClicked; }
             set { _autoCloseWhenItemWithDropDownClicked = value; }
-        }
-
-        protected override void OnOpening(CancelEventArgs e)
-        {
-            // Clear the items so that all the consumer needs to do is
-            // is add the dynamic items
-            if (_isDynamic)
-                Items.Clear();
-
-            base.OnOpening(e);
-        }
-
-        protected override void OnClosed(ToolStripDropDownClosedEventArgs e)
-        {
-            base.OnClosed(e);
-
-            Reset();
         }
 
         protected override void OnItemClicked(ToolStripItemClickedEventArgs e)
@@ -87,15 +73,6 @@ namespace AudioSwitcher.Presentation.UI
                         Close(ToolStripDropDownCloseReason.ItemClicked);
                     }
                 }
-            }
-        }
-
-        private void Reset()
-        {
-            if (_isDynamic)
-            {
-                Items.Clear();
-                Items.Add(new ToolStripMenuItem()); // Dummy item so that it will open first time
             }
         }
     }

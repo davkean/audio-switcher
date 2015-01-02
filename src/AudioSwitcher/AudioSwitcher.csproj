@@ -53,6 +53,13 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentation\IPresenter.cs" />
+    <Compile Include="Presentation\NonModalPresenter.cs" />
+    <Compile Include="Presentation\PresenterAttribute.cs" />
+    <Compile Include="Presentation\ContextMenuPresenter.cs" />
+    <Compile Include="Presentation\Presenter.cs" />
+    <Compile Include="Presentation\PresenterManager.cs" />
+    <Compile Include="Presentation\IPresenterMetadata.cs" />
     <Compile Include="UI\Commands\NoRecordingDevicesCommand.cs" />
     <Compile Include="ComponentModel\Lifetime.cs" />
     <Compile Include="ComponentModel\ObservableObject.cs" />
@@ -64,8 +71,9 @@
     <Compile Include="ApplicationModel\IStartupService.cs" />
     <Compile Include="ApplicationModel\StartupServices\SaveSettingsOnShutdownService.cs" />
     <Compile Include="ApplicationModel\SingleInstanceApp.cs" />
-    <Compile Include="ApplicationModel\StartupServices\NotificationIconStartupService.cs" />
-    <Compile Include="UI\Presenters\NotificationIconPresenter.cs" />
+    <Compile Include="ApplicationModel\StartupServices\NotificationAreaStartupService.cs" />
+    <Compile Include="UI\Presenters\NotificationAreaPresenter.cs" />
+    <Compile Include="UI\Presenters\PresenterId.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModel.cs" />
     <Compile Include="Audio\DefaultAudioDeviceEventArgs.cs" />
     <Compile Include="Audio\AudioDeviceStateEventArgs.cs" />
@@ -124,19 +132,18 @@
     <Compile Include="Presentation\Drawing\ResourceName.cs" />
     <Compile Include="Presentation\Drawing\ShellIcon.cs" />
     <Compile Include="Presentation\Drawing\Utility.cs" />
-    <Compile Include="Presentation\UI\AudioContextMenu.cs">
+    <Compile Include="Presentation\UI\AudioContextMenuStrip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\CommandModel\DisabledCommand.cs" />
     <Compile Include="UI\Commands\ToggleShowPlaybackDevicesCommand.cs" />
     <Compile Include="UI\Commands\ToggleShowRecordingDevicesCommand.cs" />
-    <Compile Include="Presentation\UI\AudioNotifyIcon.cs" />
     <Compile Include="Presentation\UI\AudioToolStripMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\UI\Interop\DllImports.cs" />
     <Compile Include="Audio\Interop\MMAudio\IPolicyConfig.cs" />
-    <Compile Include="UI\Presenters\RightClickContextMenuPresenter.cs" />
+    <Compile Include="UI\Presenters\NotificationAreaContextMenuPresenter.cs" />
     <Compile Include="UI\Presenters\DeviceContextMenuPresenter.cs" />
     <Compile Include="UI\Commands\ExitCommand.cs" />
     <Compile Include="UI\Commands\SetAsDefaultDeviceCommand.cs" />

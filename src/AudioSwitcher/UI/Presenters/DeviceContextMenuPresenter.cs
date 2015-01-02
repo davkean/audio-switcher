@@ -2,73 +2,77 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Forms;
-using AudioSwitcher.UI.Commands;
 using AudioSwitcher.Audio;
+using AudioSwitcher.Presentation;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
+using AudioSwitcher.UI.Commands;
 
 namespace AudioSwitcher.UI.Presenters
 {
-    // Handles creating the context menu for the device menu
-    internal class DeviceContextMenuPresenter
+    // Presents the device context menu when left-clicking on the notification icon
+    [Presenter(PresenterId.DeviceContextMenu, IsToggle=true)]
+    internal class DeviceContextMenuPresenter : ContextMenuPresenter
     {
-        public static AudioContextMenu CreateContextMenu(AudioDeviceManager deviceManager, CommandManager commandManager)
+        private readonly AudioDeviceManager _deviceManager;
+        private readonly CommandManager _commandManager;
+
+        [ImportingConstructor]
+        public DeviceContextMenuPresenter(AudioDeviceManager deviceManager, CommandManager commandManager)
         {
-            AudioContextMenu strip = new AudioContextMenu();
-
-            strip.IsDynamic = true; // We dynamically add the devices when the menu is opened
-            strip.AutoCloseWhenItemWithDropDownClicked = true; // When something clicks the "Device" we autoclose 
-            strip.ShowImageMargin = true;
-            strip.Opening += (sender, e) => OnContextMenuOpening(deviceManager, commandManager, strip);
-
-            return strip;
+            _deviceManager = deviceManager;
+            _commandManager = commandManager;
         }
 
-        private static void OnContextMenuOpening(AudioDeviceManager deviceManager, CommandManager commandManager, AudioContextMenu strip)
+        protected override void Bind()
         {
-            AddDeviceCommands(deviceManager, commandManager, strip, AudioDeviceKind.Playback, Settings.Default.ShowPlaybackDevices, CommandId.NoPlaybackDevices);
-            AddDeviceCommands(deviceManager, commandManager, strip, AudioDeviceKind.Recording, Settings.Default.ShowRecordingDevices, CommandId.NoRecordingDevices);
+            ContextMenu.AutoCloseWhenItemWithDropDownClicked = true; // When something clicks the "Device" we auto close 
+            ContextMenu.WorkingAreaConstrained = true;
 
-            if (strip.Items.Count == 0)
-                strip.AddCommand(commandManager, CommandId.NoDevices);
+            AddDeviceCommands(AudioDeviceKind.Playback, Settings.Default.ShowPlaybackDevices, CommandId.NoPlaybackDevices);
+            AddDeviceCommands(AudioDeviceKind.Recording, Settings.Default.ShowRecordingDevices, CommandId.NoRecordingDevices);
+
+            if (ContextMenu.Items.Count == 0)
+                ContextMenu.AddCommand(_commandManager, CommandId.NoDevices);
         }
 
-        private static void AddDeviceCommands(AudioDeviceManager deviceManager, CommandManager commandManager, ContextMenuStrip strip, AudioDeviceKind kind, bool condition, string noDeviceCommandId)
+        private void AddDeviceCommands(AudioDeviceKind kind, bool condition, string noDeviceCommandId)
         {
             if (condition)
             {
-                strip.AddSeparatorIfNeeded();
+                ContextMenu.AddSeparatorIfNeeded();
 
-                AudioDeviceCollection devices = GetDevices(deviceManager, kind);
+                AudioDeviceCollection devices = GetDevices(kind);
                 if (devices.Count == 0)
                 {
-                    strip.AddCommand(commandManager, noDeviceCommandId);
+                    ContextMenu.AddCommand(_commandManager, noDeviceCommandId);
                 }
                 else
                 {
-                    AddCommand(deviceManager, commandManager, strip, devices, AudioDeviceState.Active);
-                    AddCommand(deviceManager, commandManager, strip, devices, AudioDeviceState.Unplugged);
-                    AddCommand(deviceManager, commandManager, strip, devices, AudioDeviceState.Disabled);
-                    AddCommand(deviceManager, commandManager, strip, devices, AudioDeviceState.NotPresent);
+                    AddCommand(devices, AudioDeviceState.Active);
+                    AddCommand(devices, AudioDeviceState.Unplugged);
+                    AddCommand(devices, AudioDeviceState.Disabled);
+                    AddCommand(devices, AudioDeviceState.NotPresent);
                 }
             }
         }
 
-        private static void AddCommand(AudioDeviceManager deviceManager, CommandManager commandManager, ContextMenuStrip strip, AudioDeviceCollection devices, AudioDeviceState state)
+        private void AddCommand(AudioDeviceCollection devices, AudioDeviceState state)
         {
             foreach (AudioDevice device in devices.Where(d => d.State == state))
             {
                 Func<object> argumentGetter = () => device;
 
-                ToolStripDropDown dropDown = strip.AddNestedCommand(commandManager, CommandId.SetAsDefaultDevice, argumentGetter);
-                dropDown.AddCommand(commandManager, CommandId.SetAsDefaultMultimediaDevice, argumentGetter);
-                dropDown.AddCommand(commandManager, CommandId.SetAsDefaultCommunicationDevice, argumentGetter);
+                ToolStripDropDown dropDown = ContextMenu.AddNestedCommand(_commandManager, CommandId.SetAsDefaultDevice, argumentGetter);
+                dropDown.AddCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, argumentGetter);
+                dropDown.AddCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, argumentGetter);
             }
         }
 
-        private static AudioDeviceCollection GetDevices(AudioDeviceManager manager, AudioDeviceKind kind)
+        private AudioDeviceCollection GetDevices(AudioDeviceKind kind)
         {
             AudioDeviceState state = AudioDeviceState.Active;
             if (Settings.Default.ShowDisabledDevices)
@@ -86,7 +90,7 @@ namespace AudioSwitcher.UI.Presenters
                 state |= AudioDeviceState.NotPresent;
             }
 
-            return manager.GetAudioDevices(kind, state);
+            return _deviceManager.GetAudioDevices(kind, state);
         }
     }
 }

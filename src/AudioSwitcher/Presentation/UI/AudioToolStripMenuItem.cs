@@ -48,7 +48,7 @@ namespace AudioSwitcher.Presentation.UI
 
         protected override ToolStripDropDown CreateDefaultDropDown()
         {
-            return new AudioContextMenu();
+            return new AudioContextMenuStrip();
         }
     }
 }
