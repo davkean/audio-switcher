@@ -7,7 +7,8 @@
     <ProjectGuid>{8F82476F-30DC-47A5-80A0-AB8437E4EEA5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>AudioSwitcher</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -124,14 +125,14 @@
     <Compile Include="AudioSwitcher\Presentation\Drawing\ShellIcon.cs" />
     <Compile Include="AudioSwitcher\Presentation\Drawing\Utility.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\AudioContextMenu.cs">
-      <SubType>Code</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\DisabledCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowPlaybackDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowRecordingDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\AudioNotifyIcon.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\AudioToolStripMenuItem.cs">
-      <SubType>Code</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AudioSwitcher\Presentation\UI\Interop\DllImports.cs" />
     <Compile Include="AudioSwitcher\Audio\Interop\MMAudio\IPolicyConfig.cs" />
