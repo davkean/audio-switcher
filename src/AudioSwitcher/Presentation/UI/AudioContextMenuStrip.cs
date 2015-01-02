@@ -75,5 +75,18 @@ namespace AudioSwitcher.Presentation.UI
                 }
             }
         }
+
+        protected override ToolStripItem CreateDefaultItem(string text, Image image, EventHandler onClick)
+        {
+            if (text == "-")
+                return new ToolStripSeparator();
+
+            AudioToolStripMenuItem item = new AudioToolStripMenuItem();
+            item.Text = text;
+            item.Image = image;
+            item.Click += onClick;
+
+            return item;
+        }
     }
 }

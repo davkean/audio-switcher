@@ -36,7 +36,7 @@ namespace AudioSwitcher.UI.Presenters
             AddDeviceCommands(AudioDeviceKind.Recording, Settings.Default.ShowRecordingDevices, CommandId.NoRecordingDevices);
 
             if (ContextMenu.Items.Count == 0)
-                ContextMenu.AddCommand(_commandManager, CommandId.NoDevices);
+                ContextMenu.BindCommand(_commandManager, CommandId.NoDevices);
         }
 
         private void AddDeviceCommands(AudioDeviceKind kind, bool condition, string noDeviceCommandId)
@@ -48,7 +48,7 @@ namespace AudioSwitcher.UI.Presenters
                 AudioDeviceCollection devices = GetDevices(kind);
                 if (devices.Count == 0)
                 {
-                    ContextMenu.AddCommand(_commandManager, noDeviceCommandId);
+                    ContextMenu.BindCommand(_commandManager, noDeviceCommandId);
                 }
                 else
                 {
@@ -66,9 +66,9 @@ namespace AudioSwitcher.UI.Presenters
             {
                 Func<object> argumentGetter = () => device;
 
-                ToolStripDropDown dropDown = ContextMenu.AddNestedCommand(_commandManager, CommandId.SetAsDefaultDevice, argumentGetter);
-                dropDown.AddCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, argumentGetter);
-                dropDown.AddCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, argumentGetter);
+                ToolStripMenuItem menu = ContextMenu.BindCommand(_commandManager, CommandId.SetAsDefaultDevice, argumentGetter);
+                menu.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, argumentGetter);
+                menu.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, argumentGetter);
             }
         }
 

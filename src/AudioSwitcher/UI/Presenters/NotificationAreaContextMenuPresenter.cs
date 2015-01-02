@@ -24,23 +24,23 @@ namespace AudioSwitcher.UI.Presenters
 
         protected override void Bind()
         {
-            ToolStripDropDown settingsStrip = ContextMenu.AddNestedItem(Resources.Settings);
-            settingsStrip.AddCommand(_commandManager, CommandId.RunAtWindowsStartup);
-            settingsStrip.AddSeparator();
-            settingsStrip.AddCommand(_commandManager, CommandId.AutomaticallySwitchToPluggedInDevice);
+            ToolStripMenuItem settings = ContextMenu.Add(Resources.Settings);
+            settings.DropDown.BindCommand(_commandManager, CommandId.RunAtWindowsStartup);
+            settings.DropDown.AddSeparator();
+            settings.DropDown.BindCommand(_commandManager, CommandId.AutomaticallySwitchToPluggedInDevice);
 
             ContextMenu.AddSeparator();
 
-            ToolStripDropDown appearanceStrip = ContextMenu.AddNestedItem(Resources.Appearance);
-            appearanceStrip.AddCommand(_commandManager, CommandId.ShowPlaybackDevices);
-            appearanceStrip.AddCommand(_commandManager, CommandId.ShowRecordingDevices);
-            appearanceStrip.AddSeparator();
-            appearanceStrip.AddCommand(_commandManager, CommandId.ShowUnpluggedDevices);
-            appearanceStrip.AddCommand(_commandManager, CommandId.ShowDisabledDevices);
-            appearanceStrip.AddCommand(_commandManager, CommandId.ShowNotPresentDevices);
+            ToolStripMenuItem appearance = ContextMenu.Add(Resources.Appearance);
+            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowPlaybackDevices);
+            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowRecordingDevices);
+            appearance.DropDown.AddSeparator();
+            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowUnpluggedDevices);
+            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowDisabledDevices);
+            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowNotPresentDevices);
 
             ContextMenu.AddSeparator();
-            ContextMenu.AddCommand(_commandManager, CommandId.Exit);
+            ContextMenu.BindCommand(_commandManager, CommandId.Exit);
         }
     }
 }

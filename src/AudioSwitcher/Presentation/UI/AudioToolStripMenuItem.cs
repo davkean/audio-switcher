@@ -13,6 +13,7 @@ namespace AudioSwitcher.Presentation.UI
 
         public AudioToolStripMenuItem()
         {
+            ImageScaling = ToolStripItemImageScaling.None;
         }
 
         protected override Point DropDownLocation
