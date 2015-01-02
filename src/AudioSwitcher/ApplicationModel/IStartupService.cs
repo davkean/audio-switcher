@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------
 using System;
 
-namespace AudioSwitcher.ApplicationModel.Startup
+namespace AudioSwitcher.ApplicationModel
 {
     // Indicates a service that runs at application startup
     internal interface IStartupService

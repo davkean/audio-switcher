@@ -61,10 +61,11 @@
     <Compile Include="UI\Commands\CommandId.cs" />
     <Compile Include="ApplicationModel\IApplication.cs" />
     <Compile Include="ApplicationModel\StartupServices\InputSwitcherService.cs" />
-    <Compile Include="ApplicationModel\StartupServices\IStartupService.cs" />
+    <Compile Include="ApplicationModel\IStartupService.cs" />
     <Compile Include="ApplicationModel\StartupServices\SaveSettingsOnShutdownService.cs" />
     <Compile Include="ApplicationModel\SingleInstanceApp.cs" />
-    <Compile Include="ApplicationModel\StartupServices\NotificationIconService.cs" />
+    <Compile Include="ApplicationModel\StartupServices\NotificationIconStartupService.cs" />
+    <Compile Include="UI\Presenters\NotificationIconPresenter.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModel.cs" />
     <Compile Include="Audio\DefaultAudioDeviceEventArgs.cs" />
     <Compile Include="Audio\AudioDeviceStateEventArgs.cs" />

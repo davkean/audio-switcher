@@ -1,18 +1,18 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
 using System;
 using System.ComponentModel.Composition;
+using System.Windows.Forms;
+using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
-using AudioSwitcher.UI.Presenters;
 
-namespace AudioSwitcher.ApplicationModel.Startup
+namespace AudioSwitcher.UI.Presenters
 {
-    // Displays a tray icon in the taskbar tray
-    [Export(typeof(IStartupService))]
-    internal class NotificationIconService : IStartupService, IDisposable
+    [Export(typeof(NotificationIconPresenter))]
+    internal class NotificationIconPresenter : IDisposable
     {
         private AudioNotifyIcon _notifyIcon;
         private readonly AudioDeviceManager _deviceManager;
@@ -20,14 +20,14 @@ namespace AudioSwitcher.ApplicationModel.Startup
         private readonly IApplication _application;
 
         [ImportingConstructor]
-        public NotificationIconService(AudioDeviceManager deviceManager, CommandManager commandManager, IApplication application)
+        public NotificationIconPresenter(IApplication application, AudioDeviceManager deviceManager, CommandManager commandManager)
         {
+            _application = application;
             _deviceManager = deviceManager;
             _commandManager = commandManager;
-            _application = application;
         }
 
-        public void Startup()
+        public void Show()
         {
             _notifyIcon = new AudioNotifyIcon();
             _notifyIcon.Title = _application.Title;
