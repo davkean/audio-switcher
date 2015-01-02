@@ -67,7 +67,7 @@
     <Compile Include="Presentation\CommandModel\CommandAttribute.cs" />
     <Compile Include="UI\Commands\CommandId.cs" />
     <Compile Include="ApplicationModel\IApplication.cs" />
-    <Compile Include="ApplicationModel\StartupServices\InputSwitcherService.cs" />
+    <Compile Include="Audio\InputSwitcherService.cs" />
     <Compile Include="ApplicationModel\IStartupService.cs" />
     <Compile Include="ApplicationModel\StartupServices\SaveSettingsOnShutdownService.cs" />
     <Compile Include="ApplicationModel\SingleInstanceApp.cs" />
@@ -108,12 +108,12 @@
     <Compile Include="Presentation\CommandModel\CommandManager.cs" />
     <Compile Include="Presentation\CommandModel\CommandOfT.cs" />
     <Compile Include="Presentation\CommandModel\CommandProperty.cs" />
-    <Compile Include="UI\Commands\ToggleAutomaticallySwitchToPluggedInDeviceCommand.cs" />
-    <Compile Include="UI\Commands\ToggleRunAtWindowsStartupCommand.cs" />
+    <Compile Include="UI\Commands\AutomaticallySwitchToPluggedInDeviceCommand.cs" />
+    <Compile Include="UI\Commands\RunAtWindowsStartupCommand.cs" />
     <Compile Include="UI\Commands\SetAsDefaultCommunicationDeviceCommand.cs" />
     <Compile Include="UI\Commands\SetAsDefaultDeviceCommandBase.cs" />
     <Compile Include="UI\Commands\SetAsDefaultMultimediaDeviceCommand.cs" />
-    <Compile Include="UI\Commands\ToggleShowNotPresentDevicesCommand.cs" />
+    <Compile Include="UI\Commands\ShowNotPresentDevicesCommand.cs" />
     <Compile Include="Presentation\CommandModel\ICommand.cs" />
     <Compile Include="Presentation\CommandModel\ICommandMetadata.cs" />
     <Compile Include="Presentation\Drawing\DrawingServices.cs" />
@@ -136,8 +136,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\CommandModel\DisabledCommand.cs" />
-    <Compile Include="UI\Commands\ToggleShowPlaybackDevicesCommand.cs" />
-    <Compile Include="UI\Commands\ToggleShowRecordingDevicesCommand.cs" />
+    <Compile Include="UI\Commands\ShowPlaybackDevicesCommand.cs" />
+    <Compile Include="UI\Commands\ShowRecordingDevicesCommand.cs" />
     <Compile Include="Presentation\UI\AudioToolStripMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -147,8 +147,8 @@
     <Compile Include="UI\Presenters\DeviceContextMenuPresenter.cs" />
     <Compile Include="UI\Commands\ExitCommand.cs" />
     <Compile Include="UI\Commands\SetAsDefaultDeviceCommand.cs" />
-    <Compile Include="UI\Commands\ToggleShowUnpluggedDevicesCommand.cs" />
-    <Compile Include="UI\Commands\ToggleShowDisabledDevicesCommand.cs" />
+    <Compile Include="UI\Commands\ShowUnpluggedDevicesCommand.cs" />
+    <Compile Include="UI\Commands\ShowDisabledDevicesCommand.cs" />
     <Compile Include="Presentation\UI\ToolStripExtensions.cs" />
     <Compile Include="Presentation\UI\Renderer\MenuPopupCheckBackgroundStates.cs" />
     <Compile Include="Presentation\UI\Renderer\MarginTypes.cs" />

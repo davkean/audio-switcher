@@ -3,9 +3,10 @@
 // -----------------------------------------------------------------------
 using System;
 using System.ComponentModel.Composition;
+using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.Audio;
 
-namespace AudioSwitcher.ApplicationModel.Startup
+namespace AudioSwitcher.Audio
 {
     // Watches for device plug-in and automatically switches if the given setting is turned on
     [Export(typeof(IStartupService))]

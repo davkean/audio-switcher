@@ -8,11 +8,11 @@ using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.UI.Commands
 {
-    [Command(CommandId.ToggleShowDisabledDevices)]
-    internal class ToggleShowDisabledDevicesCommand : Command
+    [Command(CommandId.ShowDisabledDevices)]
+    internal class ShowDisabledDevicesCommand : Command
     {
         [ImportingConstructor]
-        public ToggleShowDisabledDevicesCommand()
+        public ShowDisabledDevicesCommand()
         {
             Text = Resources.ShowDisabledDevices;
             Image = Resources.Disabled;

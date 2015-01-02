@@ -7,11 +7,11 @@ using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.UI.Commands
 {
-    [Command(CommandId.ToggleShowUnpluggedDevices)]
-    internal class ToggleShowUnpluggedDevicesCommand : Command
+    [Command(CommandId.ShowUnpluggedDevices)]
+    internal class ShowUnpluggedDevicesCommand : Command
     {
         [ImportingConstructor]
-        public ToggleShowUnpluggedDevicesCommand()
+        public ShowUnpluggedDevicesCommand()
         {
             Text = Resources.ShowUnpluggedDevices;
             Image = Resources.Unplugged;

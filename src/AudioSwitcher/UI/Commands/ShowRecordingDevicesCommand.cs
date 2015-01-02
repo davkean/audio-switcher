@@ -7,24 +7,24 @@ using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.UI.Commands
 {
-    [Command(CommandId.ToggleShowNotPresentDevices)]
-    internal class ToggleShowNotPresentDevicesCommand : Command
+    [Command(CommandId.ShowRecordingDevices)]
+    internal class ShowRecordingDevicesCommand : Command
     {
         [ImportingConstructor]
-        public ToggleShowNotPresentDevicesCommand()
+        public ShowRecordingDevicesCommand()
         {
-            Text = Resources.ShowNotPresentDevices;
-            Image = Resources.NotPresent;
+            Text = Resources.ShowRecordingDevices;
+            Image = Resources.RecordingDevice;
         }
 
         public override void UpdateStatus()
         {
-            IsChecked = Settings.Default.ShowNotPresentDevices;
+            IsChecked = Settings.Default.ShowRecordingDevices;
         }
 
         public override void Run()
         {
-            Settings.Default.ShowNotPresentDevices = !Settings.Default.ShowNotPresentDevices;
+            Settings.Default.ShowRecordingDevices = !Settings.Default.ShowRecordingDevices;
         }
     }
 }

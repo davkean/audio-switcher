@@ -11,14 +11,14 @@ using Microsoft.Win32;
 
 namespace AudioSwitcher.UI.Commands
 {
-    [Command(CommandId.ToggleRunAtWindowsStartup)]
-    internal class ToggleRunAtWindowsStartupCommand : Command
+    [Command(CommandId.RunAtWindowsStartup)]
+    internal class RunAtWindowsStartupCommand : Command
     {
         private readonly static string RunAsWindowsStartupValue = '"' + Application.ExecutablePath + "\" -silent";
         private readonly static string RunAtWindowsStartupValueName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
 
         [ImportingConstructor]
-        public ToggleRunAtWindowsStartupCommand()
+        public RunAtWindowsStartupCommand()
         {
             Text = Resources.RunAtStartup;
         }

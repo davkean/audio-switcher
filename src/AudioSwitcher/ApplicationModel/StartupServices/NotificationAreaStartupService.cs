@@ -1,12 +1,8 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
-using System;
 using System.ComponentModel.Composition;
-using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation;
-using AudioSwitcher.Presentation.CommandModel;
-using AudioSwitcher.Presentation.UI;
 using AudioSwitcher.UI.Presenters;
 
 namespace AudioSwitcher.ApplicationModel.Startup

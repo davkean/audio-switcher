@@ -1,7 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
-using System;
 using System.ComponentModel.Composition;
 using System.Windows.Forms;
 using AudioSwitcher.Presentation;
@@ -26,19 +25,19 @@ namespace AudioSwitcher.UI.Presenters
         protected override void Bind()
         {
             ToolStripDropDown settingsStrip = ContextMenu.AddNestedItem(Resources.Settings);
-            settingsStrip.AddCommand(_commandManager, CommandId.ToggleRunAtWindowsStartup);
+            settingsStrip.AddCommand(_commandManager, CommandId.RunAtWindowsStartup);
             settingsStrip.AddSeparator();
-            settingsStrip.AddCommand(_commandManager, CommandId.ToggleAutomaticallySwitchToPluggedInDevice);
+            settingsStrip.AddCommand(_commandManager, CommandId.AutomaticallySwitchToPluggedInDevice);
 
             ContextMenu.AddSeparator();
 
             ToolStripDropDown appearanceStrip = ContextMenu.AddNestedItem(Resources.Appearance);
-            appearanceStrip.AddCommand(_commandManager, CommandId.ToggleShowPlaybackDevices);
-            appearanceStrip.AddCommand(_commandManager, CommandId.ToggleShowRecordingDevices);
+            appearanceStrip.AddCommand(_commandManager, CommandId.ShowPlaybackDevices);
+            appearanceStrip.AddCommand(_commandManager, CommandId.ShowRecordingDevices);
             appearanceStrip.AddSeparator();
-            appearanceStrip.AddCommand(_commandManager, CommandId.ToggleShowUnpluggedDevices);
-            appearanceStrip.AddCommand(_commandManager, CommandId.ToggleShowDisabledDevices);
-            appearanceStrip.AddCommand(_commandManager, CommandId.ToggleShowNotPresentDevices);
+            appearanceStrip.AddCommand(_commandManager, CommandId.ShowUnpluggedDevices);
+            appearanceStrip.AddCommand(_commandManager, CommandId.ShowDisabledDevices);
+            appearanceStrip.AddCommand(_commandManager, CommandId.ShowNotPresentDevices);
 
             ContextMenu.AddSeparator();
             ContextMenu.AddCommand(_commandManager, CommandId.Exit);

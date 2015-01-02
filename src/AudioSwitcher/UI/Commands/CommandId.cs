@@ -7,15 +7,15 @@ namespace AudioSwitcher.UI.Commands
 {
     internal static class CommandId
     {
-        public const string ToggleAutomaticallySwitchToPluggedInDevice  = "Settings.ToggleAutomaticallySwitchToPluggedInDevice";
-        public const string ToggleRunAtWindowsStartup                   = "Settings.ToggleRunAtWindowsStartup";
+        public const string AutomaticallySwitchToPluggedInDevice  = "Settings.AutomaticallySwitchToPluggedInDevice";
+        public const string RunAtWindowsStartup                   = "Settings.RunAtWindowsStartup";
 
-        public const string ToggleShowPlaybackDevices                   = "Appearance.ToggleShowPlaybackDevices";
-        public const string ToggleShowRecordingDevices                  = "Appearance.ToggleShowRecordingDevices";
+        public const string ShowPlaybackDevices                   = "Appearance.ShowPlaybackDevices";
+        public const string ShowRecordingDevices                  = "Appearance.ShowRecordingDevices";
         
-        public const string ToggleShowDisabledDevices                   = "Appearance.ToggleShowDisabledDevices";
-        public const string ToggleShowNotPresentDevices                 = "Appearance.ToggleShowNotPresentDevices";
-        public const string ToggleShowUnpluggedDevices                  = "Appearance.ToggleShowUnpluggedDevices";
+        public const string ShowDisabledDevices                   = "Appearance.ShowDisabledDevices";
+        public const string ShowNotPresentDevices                 = "Appearance.ShowNotPresentDevices";
+        public const string ShowUnpluggedDevices                  = "Appearance.ShowUnpluggedDevices";
 
         public const string Exit                                        = "Application.Exit";
 

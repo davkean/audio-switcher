@@ -6,10 +6,10 @@ using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.UI.Commands
 {
-    [Command(CommandId.ToggleAutomaticallySwitchToPluggedInDevice)]
-    internal class ToggleAutomaticallySwitchToPluggedInDeviceCommand : Command
+    [Command(CommandId.AutomaticallySwitchToPluggedInDevice)]
+    internal class AutomaticallySwitchToPluggedInDeviceCommand : Command
     {
-        public ToggleAutomaticallySwitchToPluggedInDeviceCommand()
+        public AutomaticallySwitchToPluggedInDeviceCommand()
         {
             Text = Resources.AutomaticallySwitchToPluggedInDevice;
         }
