@@ -60,7 +60,6 @@
     <Compile Include="Presentation\Presenter.cs" />
     <Compile Include="Presentation\PresenterManager.cs" />
     <Compile Include="Presentation\IPresenterMetadata.cs" />
-    <Compile Include="UI\Commands\NoRecordingDevicesCommand.cs" />
     <Compile Include="ComponentModel\Lifetime.cs" />
     <Compile Include="ComponentModel\ObservableObject.cs" />
     <Compile Include="Presentation\CommandModel\Command.cs" />

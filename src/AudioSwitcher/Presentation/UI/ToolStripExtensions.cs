@@ -40,6 +40,14 @@ namespace AudioSwitcher.Presentation.UI
             return (ToolStripMenuItem)dropDown.Items.Add(text);
         }
 
+        public static ToolStripMenuItem AddDisabled(this ToolStripDropDown dropDown, string text)
+        {
+            ToolStripMenuItem item = dropDown.Add(text);
+            item.Enabled = false;
+
+            return item;
+        }
+
         public static void AddSeparator(this ToolStripDropDown dropDown)
         {
             dropDown.Items.Add("-");
