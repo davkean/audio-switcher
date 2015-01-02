@@ -7,31 +7,10 @@
     <ProjectGuid>{8F82476F-30DC-47A5-80A0-AB8437E4EEA5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <AssemblyName>AudioSwitcher</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -145,14 +124,14 @@
     <Compile Include="AudioSwitcher\Presentation\Drawing\ShellIcon.cs" />
     <Compile Include="AudioSwitcher\Presentation\Drawing\Utility.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\AudioContextMenu.cs">
-      <SubType>Component</SubType>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\DisabledCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowPlaybackDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\ToggleShowRecordingDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\AudioNotifyIcon.cs" />
     <Compile Include="AudioSwitcher\Presentation\UI\AudioToolStripMenuItem.cs">
-      <SubType>Component</SubType>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="AudioSwitcher\Presentation\UI\Interop\DllImports.cs" />
     <Compile Include="AudioSwitcher\Audio\Interop\MMAudio\IPolicyConfig.cs" />
@@ -207,31 +186,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\Disabled_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Images\Unplugged_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Images\NotificationArea.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Images\DefaultCommunicationsDevice_16x16.png" />
     <None Include="Images\DefaultMultimediaDevice_16x16.png" />
     <None Include="Images\Executable.ico" />
@@ -240,11 +196,4 @@
     <None Include="Images\NotPresent_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
