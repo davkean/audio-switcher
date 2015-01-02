@@ -16,11 +16,9 @@ namespace AudioSwitcher.Presentation.CommandModel
     {
         private bool _isEnabled = true;
         private bool _isChecked;
-        private bool _isBulleted;
         private string _text;
         private string _tooltipText;
         private Image _image;
-        private Image _checkedImage;
 
         protected Command()
             : this((string)null)
@@ -40,19 +38,6 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _isChecked)
                 {
                     _isChecked = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        public bool IsBulleted
-        {
-            get { return _isBulleted; }
-            set
-            {
-                if (value != _isBulleted)
-                {
-                    _isBulleted = value;
                     RaisePropertyChanged();
                 }
             }
@@ -105,19 +90,6 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _image)
                 {
                     _image = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        public Image CheckedImage
-        {
-            get { return _checkedImage; }
-            set
-            {
-                if (value != _checkedImage)
-                {
-                    _checkedImage = value;
                     RaisePropertyChanged();
                 }
             }

@@ -9,11 +9,7 @@ namespace AudioSwitcher.Presentation.CommandModel
 {
     internal interface ICommand : INotifyPropertyChanged
     {
-        Image CheckedImage { get; }
-
         Image Image { get; }
-
-        bool IsBulleted { get; }
 
         bool IsChecked { get; }
 
