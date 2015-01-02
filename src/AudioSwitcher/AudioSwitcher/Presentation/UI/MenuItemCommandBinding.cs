@@ -5,27 +5,27 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
-using AudioSwitcher.Presentation.UI;
+using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.Presentation.CommandModel
+namespace AudioSwitcher.Presentation.UI
 {
-    // Responsible for sync'ing between a Command and a AudioToolStripMenuitem
-    internal class CommandBinding
+    // Responsible for sync'ing between a Command and a ToolStripMenuItem
+    internal class MenuItemCommandBinding
     {
         private static readonly Func<object> NoArgumentGetter = () => { return null; };
 
-        private readonly AudioToolStripMenuItem _item;
+        private readonly ToolStripMenuItem _item;
         private readonly ToolStripDropDown _dropDown;
         private readonly Lifetime<ICommand> _lifetime;
         private readonly ICommand _command;
         private readonly Func<object> _argumentGetter;
 
-        public CommandBinding(ToolStripDropDown dropDown, AudioToolStripMenuItem item, Lifetime<ICommand> command)
+        public MenuItemCommandBinding(ToolStripDropDown dropDown, ToolStripMenuItem item, Lifetime<ICommand> command)
             : this(dropDown, item, command, (Func<object>)null)
         {
         }
 
-        public CommandBinding(ToolStripDropDown dropDown, AudioToolStripMenuItem item, Lifetime<ICommand> command, Func<object> argumentGetter)
+        public MenuItemCommandBinding(ToolStripDropDown dropDown, ToolStripMenuItem item, Lifetime<ICommand> command, Func<object> argumentGetter)
         {
             if (dropDown == null)
                 throw new ArgumentNullException("dropDown");
@@ -82,11 +82,9 @@ namespace AudioSwitcher.Presentation.CommandModel
         {
             _command.UpdateStatus(_argumentGetter());
             SyncProperty(_command, CommandProperty.IsEnabled);
-            SyncProperty(_command, CommandProperty.IsBulleted);
             SyncProperty(_command, CommandProperty.IsChecked);
             SyncProperty(_command, CommandProperty.Text);
             SyncProperty(_command, CommandProperty.Image);
-            SyncProperty(_command, CommandProperty.CheckedImage);
             SyncProperty(_command, CommandProperty.TooltipText);
         }
         private void OnContextMenuStripOpening(object sender, CancelEventArgs e)
@@ -110,19 +108,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                     break;
 
                 case CommandProperty.IsChecked:
-                case CommandProperty.IsBulleted:
-                    if (command.IsChecked)
-                    {
-                        _item.CheckState = CheckState.Checked;
-                    }
-                    else if (command.IsBulleted)
-                    {
-                        _item.CheckState = CheckState.Indeterminate;
-                    }
-                    else
-                    {
-                        _item.CheckState = CheckState.Unchecked;
-                    }
+                    _item.Checked = command.IsChecked;
                     break;
 
                 case CommandProperty.Text:
@@ -131,10 +117,6 @@ namespace AudioSwitcher.Presentation.CommandModel
 
                 case CommandProperty.TooltipText:
                     _item.ToolTipText = command.TooltipText;
-                    break;
-
-                case CommandProperty.CheckedImage:
-                    _item.CheckedImage = command.CheckedImage;
                     break;
 
                 case CommandProperty.Image:

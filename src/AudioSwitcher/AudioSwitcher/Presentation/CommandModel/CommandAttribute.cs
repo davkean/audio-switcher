@@ -7,6 +7,9 @@ using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.Presentation.CommandModel
 {
+    /// <summary>
+    ///     Specifies that a class is a command.
+    /// </summary>
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     internal class CommandAttribute : ExportAttribute
@@ -14,6 +17,12 @@ namespace AudioSwitcher.Presentation.CommandModel
         private readonly string _id;
         private bool _isDynamic;
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="CommandAttribute"/> with the specified unique command ID.
+        /// </summary>
+        /// <param name="id">
+        ///     A <see cref="string"/> containing a unique ID of the <see cref="Command"/>.
+        /// </param>
         public CommandAttribute(string id)
             : base(typeof(ICommand))
         {

@@ -96,7 +96,7 @@
     <Compile Include="AudioSwitcher\Audio\Interop\MMAudio\StorageAccessMode.cs" />
     <Compile Include="AudioSwitcher\Audio\Interop\MMAudio\PolicyConfig.cs" />
     <Compile Include="AudioSwitcher\Interop\ExternalDll.cs" />
-    <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandBinding.cs" />
+    <Compile Include="AudioSwitcher\Presentation\UI\MenuItemCommandBinding.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandManager.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandOfT.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandProperty.cs" />

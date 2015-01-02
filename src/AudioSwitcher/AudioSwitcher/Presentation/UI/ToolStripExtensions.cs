@@ -37,7 +37,7 @@ namespace AudioSwitcher.Presentation.UI
             dropDown.Items.Add(item);
 
             // Should be kept alive by the strip and command hookups.
-            new CommandBinding(dropDown, item, command, argumentGetter);
+            new MenuItemCommandBinding(dropDown, item, command, argumentGetter);
 
             return item;
         }

@@ -5,7 +5,9 @@ using System;
 
 namespace AudioSwitcher.Presentation.CommandModel
 {
-    // Represents a command that takes an argument
+    /// <summary>
+    ///     Provides the base <see langword="abstract"/> class for commands that take an argument.
+    /// </summary>
     internal abstract class Command<T> : Command, ICommand
     {
         protected Command()

@@ -395,15 +395,6 @@ namespace AudioSwitcher.Presentation.UI
 
         protected override void OnRenderItemCheck(ToolStripItemImageRenderEventArgs e)
         {
-            AudioToolStripMenuItem menuItem = e.Item as AudioToolStripMenuItem;
-            if (menuItem != null && menuItem.CheckedImage != null)
-            {
-                Image image = menuItem.CheckedImage;
-
-                base.OnRenderItemCheck(new ToolStripItemImageRenderEventArgs(e.Graphics, e.Item, image, new Rectangle(e.ImageRectangle.X, e.ImageRectangle.Y, image.Width, image.Height)));
-                return;
-            }
-
             if (EnsureRenderer())
             {
                 Rectangle bgRect = GetBackgroundRectangle(e.Item);

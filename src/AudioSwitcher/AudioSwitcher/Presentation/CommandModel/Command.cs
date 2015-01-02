@@ -9,7 +9,9 @@ using AudioSwitcher.ComponentModel;
 
 namespace AudioSwitcher.Presentation.CommandModel
 {
-    // Represents a command that takes no arguments
+    /// <summary>
+    ///     Provides the base <see langword="abstract"/> class for commands that take no arguments.
+    /// </summary>
     internal abstract class Command : ObservableObject, ICommand
     {
         private bool _isEnabled = true;

@@ -9,24 +9,10 @@ namespace AudioSwitcher.Presentation.UI
 {
     internal class AudioToolStripMenuItem : ToolStripMenuItem
     {
-        private Image _checkedImage;
         private bool _doNotCheckDropDownLocation;
 
         public AudioToolStripMenuItem()
         {
-        }
-
-        public Image CheckedImage
-        {
-            get { return _checkedImage; }
-            set
-            {
-                if (value != _checkedImage)
-                {
-                    _checkedImage = value;
-                    Invalidate();
-                }
-            }
         }
 
         protected override Point DropDownLocation
