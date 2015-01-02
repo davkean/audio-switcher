@@ -58,15 +58,14 @@ namespace AudioSwitcher.Presentation.CommandModel
                 return null;
 
             ExportLifetimeContext<ICommand> context = factory.CreateExport();
-            if (factory.Metadata.IsDynamic)
+            if (factory.Metadata.IsReusable)
             {
-                // Dynamic commands are created on the fly and are not cached, we need to make 
-                // sure that we clean them up when we're finished with them.
-                return new Lifetime<ICommand>(() => context.Value, () => context.Dispose());
+                cache = true;
+                return new Lifetime<ICommand>(() => context.Value, (Action)null);
             }
 
-            cache = true;
-            return new Lifetime<ICommand>(() => context.Value, (Action)null);
+            // Don't catch non-reusable commands, they are created for every request to FindCommand
+            return new Lifetime<ICommand>(() => context.Value, () => context.Dispose());
         }
     }
 }

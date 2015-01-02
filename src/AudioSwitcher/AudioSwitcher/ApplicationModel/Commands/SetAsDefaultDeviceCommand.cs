@@ -11,7 +11,7 @@ using AudioSwitcher.Presentation.CommandModel;
 namespace AudioSwitcher.ApplicationModel.Commands
 {
     // Displays an audio device in the context menu, clicking the device causes it to be marked as "default"
-    [Command(CommandId.SetAsDefaultDevice, IsDynamic=true)]
+    [Command(CommandId.SetAsDefaultDevice, IsReusable=false)]
     internal class SetAsDefaultDeviceCommand : Command<AudioDevice>
     {
         private readonly AudioDeviceManager _deviceManager;

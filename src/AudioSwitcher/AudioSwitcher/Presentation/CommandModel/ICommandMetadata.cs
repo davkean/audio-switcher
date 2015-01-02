@@ -15,7 +15,7 @@ namespace AudioSwitcher.Presentation.CommandModel
             get;
         }
 
-        bool IsDynamic
+        bool IsReusable
         {
             get;
         }

@@ -15,7 +15,7 @@ namespace AudioSwitcher.Presentation.CommandModel
     internal class CommandAttribute : ExportAttribute
     {
         private readonly string _id;
-        private bool _isDynamic;
+        private bool _isReusable = true;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="CommandAttribute"/> with the specified unique command ID.
@@ -34,10 +34,10 @@ namespace AudioSwitcher.Presentation.CommandModel
             get { return _id;  }
         }
 
-        public bool IsDynamic
+        public bool IsReusable
         {
-            get { return _isDynamic; }
-            set { _isDynamic = value; }
+            get { return _isReusable; }
+            set { _isReusable = value; }
         }
     }
 }
