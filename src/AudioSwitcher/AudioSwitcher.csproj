@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\NoRecordingDevicesCommand.cs" />
     <Compile Include="AudioSwitcher\LifetimeOfT.cs" />
+    <Compile Include="AudioSwitcher\ComponentModel\ObservableObject.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\Command.cs" />
     <Compile Include="AudioSwitcher\Presentation\CommandModel\CommandAttribute.cs" />
     <Compile Include="AudioSwitcher\ApplicationModel\Commands\CommandId.cs" />

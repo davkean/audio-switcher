@@ -5,11 +5,12 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using AudioSwitcher.ComponentModel;
 
 namespace AudioSwitcher.Presentation.CommandModel
 {
     // Represents a command that takes no arguments
-    internal abstract class Command : INotifyPropertyChanged, ICommand
+    internal abstract class Command : ObservableObject, ICommand
     {
         private bool _isEnabled = true;
         private bool _isChecked;
@@ -29,8 +30,6 @@ namespace AudioSwitcher.Presentation.CommandModel
             Text = text;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public bool IsChecked
         {
             get { return _isChecked; }
@@ -39,7 +38,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _isChecked)
                 {
                     _isChecked = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -52,7 +51,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _isBulleted)
                 {
                     _isBulleted = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -65,7 +64,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _isEnabled)
                 {
                     _isEnabled = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -78,7 +77,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _text)
                 {
                     _text = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -91,7 +90,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _tooltipText)
                 {
                     _tooltipText = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -104,7 +103,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _image)
                 {
                     _image = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -117,7 +116,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _checkedImage)
                 {
                     _checkedImage = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -126,15 +125,6 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         public virtual void UpdateStatus()
         {
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
 
         void ICommand.Run(object argument)
