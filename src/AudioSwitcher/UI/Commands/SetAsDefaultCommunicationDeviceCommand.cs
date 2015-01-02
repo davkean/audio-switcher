@@ -6,7 +6,7 @@ using System.ComponentModel.Composition;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
     [Command(CommandId.SetAsDefaultCommunicationDevice)]
     internal class SetAsDefaultCommunicationDeviceCommand : SetAsDefaultDeviceCommandBase

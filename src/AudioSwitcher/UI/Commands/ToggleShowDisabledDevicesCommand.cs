@@ -6,7 +6,7 @@ using System.ComponentModel.Composition;
 using System.Drawing;
 using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
     [Command(CommandId.ToggleShowDisabledDevices)]
     internal class ToggleShowDisabledDevicesCommand : Command

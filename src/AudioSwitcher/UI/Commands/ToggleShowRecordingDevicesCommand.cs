@@ -5,26 +5,26 @@ using System;
 using System.ComponentModel.Composition;
 using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
-    [Command(CommandId.ToggleShowUnpluggedDevices)]
-    internal class ToggleShowUnpluggedDevicesCommand : Command
+    [Command(CommandId.ToggleShowRecordingDevices)]
+    internal class ToggleShowRecordingDevicesCommand : Command
     {
         [ImportingConstructor]
-        public ToggleShowUnpluggedDevicesCommand()
+        public ToggleShowRecordingDevicesCommand()
         {
-            Text = Resources.ShowUnpluggedDevices;
-            Image = Resources.Unplugged;
+            Text = Resources.ShowRecordingDevices;
+            Image = Resources.RecordingDevice;
         }
 
         public override void UpdateStatus()
         {
-            IsChecked = Settings.Default.ShowUnpluggedDevices;
+            IsChecked = Settings.Default.ShowRecordingDevices;
         }
 
         public override void Run()
         {
-            Settings.Default.ShowUnpluggedDevices = !Settings.Default.ShowUnpluggedDevices;
+            Settings.Default.ShowRecordingDevices = !Settings.Default.ShowRecordingDevices;
         }
     }
 }

@@ -53,19 +53,19 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationModel\Commands\NoRecordingDevicesCommand.cs" />
-    <Compile Include="LifetimeOfT.cs" />
+    <Compile Include="UI\Commands\NoRecordingDevicesCommand.cs" />
+    <Compile Include="ComponentModel\Lifetime.cs" />
     <Compile Include="ComponentModel\ObservableObject.cs" />
     <Compile Include="Presentation\CommandModel\Command.cs" />
     <Compile Include="Presentation\CommandModel\CommandAttribute.cs" />
-    <Compile Include="ApplicationModel\Commands\CommandId.cs" />
+    <Compile Include="UI\Commands\CommandId.cs" />
     <Compile Include="ApplicationModel\IApplication.cs" />
     <Compile Include="ApplicationModel\StartupServices\InputSwitcherService.cs" />
     <Compile Include="ApplicationModel\StartupServices\IStartupService.cs" />
     <Compile Include="ApplicationModel\StartupServices\SaveSettingsOnShutdownService.cs" />
     <Compile Include="ApplicationModel\SingleInstanceApp.cs" />
     <Compile Include="ApplicationModel\StartupServices\NotificationIconService.cs" />
-    <Compile Include="ApplicationModel\ViewModels\AudioDeviceViewModel.cs" />
+    <Compile Include="UI\ViewModels\AudioDeviceViewModel.cs" />
     <Compile Include="Audio\DefaultAudioDeviceEventArgs.cs" />
     <Compile Include="Audio\AudioDeviceStateEventArgs.cs" />
     <Compile Include="Audio\AudioDeviceRemovedEventArgs.cs" />
@@ -99,12 +99,12 @@
     <Compile Include="Presentation\CommandModel\CommandManager.cs" />
     <Compile Include="Presentation\CommandModel\CommandOfT.cs" />
     <Compile Include="Presentation\CommandModel\CommandProperty.cs" />
-    <Compile Include="ApplicationModel\Commands\ToggleAutomaticallySwitchToPluggedInDeviceCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\ToggleRunAtWindowsStartupCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\SetAsDefaultCommunicationDeviceCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\SetAsDefaultDeviceCommandBase.cs" />
-    <Compile Include="ApplicationModel\Commands\SetAsDefaultMultimediaDeviceCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\ToggleShowNotPresentDevicesCommand.cs" />
+    <Compile Include="UI\Commands\ToggleAutomaticallySwitchToPluggedInDeviceCommand.cs" />
+    <Compile Include="UI\Commands\ToggleRunAtWindowsStartupCommand.cs" />
+    <Compile Include="UI\Commands\SetAsDefaultCommunicationDeviceCommand.cs" />
+    <Compile Include="UI\Commands\SetAsDefaultDeviceCommandBase.cs" />
+    <Compile Include="UI\Commands\SetAsDefaultMultimediaDeviceCommand.cs" />
+    <Compile Include="UI\Commands\ToggleShowNotPresentDevicesCommand.cs" />
     <Compile Include="Presentation\CommandModel\ICommand.cs" />
     <Compile Include="Presentation\CommandModel\ICommandMetadata.cs" />
     <Compile Include="Presentation\Drawing\DrawingServices.cs" />
@@ -126,21 +126,21 @@
     <Compile Include="Presentation\UI\AudioContextMenu.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ApplicationModel\Commands\DisabledCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\ToggleShowPlaybackDevicesCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\ToggleShowRecordingDevicesCommand.cs" />
+    <Compile Include="Presentation\CommandModel\DisabledCommand.cs" />
+    <Compile Include="UI\Commands\ToggleShowPlaybackDevicesCommand.cs" />
+    <Compile Include="UI\Commands\ToggleShowRecordingDevicesCommand.cs" />
     <Compile Include="Presentation\UI\AudioNotifyIcon.cs" />
     <Compile Include="Presentation\UI\AudioToolStripMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\UI\Interop\DllImports.cs" />
     <Compile Include="Audio\Interop\MMAudio\IPolicyConfig.cs" />
-    <Compile Include="Presentation\UI\RightClickContextMenuProvider.cs" />
-    <Compile Include="Presentation\UI\LeftClickContextMenuProvider.cs" />
-    <Compile Include="ApplicationModel\Commands\ExitCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\SetAsDefaultDeviceCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\ToggleShowUnpluggedDevicesCommand.cs" />
-    <Compile Include="ApplicationModel\Commands\ToggleShowDisabledDevicesCommand.cs" />
+    <Compile Include="UI\Presenters\RightClickContextMenuPresenter.cs" />
+    <Compile Include="UI\Presenters\DeviceContextMenuPresenter.cs" />
+    <Compile Include="UI\Commands\ExitCommand.cs" />
+    <Compile Include="UI\Commands\SetAsDefaultDeviceCommand.cs" />
+    <Compile Include="UI\Commands\ToggleShowUnpluggedDevicesCommand.cs" />
+    <Compile Include="UI\Commands\ToggleShowDisabledDevicesCommand.cs" />
     <Compile Include="Presentation\UI\ToolStripExtensions.cs" />
     <Compile Include="Presentation\UI\Renderer\MenuPopupCheckBackgroundStates.cs" />
     <Compile Include="Presentation\UI\Renderer\MarginTypes.cs" />
@@ -197,5 +197,6 @@
     <None Include="Resources\Images\RecordingDevice_16x16.png" />
     <None Include="Resources\Images\NotPresent_16x16.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

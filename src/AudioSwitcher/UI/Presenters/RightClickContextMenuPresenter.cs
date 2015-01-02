@@ -3,14 +3,14 @@
 // -----------------------------------------------------------------------
 using System.Windows.Forms;
 using AudioSwitcher.ApplicationModel;
-using AudioSwitcher.ApplicationModel.Commands;
+using AudioSwitcher.UI.Commands;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
 
-namespace AudioSwitcher.Presentation.UI
+namespace AudioSwitcher.UI.Presenters
 {
     // Handles creating the context menu for the right-click menu
-    internal class RightClickContextMenuProvider
+    internal class RightClickContextMenuPresenter
     {
         public static AudioContextMenu CreateContextMenu(CommandManager commandManager)
         {

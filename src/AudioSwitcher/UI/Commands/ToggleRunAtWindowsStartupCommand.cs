@@ -9,7 +9,7 @@ using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Win32;
 using Microsoft.Win32;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
     [Command(CommandId.ToggleRunAtWindowsStartup)]
     internal class ToggleRunAtWindowsStartupCommand : Command

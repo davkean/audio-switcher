@@ -6,6 +6,7 @@ using System.ComponentModel.Composition;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
+using AudioSwitcher.UI.Presenters;
 
 namespace AudioSwitcher.ApplicationModel.Startup
 {
@@ -31,8 +32,8 @@ namespace AudioSwitcher.ApplicationModel.Startup
             _notifyIcon = new AudioNotifyIcon();
             _notifyIcon.Title = _application.Title;
             _notifyIcon.Icon = _application.NotificationAreaIcon;
-            _notifyIcon.LeftClickContextMenuStrip = LeftClickContextMenuProvider.CreateContextMenu(_deviceManager, _commandManager);
-            _notifyIcon.RightClickContextMenuStrip = RightClickContextMenuProvider.CreateContextMenu(_commandManager);
+            _notifyIcon.LeftClickContextMenuStrip = DeviceContextMenuPresenter.CreateContextMenu(_deviceManager, _commandManager);
+            _notifyIcon.RightClickContextMenuStrip = RightClickContextMenuPresenter.CreateContextMenu(_commandManager);
         }
 
         public void Dispose()

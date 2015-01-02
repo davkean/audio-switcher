@@ -4,7 +4,7 @@
 using System;
 using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
     [Command(CommandId.NoRecordingDevices)]
     internal class NoRecordingDevicesCommand : DisabledCommand

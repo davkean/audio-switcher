@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------
 using System;
 
-namespace AudioSwitcher
+namespace AudioSwitcher.ComponentModel
 {
     internal class Lifetime<T> : IDisposable
     {

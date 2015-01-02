@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.ComponentModel.Composition;
 using System.Collections.Generic;
+using AudioSwitcher.ComponentModel;
 
 namespace AudioSwitcher.Presentation.CommandModel
 {

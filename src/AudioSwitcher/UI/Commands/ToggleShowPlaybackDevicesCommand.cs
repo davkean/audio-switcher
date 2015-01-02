@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel.Composition;
 using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
     [Command(CommandId.ToggleShowPlaybackDevices)]
     internal class ToggleShowPlaybackDevicesCommand : Command

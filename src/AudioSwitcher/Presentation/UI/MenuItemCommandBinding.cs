@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
+using AudioSwitcher.ComponentModel;
 using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.Presentation.UI

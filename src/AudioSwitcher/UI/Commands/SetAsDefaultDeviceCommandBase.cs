@@ -6,7 +6,7 @@ using System.Linq;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
     internal abstract class SetAsDefaultDeviceCommandBase : Command<AudioDevice>
     {

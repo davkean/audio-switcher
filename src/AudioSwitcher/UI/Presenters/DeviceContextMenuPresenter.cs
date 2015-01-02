@@ -4,14 +4,15 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using AudioSwitcher.ApplicationModel.Commands;
+using AudioSwitcher.UI.Commands;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
+using AudioSwitcher.Presentation.UI;
 
-namespace AudioSwitcher.Presentation.UI
+namespace AudioSwitcher.UI.Presenters
 {
     // Handles creating the context menu for the device menu
-    internal class LeftClickContextMenuProvider
+    internal class DeviceContextMenuPresenter
     {
         public static AudioContextMenu CreateContextMenu(AudioDeviceManager deviceManager, CommandManager commandManager)
         {

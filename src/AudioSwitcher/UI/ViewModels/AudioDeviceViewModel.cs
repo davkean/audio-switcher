@@ -6,7 +6,7 @@ using System.Drawing;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.Drawing;
 
-namespace AudioSwitcher.ApplicationModel.ViewModels
+namespace AudioSwitcher.UI.ViewModels
 {
     internal class AudioDeviceViewModel
     {

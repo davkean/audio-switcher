@@ -4,11 +4,11 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Text;
-using AudioSwitcher.ApplicationModel.ViewModels;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
+using AudioSwitcher.UI.ViewModels;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
     // Displays an audio device in the context menu, clicking the device causes it to be marked as "default"
     [Command(CommandId.SetAsDefaultDevice, IsReusable=false)]

@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------
 using System;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.UI.Commands
 {
     internal static class CommandId
     {

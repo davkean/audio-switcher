@@ -2,9 +2,8 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
-using AudioSwitcher.Presentation.CommandModel;
 
-namespace AudioSwitcher.ApplicationModel.Commands
+namespace AudioSwitcher.Presentation.CommandModel
 {
     internal class DisabledCommand : Command
     {
