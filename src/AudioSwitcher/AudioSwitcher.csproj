@@ -197,6 +197,8 @@
     <None Include="Resources\Images\RecordingDevice_16x16.png" />
     <None Include="Resources\Images\NotPresent_16x16.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UI\Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
