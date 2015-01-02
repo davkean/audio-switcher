@@ -8,89 +8,91 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-
-[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
-internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+namespace AudioSwitcher {
     
-    private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
     
-    public static Settings Default {
-        get {
-            return defaultInstance;
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
         }
-    }
-    
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("False")]
-    public bool ShowDisabledDevices {
-        get {
-            return ((bool)(this["ShowDisabledDevices"]));
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowDisabledDevices {
+            get {
+                return ((bool)(this["ShowDisabledDevices"]));
+            }
+            set {
+                this["ShowDisabledDevices"] = value;
+            }
         }
-        set {
-            this["ShowDisabledDevices"] = value;
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowUnpluggedDevices {
+            get {
+                return ((bool)(this["ShowUnpluggedDevices"]));
+            }
+            set {
+                this["ShowUnpluggedDevices"] = value;
+            }
         }
-    }
-    
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("True")]
-    public bool ShowUnpluggedDevices {
-        get {
-            return ((bool)(this["ShowUnpluggedDevices"]));
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowRecordingDevices {
+            get {
+                return ((bool)(this["ShowRecordingDevices"]));
+            }
+            set {
+                this["ShowRecordingDevices"] = value;
+            }
         }
-        set {
-            this["ShowUnpluggedDevices"] = value;
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowPlaybackDevices {
+            get {
+                return ((bool)(this["ShowPlaybackDevices"]));
+            }
+            set {
+                this["ShowPlaybackDevices"] = value;
+            }
         }
-    }
-    
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("True")]
-    public bool ShowRecordingDevices {
-        get {
-            return ((bool)(this["ShowRecordingDevices"]));
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowNotPresentDevices {
+            get {
+                return ((bool)(this["ShowNotPresentDevices"]));
+            }
+            set {
+                this["ShowNotPresentDevices"] = value;
+            }
         }
-        set {
-            this["ShowRecordingDevices"] = value;
-        }
-    }
-    
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("True")]
-    public bool ShowPlaybackDevices {
-        get {
-            return ((bool)(this["ShowPlaybackDevices"]));
-        }
-        set {
-            this["ShowPlaybackDevices"] = value;
-        }
-    }
-    
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("False")]
-    public bool ShowNotPresentDevices {
-        get {
-            return ((bool)(this["ShowNotPresentDevices"]));
-        }
-        set {
-            this["ShowNotPresentDevices"] = value;
-        }
-    }
-    
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("False")]
-    public bool AutoSwitchToPluggedInDevice {
-        get {
-            return ((bool)(this["AutoSwitchToPluggedInDevice"]));
-        }
-        set {
-            this["AutoSwitchToPluggedInDevice"] = value;
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSwitchToPluggedInDevice {
+            get {
+                return ((bool)(this["AutoSwitchToPluggedInDevice"]));
+            }
+            set {
+                this["AutoSwitchToPluggedInDevice"] = value;
+            }
         }
     }
 }
