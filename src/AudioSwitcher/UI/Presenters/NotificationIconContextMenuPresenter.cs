@@ -11,13 +11,13 @@ using AudioSwitcher.UI.Commands;
 namespace AudioSwitcher.UI.Presenters
 {
     // Presents the context menu when right-clicking on the notification icon
-    [Presenter(PresenterId.NotificationAreaContextMenu)]
-    internal class NotificationAreaContextMenuPresenter : ContextMenuPresenter
+    [Presenter(PresenterId.NotificationIconContextMenu)]
+    internal class NotificationIconContextMenuPresenter : ContextMenuPresenter
     {
         private readonly CommandManager _commandManager;
 
         [ImportingConstructor]
-        public NotificationAreaContextMenuPresenter(CommandManager commandManager)
+        public NotificationIconContextMenuPresenter(CommandManager commandManager)
         {
             _commandManager = commandManager;
         }

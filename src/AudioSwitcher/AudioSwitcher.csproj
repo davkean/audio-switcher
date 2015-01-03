@@ -70,8 +70,8 @@
     <Compile Include="ApplicationModel\IStartupService.cs" />
     <Compile Include="ApplicationModel\StartupServices\SaveSettingsOnShutdownService.cs" />
     <Compile Include="ApplicationModel\SingleInstanceApp.cs" />
-    <Compile Include="ApplicationModel\StartupServices\NotificationAreaStartupService.cs" />
-    <Compile Include="UI\Presenters\NotificationAreaPresenter.cs" />
+    <Compile Include="ApplicationModel\StartupServices\NotificationIconStartupService.cs" />
+    <Compile Include="UI\Presenters\NotificationIconPresenter.cs" />
     <Compile Include="UI\Presenters\PresenterId.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModel.cs" />
     <Compile Include="Audio\DefaultAudioDeviceEventArgs.cs" />
@@ -142,7 +142,7 @@
     </Compile>
     <Compile Include="Presentation\UI\Interop\DllImports.cs" />
     <Compile Include="Audio\Interop\MMAudio\IPolicyConfig.cs" />
-    <Compile Include="UI\Presenters\NotificationAreaContextMenuPresenter.cs" />
+    <Compile Include="UI\Presenters\NotificationIconContextMenuPresenter.cs" />
     <Compile Include="UI\Presenters\DeviceContextMenuPresenter.cs" />
     <Compile Include="UI\Commands\ExitCommand.cs" />
     <Compile Include="UI\Commands\SetAsDefaultDeviceCommand.cs" />

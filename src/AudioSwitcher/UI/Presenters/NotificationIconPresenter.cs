@@ -9,14 +9,14 @@ using AudioSwitcher.Presentation;
 
 namespace AudioSwitcher.UI.Presenters
 {
-    [Presenter(PresenterId.NotificationArea)]
-    internal class NotificationAreaPresenter : NonModalPresenter, IDisposable
+    [Presenter(PresenterId.NotificationIcon)]
+    internal class NotificationIconPresenter : NonModalPresenter, IDisposable
     {
         private readonly NotifyIcon _icon = new NotifyIcon();
         private readonly PresenterManager _presenterManager;
 
         [ImportingConstructor]
-        public NotificationAreaPresenter(IApplication application, PresenterManager presenterManager)
+        public NotificationIconPresenter(IApplication application, PresenterManager presenterManager)
         {
             _presenterManager = presenterManager;
             _icon = new NotifyIcon();
@@ -44,7 +44,7 @@ namespace AudioSwitcher.UI.Presenters
             }
             else if (e.Button == MouseButtons.Right)
             {
-                _presenterManager.ShowContextMenu(PresenterId.NotificationAreaContextMenu, Cursor.Position);
+                _presenterManager.ShowContextMenu(PresenterId.NotificationIconContextMenu, Cursor.Position);
             }
         }
 
@@ -56,6 +56,7 @@ namespace AudioSwitcher.UI.Presenters
         public void Dispose()
         {
             _icon.Dispose();
+            _icon.MouseUp -= OnNotifyIconMouseUp;
         }
     }
 }

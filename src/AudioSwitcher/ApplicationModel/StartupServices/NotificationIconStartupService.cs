@@ -20,7 +20,7 @@ namespace AudioSwitcher.ApplicationModel.Startup
 
         public void Startup()
         {
-            _presenterManager.ShowNonModal(PresenterId.NotificationArea);
+            _presenterManager.ShowNonModal(PresenterId.NotificationIcon);
         }
     }
 }
