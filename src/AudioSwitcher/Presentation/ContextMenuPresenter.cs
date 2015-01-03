@@ -11,6 +11,7 @@ using AudioSwitcher.Presentation.UI.Interop;
 
 namespace AudioSwitcher.Presentation
 {
+    // Provides the base class for context menu presenters
     internal abstract class ContextMenuPresenter : Presenter, IDisposable
     {
         private readonly AudioContextMenuStrip _contextMenu;

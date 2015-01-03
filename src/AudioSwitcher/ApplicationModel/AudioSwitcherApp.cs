@@ -23,6 +23,8 @@ namespace AudioSwitcher.ApplicationModel
             _singleInstance =  new SingleInstanceApp();
         }
 
+        public event EventHandler Idle;
+
         public string Title
         {
             get { return Resources.Title; }
@@ -43,17 +45,27 @@ namespace AudioSwitcher.ApplicationModel
                 service.Value.Startup();
             }
 
+            Application.Idle += OnApplicationIdle;
             Application.Run();
         }
 
         public void Shutdown()
         {
-            Application.Exit();            
+            Application.Exit();
+            Application.Idle -= OnApplicationIdle;
         }
 
         public void Dispose()
         {
             _singleInstance.Dispose();
+        }
+        private void OnApplicationIdle(object sender, EventArgs e)
+        {
+            var handler = Idle;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
     }
 }

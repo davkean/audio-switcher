@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.ComponentModel;
 
 namespace AudioSwitcher.Presentation
@@ -15,15 +16,17 @@ namespace AudioSwitcher.Presentation
     [Export(typeof(PresenterManager))]
     internal class PresenterManager : IDisposable
     {
+        private readonly IApplication _application;
         private readonly ExportFactory<IPresenter, IPresenterMetadata>[] _presenters;
         private readonly List<IDisposable> _lifetimesToDispose = new List<IDisposable>();
         private PresenterLifetime<ContextMenuPresenter> _current;
 
         [ImportingConstructor]
-        public PresenterManager([ImportMany]ExportFactory<IPresenter, IPresenterMetadata>[] presenters)
+        public PresenterManager(IApplication application, [ImportMany]ExportFactory<IPresenter, IPresenterMetadata>[] presenters)
         {
+            _application = application;
+            _application.Idle += OnApplicationIdle;
             _presenters = presenters;
-            Application.Idle += OnApplicationIdle;
         }
 
         public void ShowNonModal(string id)
@@ -85,7 +88,7 @@ namespace AudioSwitcher.Presentation
 
         public void Dispose()
         {
-            Application.Idle -= OnApplicationIdle;
+            _application.Idle -= OnApplicationIdle;
         }
 
         private void OnApplicationIdle(object sender, EventArgs e)

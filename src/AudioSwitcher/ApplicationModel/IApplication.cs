@@ -8,6 +8,8 @@ namespace AudioSwitcher.ApplicationModel
 {
     internal interface IApplication
     {
+        event EventHandler Idle;
+
         string Title
         {
             get;
