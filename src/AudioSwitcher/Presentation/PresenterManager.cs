@@ -66,7 +66,7 @@ namespace AudioSwitcher.Presentation
                 current.Instance.Close();
 
                 // Current context menu is a toggle and is already
-                // open, let's close it instead opening another
+                // open, let's close it instead of opening another
                 if (current.Metadata.Id == id && current.Metadata.IsToggle)
                     return true;
             }
