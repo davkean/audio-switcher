@@ -4,7 +4,7 @@
 using System;
 using System.ComponentModel.Composition;
 
-namespace AudioSwitcher.ApplicationModel.Startup
+namespace AudioSwitcher.ApplicationModel
 {
     [Export(typeof(IStartupService))]
     internal class SaveSettingsOnShutdownService : IStartupService, IDisposable
@@ -14,8 +14,9 @@ namespace AudioSwitcher.ApplicationModel.Startup
         {
         }
 
-        public void Startup()
+        public bool Startup()
         {
+            return true;
         }
 
         public void Dispose()

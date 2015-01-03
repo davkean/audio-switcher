@@ -2,25 +2,25 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
+using System.Linq;
 using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Windows.Forms;
-using AudioSwitcher.ApplicationModel.Startup;
+using AudioSwitcher.ComponentModel;
 
 namespace AudioSwitcher.ApplicationModel
 {
     // Represents the lifetime of the audio switcher application
     [Export(typeof(IApplication))]
-    internal class AudioSwitcherApp : IApplication, IDisposable
+    internal class AudioSwitcherApp : IApplication
     {
-        private readonly SingleInstanceApp _singleInstance;
-        private readonly Lazy<IStartupService>[] _startupServices;
+        private readonly Lazy<IStartupService, IPriorityMetadata>[] _startupServices;
 
         [ImportingConstructor]
-        public AudioSwitcherApp([ImportMany]Lazy<IStartupService>[] startupServices)
+        public AudioSwitcherApp([ImportMany]Lazy<IStartupService, IPriorityMetadata>[] startupServices)
         {
-            _startupServices = startupServices;
-            _singleInstance =  new SingleInstanceApp();
+            _startupServices = startupServices.OrderBy(s => s.Metadata.Priority)
+                                              .ToArray();
         }
 
         public event EventHandler Idle;
@@ -37,12 +37,10 @@ namespace AudioSwitcher.ApplicationModel
 
         public void Run()
         {
-            if (!_singleInstance.IsFirstInstance)
-                return;
-
             foreach (var service in _startupServices)
             {
-                service.Value.Startup();
+                if (!service.Value.Startup())
+                    return;
             }
 
             Application.Idle += OnApplicationIdle;
@@ -55,10 +53,6 @@ namespace AudioSwitcher.ApplicationModel
             Application.Idle -= OnApplicationIdle;
         }
 
-        public void Dispose()
-        {
-            _singleInstance.Dispose();
-        }
         private void OnApplicationIdle(object sender, EventArgs e)
         {
             var handler = Idle;

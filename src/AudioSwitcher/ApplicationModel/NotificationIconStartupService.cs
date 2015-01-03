@@ -5,7 +5,7 @@ using System.ComponentModel.Composition;
 using AudioSwitcher.Presentation;
 using AudioSwitcher.UI.Presenters;
 
-namespace AudioSwitcher.ApplicationModel.Startup
+namespace AudioSwitcher.ApplicationModel
 {
     [Export(typeof(IStartupService))]
     internal class NotificationIconStartupService : IStartupService
@@ -18,9 +18,10 @@ namespace AudioSwitcher.ApplicationModel.Startup
             _presenterManager = presenterManager;
         }
 
-        public void Startup()
+        public bool Startup()
         {
             _presenterManager.ShowNonModal(PresenterId.NotificationIcon);
+            return true;
         }
     }
 }

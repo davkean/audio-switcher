@@ -53,6 +53,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentModel\IPriorityMetadata.cs" />
     <Compile Include="Presentation\IPresenter.cs" />
     <Compile Include="Presentation\NonModalPresenter.cs" />
     <Compile Include="Presentation\PresenterAttribute.cs" />
@@ -68,9 +69,9 @@
     <Compile Include="ApplicationModel\IApplication.cs" />
     <Compile Include="Audio\InputSwitcherService.cs" />
     <Compile Include="ApplicationModel\IStartupService.cs" />
-    <Compile Include="ApplicationModel\StartupServices\SaveSettingsOnShutdownService.cs" />
-    <Compile Include="ApplicationModel\SingleInstanceApp.cs" />
-    <Compile Include="ApplicationModel\StartupServices\NotificationIconStartupService.cs" />
+    <Compile Include="ApplicationModel\SaveSettingsOnShutdownService.cs" />
+    <Compile Include="ApplicationModel\SingleInstanceStartupService.cs" />
+    <Compile Include="ApplicationModel\NotificationIconStartupService.cs" />
     <Compile Include="UI\Presenters\NotificationIconPresenter.cs" />
     <Compile Include="UI\Presenters\PresenterId.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModel.cs" />
