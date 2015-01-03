@@ -31,6 +31,9 @@ namespace AudioSwitcher.UI.Presenters
             // messages. This means that ENTER, SPACE and MENU key all come through as mouse events. The shell 
             // even moves the pointer over the top of the icon when you press a key so that Cursor.Position 
             // returns the correct value.
+            // 
+            // Don't be tempted to use any other of the MouseEventArgs properties other than Button, they are bogus
+            // and are not set to correct values.
             //
             // BUG #14: ENTER seems to be sending two MouseUp events, causing us to show and them immediately dismiss
             // the context menu.
