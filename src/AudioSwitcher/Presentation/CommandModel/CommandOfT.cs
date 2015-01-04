@@ -36,7 +36,6 @@ namespace AudioSwitcher.Presentation.CommandModel
         {
         }
 
-
         void ICommand.Run(object argument)
         {
             if (!(argument is T))

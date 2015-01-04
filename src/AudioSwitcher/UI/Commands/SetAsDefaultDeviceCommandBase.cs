@@ -2,13 +2,15 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
+using System.Diagnostics;
 using System.Linq;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
+using AudioSwitcher.UI.ViewModels;
 
 namespace AudioSwitcher.UI.Commands
 {
-    internal abstract class SetAsDefaultDeviceCommandBase : Command<AudioDevice>
+    internal abstract class SetAsDefaultDeviceCommandBase : Command<AudioDeviceViewModel>
     {
         private readonly AudioDeviceManager _manager;
         private readonly AudioDeviceRole _role;
@@ -19,15 +21,30 @@ namespace AudioSwitcher.UI.Commands
             _role = role;
         }
 
-        public override void UpdateStatus(AudioDevice argument)
+        public override void UpdateStatus(AudioDeviceViewModel argument)
         {
-            IsChecked = _manager.IsDefaultAudioDevice(argument, _role);
-            IsEnabled = argument.IsActive && !IsChecked;
+            IsChecked = IsDefaultDevice(argument.DefaultState);
+            IsEnabled = argument.State == AudioDeviceState.Active && !IsChecked;
         }
 
-        public override void Run(AudioDevice argument)
+        private bool IsDefaultDevice(AudioDeviceDefaultState defaultState)
         {
-            _manager.SetDefaultAudioDevice(argument, _role);
+            switch (_role)
+            {
+                case AudioDeviceRole.Communications:
+                    return defaultState.IsSet(AudioDeviceDefaultState.Communications);
+
+                default:
+                    Debug.Assert(_role == AudioDeviceRole.Multimedia);
+                    return defaultState.IsSet(AudioDeviceDefaultState.Multimedia);
+            }
         }
+
+        public override void Run(AudioDeviceViewModel argument)
+        {
+            _manager.SetDefaultAudioDevice(argument.Device, _role);
+        }
+
+        
     }
 }

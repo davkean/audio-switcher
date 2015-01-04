@@ -12,28 +12,26 @@ namespace AudioSwitcher.UI.Commands
 {
     // Displays an audio device in the context menu, clicking the device causes it to be marked as "default"
     [Command(CommandId.SetAsDefaultDevice, IsReusable=false)]
-    internal class SetAsDefaultDeviceCommand : Command<AudioDevice>
+    internal class AudioDeviceCommand : Command<AudioDeviceViewModel>
     {
         private readonly AudioDeviceManager _deviceManager;
 
         [ImportingConstructor]
-        public SetAsDefaultDeviceCommand(AudioDeviceManager deviceManager)
+        public AudioDeviceCommand(AudioDeviceManager deviceManager)
         {
             _deviceManager = deviceManager;
         }
 
-        public override void Run(AudioDevice argument)
+        public override void Run(AudioDeviceViewModel argument)
         {
-            _deviceManager.SetDefaultAudioDevice(argument);
+            _deviceManager.SetDefaultAudioDevice(argument.Device);
         }
 
-        public override void UpdateStatus(AudioDevice argument)
+        public override void UpdateStatus(AudioDeviceViewModel argument)
         {
-            AudioDeviceViewModel viewModel = new AudioDeviceViewModel(_deviceManager, argument);
-
-            Text = GetDisplayText(viewModel);
-            Image = viewModel.Image;
-            IsEnabled = viewModel.IsEnabled;
+            Text = GetDisplayText(argument);
+            Image = argument.Image;
+            IsEnabled = argument.State == AudioDeviceState.Active;
         }
 
         private string GetDisplayText(AudioDeviceViewModel viewModel)
@@ -41,7 +39,7 @@ namespace AudioSwitcher.UI.Commands
             StringBuilder text = new StringBuilder();
             text.AppendLine(viewModel.Description);         // Headphones (Black)
             text.AppendLine(viewModel.FriendlyName);        // High Definition Audio Device
-            text.Append(viewModel.StateDisplayName);        // Ready
+            text.Append(viewModel.DeviceStateFriendlyName); // Ready
 
             return text.ToString();
         }

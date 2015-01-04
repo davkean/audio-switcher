@@ -1,7 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
-using System;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,6 +9,7 @@ using AudioSwitcher.Presentation;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
 using AudioSwitcher.UI.Commands;
+using AudioSwitcher.UI.ViewModels;
 
 namespace AudioSwitcher.UI.Presenters
 {
@@ -17,13 +17,13 @@ namespace AudioSwitcher.UI.Presenters
     [Presenter(PresenterId.DeviceContextMenu, IsToggle=true)]
     internal class DeviceContextMenuPresenter : ContextMenuPresenter
     {
-        private readonly AudioDeviceManager _deviceManager;
+        private readonly AudioDeviceViewModelManager _viewModelManager;
         private readonly CommandManager _commandManager;
 
         [ImportingConstructor]
-        public DeviceContextMenuPresenter(AudioDeviceManager deviceManager, CommandManager commandManager)
+        public DeviceContextMenuPresenter(AudioDeviceViewModelManager viewModelManager, CommandManager commandManager)
         {
-            _deviceManager = deviceManager;
+            _viewModelManager = viewModelManager;
             _commandManager = commandManager;
         }
 
@@ -45,8 +45,8 @@ namespace AudioSwitcher.UI.Presenters
             {
                 ContextMenu.AddSeparatorIfNeeded();
 
-                AudioDeviceCollection devices = GetDevices(kind);
-                if (devices.Count == 0)
+                AudioDeviceViewModel[] devices = GetDevices(kind);
+                if (devices.Length == 0)
                 {
                     ContextMenu.AddDisabled(noDeviceText);
                 }
@@ -60,9 +60,9 @@ namespace AudioSwitcher.UI.Presenters
             }
         }
 
-        private void AddCommand(AudioDeviceCollection devices, AudioDeviceState state)
+        private void AddCommand(AudioDeviceViewModel[] devices, AudioDeviceState state)
         {
-            foreach (AudioDevice device in devices.Where(d => d.State == state))
+            foreach (AudioDeviceViewModel device in devices.Where(d => d.State == state))
             {
                 ToolStripMenuItem menu = ContextMenu.BindCommand(_commandManager, CommandId.SetAsDefaultDevice, device);
                 menu.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, device);
@@ -70,7 +70,7 @@ namespace AudioSwitcher.UI.Presenters
             }
         }
 
-        private AudioDeviceCollection GetDevices(AudioDeviceKind kind)
+        private AudioDeviceViewModel[] GetDevices(AudioDeviceKind kind)
         {
             AudioDeviceState state = AudioDeviceState.Active;
             if (Settings.Default.ShowDisabledDevices)
@@ -88,7 +88,9 @@ namespace AudioSwitcher.UI.Presenters
                 state |= AudioDeviceState.NotPresent;
             }
 
-            return _deviceManager.GetAudioDevices(kind, state);
+            return _viewModelManager.ViewModels.Where(v => v.Device.Kind == kind &&
+                                                           state.HasFlag(v.State))
+                                               .ToArray();
         }
     }
 }

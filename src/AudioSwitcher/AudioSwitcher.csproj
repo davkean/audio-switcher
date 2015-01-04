@@ -53,6 +53,14 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\Interop\MMAudio\ConnectorType.cs" />
+    <Compile Include="Audio\Interop\MMAudio\DataFlow.cs" />
+    <Compile Include="Audio\Interop\MMAudio\IConnector.cs" />
+    <Compile Include="Audio\Interop\MMAudio\IDeviceTopology.cs" />
+    <Compile Include="Audio\Interop\MMAudio\IKsControl.cs" />
+    <Compile Include="Audio\Interop\MMAudio\IPartsList.cs" />
+    <Compile Include="Audio\Interop\MMAudio\IPart.cs" />
+    <Compile Include="Audio\Interop\MMAudio\KSMethod.cs" />
     <Compile Include="ComponentModel\IPriorityMetadata.cs" />
     <Compile Include="Presentation\IPresenter.cs" />
     <Compile Include="Presentation\NonModalPresenter.cs" />
@@ -74,6 +82,7 @@
     <Compile Include="ApplicationModel\NotificationIconStartupService.cs" />
     <Compile Include="UI\Presenters\NotificationIconPresenter.cs" />
     <Compile Include="UI\Presenters\PresenterId.cs" />
+    <Compile Include="UI\ViewModels\AudioDeviceDefaultState.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModel.cs" />
     <Compile Include="Audio\DefaultAudioDeviceEventArgs.cs" />
     <Compile Include="Audio\AudioDeviceStateEventArgs.cs" />
@@ -146,7 +155,7 @@
     <Compile Include="UI\Presenters\NotificationIconContextMenuPresenter.cs" />
     <Compile Include="UI\Presenters\DeviceContextMenuPresenter.cs" />
     <Compile Include="UI\Commands\ExitCommand.cs" />
-    <Compile Include="UI\Commands\SetAsDefaultDeviceCommand.cs" />
+    <Compile Include="UI\Commands\AudioDeviceCommand.cs" />
     <Compile Include="UI\Commands\ShowUnpluggedDevicesCommand.cs" />
     <Compile Include="UI\Commands\ShowDisabledDevicesCommand.cs" />
     <Compile Include="Presentation\UI\ToolStripExtensions.cs" />
@@ -162,6 +171,7 @@
     <Compile Include="Presentation\UI\Interop\MARGINS.cs" />
     <Compile Include="Presentation\UI\Renderer\ToolbarTheme.cs" />
     <Compile Include="Presentation\UI\UIServices.cs" />
+    <Compile Include="UI\ViewModels\AudioDeviceViewModelManager.cs" />
     <Compile Include="Win32\InteropServices\Win32Marshal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

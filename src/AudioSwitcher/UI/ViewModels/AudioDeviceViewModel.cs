@@ -11,82 +11,118 @@ namespace AudioSwitcher.UI.ViewModels
     internal class AudioDeviceViewModel
     {
         private readonly AudioDevice _device;
-        private readonly DeviceDefaultState _defaultState;
 
-        public AudioDeviceViewModel(AudioDeviceManager deviceManager, AudioDevice device)
+        public AudioDeviceViewModel(AudioDevice device)
         {
             _device = device;
-            _defaultState = CalculateDeviceDefaultState(deviceManager, device);
         }
 
-        public bool IsEnabled
+        public AudioDevice Device
         {
-            get { return _device.IsActive; }
+            get { return _device; }
+        }
+
+        public AudioDeviceDefaultState DefaultState
+        {
+            get;
+            private set;
+        }
+
+        public AudioDeviceState State
+        {
+            get;
+            private set;
+        }
+
+        public AudioDeviceKind Kind
+        {
+            get;
+            private set;
         }
 
         public string Description
         {
-            get { return _device.DeviceDescription; }
+            get;
+            private set;
         }
 
         public string FriendlyName
         {
-            get { return _device.DeviceFriendlyName; }
+            get;
+            private set;
         }
 
-        public string StateDisplayName
+        public string DeviceStateFriendlyName
         {
-            get 
-            {
-                // To mimic the Sound control panel, we display a device's 
-                // default state first, and only then fall back to the actual
-                // device's state if it's not a default device.
-
-                if ((_defaultState & DeviceDefaultState.All) == DeviceDefaultState.All)
-                {
-                    return Resources.DeviceState_DefaultDevice;
-                }
-
-                if ((_defaultState & DeviceDefaultState.Multimedia) == DeviceDefaultState.Multimedia)
-                {
-                    return Resources.DeviceState_DefaultMultimediaDevice;
-                }
-
-                if ((_defaultState & DeviceDefaultState.Communications) == DeviceDefaultState.Communications)
-                {
-                    return Resources.DeviceState_DefaultCommunicationsDevice;
-                }
-
-                switch (_device.State)
-                {
-                    case AudioDeviceState.Active:
-                        return Resources.DeviceState_Active;
-
-                    case AudioDeviceState.Disabled:
-                        return Resources.DeviceState_Disabled;
-
-                    case AudioDeviceState.NotPresent:
-                        return Resources.DeviceState_NotPresent;
-
-                    case AudioDeviceState.Unplugged:
-                        return Resources.DeviceState_Unplugged;
-                }
-
-                return String.Empty;
-            }
+            get;
+            private set;
         }
+
         public Image Image
         {
-            get { return GetImage(); }
+            get;
+            private set;
+        }
+
+        public void UpdateStatus(AudioDeviceManager deviceManager)
+        {
+            DefaultState = CalculateDeviceDefaultState(deviceManager);
+            Kind = _device.Kind;
+            State = _device.State;
+            Description = _device.DeviceDescription;
+            FriendlyName = _device.DeviceFriendlyName;
+            DeviceStateFriendlyName = GetDeviceStateFriendlyName();
+            Image = GetImage();
+        }
+
+        private string GetDeviceStateFriendlyName()
+        {
+            // To mimic the Sound control panel, we display a device's 
+            // default state first, and only then fall back to the actual
+            // device's state if it's not a default device.
+
+            if (DefaultState.IsSet(AudioDeviceDefaultState.All))
+            {
+                return Resources.DeviceState_DefaultDevice;
+            }
+
+            if (DefaultState.IsSet(AudioDeviceDefaultState.Multimedia))
+            {
+                return Resources.DeviceState_DefaultMultimediaDevice;
+            }
+
+            if (DefaultState.IsSet(AudioDeviceDefaultState.Communications))
+            {
+                return Resources.DeviceState_DefaultCommunicationsDevice;
+            }
+
+            switch (State)
+            {
+                case AudioDeviceState.Active:
+                    return Resources.DeviceState_Active;
+
+                case AudioDeviceState.Disabled:
+                    return Resources.DeviceState_Disabled;
+
+                case AudioDeviceState.NotPresent:
+                    return Resources.DeviceState_NotPresent;
+
+                case AudioDeviceState.Unplugged:
+                    return Resources.DeviceState_Unplugged;
+            }
+
+            return String.Empty;
         }
 
         private Image GetImage()
         {
-            if (String.IsNullOrEmpty(_device.DeviceClassIconPath))
+            string iconPath = _device.DeviceClassIconPath;
+
+            if (String.IsNullOrEmpty(iconPath))
                 return null;
 
             Icon icon;
-            if (!ShellIcon.TryExtractIconByIdOrIndex(_device.DeviceClassIconPath, new Size(48, 48), out icon))
+            if (!ShellIcon.TryExtractIconByIdOrIndex(iconPath, new Size(48, 48), out icon))
                 return null;
 
             using (icon)
@@ -106,18 +142,17 @@ namespace AudioSwitcher.UI.ViewModels
 
         private Image GetOverlayImage()
         {
-            if ((_defaultState & DeviceDefaultState.Multimedia) == DeviceDefaultState.Multimedia)
+            if (DefaultState.IsSet(AudioDeviceDefaultState.Multimedia))
             {   // Sound control panel shows the same icon between all and multimedia
-
                 return Resources.DefaultMultimediaDevice;
             }
-            
-            if ((_defaultState & DeviceDefaultState.Communications) == DeviceDefaultState.Communications)
+
+            if (DefaultState.IsSet(AudioDeviceDefaultState.Communications))
             {
                 return Resources.DefaultCommunicationsDevice;
             }
 
-            switch (_device.State)
+            switch (State)
             {
                 case AudioDeviceState.Disabled:
                     return Resources.Disabled;
@@ -132,30 +167,21 @@ namespace AudioSwitcher.UI.ViewModels
             return null;
         }
 
-        private static DeviceDefaultState CalculateDeviceDefaultState(AudioDeviceManager deviceManager, AudioDevice device)
+        private AudioDeviceDefaultState CalculateDeviceDefaultState(AudioDeviceManager deviceManager)
         {
-            DeviceDefaultState state = DeviceDefaultState.None;
+            AudioDeviceDefaultState state = AudioDeviceDefaultState.None;
 
-            if (deviceManager.IsDefaultAudioDevice(device, AudioDeviceRole.Multimedia))
+            if (deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Multimedia))
             {
-                state |= DeviceDefaultState.Multimedia;
+                state |= AudioDeviceDefaultState.Multimedia;
             }
 
-            if (deviceManager.IsDefaultAudioDevice(device, AudioDeviceRole.Communications))
+            if (deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Communications))
             {
-                state |= DeviceDefaultState.Communications;
+                state |= AudioDeviceDefaultState.Communications;
             }
 
             return state;
-        }
-
-        [Flags]
-        private enum DeviceDefaultState
-        {
-            None = 0,
-            Multimedia = 1,
-            Communications = 2,
-            All = Multimedia | Communications,
         }
     }
 }

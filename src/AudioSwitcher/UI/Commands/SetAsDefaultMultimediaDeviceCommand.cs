@@ -13,7 +13,7 @@ namespace AudioSwitcher.UI.Commands
     {
         [ImportingConstructor]
         public SetAsDefaultMultimediaDeviceCommand(AudioDeviceManager manager)
-            : base(manager, AudioDeviceRole.Console)
+            : base(manager, AudioDeviceRole.Multimedia)
         {
             Text = Resources.SetAsDefaultMultimediaDevice;
             Image = Resources.DefaultMultimediaDevice;
