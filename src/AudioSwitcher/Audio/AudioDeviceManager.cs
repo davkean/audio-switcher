@@ -134,6 +134,8 @@ namespace AudioSwitcher.Audio
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);
+                    if (device == null)
+                        return;     // Device was already removed by the time we got here
 
                     handler(this, new AudioDeviceStateEventArgs(device, newState));
                 }
@@ -148,6 +150,8 @@ namespace AudioSwitcher.Audio
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);
+                    if (device == null)
+                        return;     // Device was already removed by the time we got here
 
                     handler(this, new AudioDeviceEventArgs(device));
                 }
@@ -174,6 +178,8 @@ namespace AudioSwitcher.Audio
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);
+                    if (device == null)
+                        return;     // Device was already removed by the time we got here
 
                     handler(this, new DefaultAudioDeviceEventArgs(device, kind, role));
                 }
@@ -188,6 +194,8 @@ namespace AudioSwitcher.Audio
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);
+                    if (device == null)
+                        return;     // Device was already removed by the time I got here
 
                     handler(this, new AudioDeviceEventArgs(device));
                 }

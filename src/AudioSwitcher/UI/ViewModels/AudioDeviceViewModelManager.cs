@@ -71,21 +71,23 @@ namespace AudioSwitcher.UI.ViewModels
         private void OnDeviceStateChanged(object sender, AudioDeviceStateEventArgs e)
         {
             AudioDeviceViewModel viewModel = FindViewModel(e.Device.Id);
+            if (viewModel != null)
+            {
+                viewModel.UpdateStatus(_deviceManager);
 
-            Debug.Assert(viewModel != null);
-            viewModel.UpdateStatus(_deviceManager);
-
-            OnChanged(EventArgs.Empty);
+                OnChanged(EventArgs.Empty);
+            }
         }
 
         private void OnDevicePropertyChanged(object sender, AudioDeviceEventArgs e)
         {
             AudioDeviceViewModel viewModel = FindViewModel(e.Device.Id);
+            if (viewModel != null)
+            {
+                viewModel.UpdateStatus(_deviceManager);
 
-            Debug.Assert(viewModel != null);
-            viewModel.UpdateStatus(_deviceManager);
-
-            OnChanged(EventArgs.Empty);
+                OnChanged(EventArgs.Empty);
+            }
         }
 
         private void OnDeviceAdded(object sender, AudioDeviceEventArgs e)
@@ -98,13 +100,11 @@ namespace AudioSwitcher.UI.ViewModels
         private void OnDeviceRemoved(object sender, AudioDeviceRemovedEventArgs e)
         {
             AudioDeviceViewModel viewModel = FindViewModel(e.DeviceId);
-
             if (viewModel != null)
             {
                 _viewModels.Remove(viewModel);
+                OnChanged(EventArgs.Empty);
             }
-
-            OnChanged(EventArgs.Empty);
         }
 
         private void OnDefaultDeviceChanged(object sender, DefaultAudioDeviceEventArgs e)
