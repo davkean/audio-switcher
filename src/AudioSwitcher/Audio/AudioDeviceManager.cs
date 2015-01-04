@@ -39,11 +39,11 @@ namespace AudioSwitcher.Audio
 
         public AudioDeviceManager()
         {
+            _synchronizationContext = SynchronizationContext.Current;
+
             int hr = _deviceEnumerator.RegisterEndpointNotificationCallback(this);
             if (hr != HResult.OK)
                 throw Marshal.GetExceptionForHR(hr);
-
-            _synchronizationContext = SynchronizationContext.Current;
         }
 
         public event EventHandler<AudioDeviceEventArgs> DeviceAdded;
@@ -54,9 +54,12 @@ namespace AudioSwitcher.Audio
 
         public AudioDeviceCollection GetAudioDevices(AudioDeviceKind kind, AudioDeviceState state)
         {
-            IMMDeviceCollection result;
-            Marshal.ThrowExceptionForHR(_deviceEnumerator.EnumAudioEndpoints(kind, state, out result));
-            return new AudioDeviceCollection(result);
+            IMMDeviceCollection underlyingCollection;
+            int hr = _deviceEnumerator.EnumAudioEndpoints(kind, state, out underlyingCollection);
+            if (hr == HResult.OK)
+                return new AudioDeviceCollection(underlyingCollection);
+
+            throw Marshal.GetExceptionForHR(hr);
         }
 
         public void SetDefaultAudioDevice(AudioDevice device)
@@ -76,7 +79,6 @@ namespace AudioSwitcher.Audio
             // in future updates and/or versions of Windows. If Larry Osterman was dead, he would be rolling over 
             // in his grave if he knew you were using this for nefarious purposes.
             IPolicyConfig config = (IPolicyConfig)new PolicyConfig();
-
             int hr = config.SetDefaultEndpoint(device.Id, role);
             if (hr != HResult.OK)
                 throw Marshal.GetExceptionForHR(hr);
