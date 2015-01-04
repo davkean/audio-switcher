@@ -131,10 +131,14 @@ namespace AudioSwitcher.Audio
 
         public bool TryGetValue(PropertyKey key, out object value)
         {
+            value = null;
+
             try
             {
                 var property = this[key];
-
+                if (property == null)
+                    return false;
+                
                 value = property.Value;
                 return true;
 
@@ -145,7 +149,6 @@ namespace AudioSwitcher.Audio
 
                 if (ex.HResult == NoSuchHDevinst)
                 {
-                    value = null;
                     return false;
                 }
 
