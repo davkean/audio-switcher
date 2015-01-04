@@ -21,6 +21,6 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         void Run(object argument);
 
-        void UpdateStatus(object argument);
+        void Refresh(object argument);
     }
 }

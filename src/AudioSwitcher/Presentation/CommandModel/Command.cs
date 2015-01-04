@@ -109,7 +109,7 @@ namespace AudioSwitcher.Presentation.CommandModel
             Run();
         }
 
-        void ICommand.UpdateStatus(object argument)
+        void ICommand.Refresh(object argument)
         {
             if (argument != null)
                 throw new ArgumentException();

@@ -44,7 +44,7 @@ namespace AudioSwitcher.Presentation.CommandModel
             Run((T)argument);
         }
 
-        void ICommand.UpdateStatus(object argument)
+        void ICommand.Refresh(object argument)
         {
             if (!(argument is T))
                 throw new ArgumentException();

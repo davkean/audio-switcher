@@ -37,12 +37,13 @@ namespace AudioSwitcher.Presentation.UI
 
             _dropDown = dropDown;
             _item = item;
+            _item.Tag = this;
             _command = command.Instance;
             _lifetime = command;
             _argument = argument;
 
             RegisterEvents();
-            UpdateCommand();
+            Refresh();
         }
 
         private void RegisterEvents(bool register = true)
@@ -77,9 +78,9 @@ namespace AudioSwitcher.Presentation.UI
                 _command.Run(_argument);
         }
 
-        private void UpdateCommand()
+        public void Refresh()
         {
-            _command.UpdateStatus(_argument);
+            _command.Refresh(_argument);
             SyncProperty(_command, CommandProperty.IsEnabled);
             SyncProperty(_command, CommandProperty.IsChecked);
             SyncProperty(_command, CommandProperty.Text);
@@ -88,7 +89,7 @@ namespace AudioSwitcher.Presentation.UI
         }
         private void OnContextMenuStripOpening(object sender, CancelEventArgs e)
         {
-            UpdateCommand();
+            Refresh();
         }
 
         private void OnCommandPropertyChanged(object sender, PropertyChangedEventArgs e)
