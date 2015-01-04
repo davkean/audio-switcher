@@ -64,6 +64,9 @@ namespace AudioSwitcher.Audio
 
         public void SetDefaultAudioDevice(AudioDevice device)
         {
+            if (device == null)
+                throw new ArgumentNullException("device");
+
             SetDefaultAudioDevice(device, AudioDeviceRole.Multimedia);
             SetDefaultAudioDevice(device, AudioDeviceRole.Communications);
             SetDefaultAudioDevice(device, AudioDeviceRole.Console);
@@ -86,6 +89,9 @@ namespace AudioSwitcher.Audio
 
         public bool IsDefaultAudioDevice(AudioDevice device, AudioDeviceRole role)
         {
+            if (device == null)
+                throw new ArgumentNullException("device");
+
             AudioDevice defaultDevice = GetDefaultAudioDevice(device.Kind, role);
             if (defaultDevice == null)
                 return false;
