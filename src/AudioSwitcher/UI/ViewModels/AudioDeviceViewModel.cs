@@ -122,7 +122,13 @@ namespace AudioSwitcher.UI.ViewModels
             if (overlayImage == null)
                 return stateImage;
 
-            return DrawingServices.CreateOverlayedImage(stateImage, overlayImage, new Size(52, 50)); // To match Sound control panel
+            using (stateImage)
+            using (overlayImage)
+            {
+                // Makes a copy
+                return DrawingServices.CreateOverlayedImage(stateImage, overlayImage, new Size(48, 48));
+            }
+
         }
 
         private Image GetStateImage()
@@ -139,12 +145,13 @@ namespace AudioSwitcher.UI.ViewModels
             using (icon)
             {
                 Image image = icon.ToBitmap();
-                if (State != AudioDeviceState.Active)
-                {
-                    image = ToolStripRenderer.CreateDisabledImage(image);
-                }
+                if (State == AudioDeviceState.Active)
+                    return image;
 
-                return image;
+                using (image)
+                {
+                    return ToolStripRenderer.CreateDisabledImage(image);
+                }
             }
         }
 
