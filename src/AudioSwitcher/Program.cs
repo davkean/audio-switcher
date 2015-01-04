@@ -18,7 +18,7 @@ namespace AudioSwitcher
             using (CompositionContainer container = new CompositionContainer(catalog))
             {
                 IApplication application = container.GetExportedValue<IApplication>();
-                application.Run();
+                application.Start();
             }
         }
     }

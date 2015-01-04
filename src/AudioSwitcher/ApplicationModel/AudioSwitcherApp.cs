@@ -7,6 +7,7 @@ using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Windows.Forms;
 using AudioSwitcher.ComponentModel;
+using System.Collections.Generic;
 
 namespace AudioSwitcher.ApplicationModel
 {
@@ -15,6 +16,7 @@ namespace AudioSwitcher.ApplicationModel
     internal class AudioSwitcherApp : IApplication
     {
         private readonly Lazy<IStartupService, IPriorityMetadata>[] _startupServices;
+        private readonly Queue<Action> _idleActions = new Queue<Action>();
 
         [ImportingConstructor]
         public AudioSwitcherApp([ImportMany]Lazy<IStartupService, IPriorityMetadata>[] startupServices)
@@ -22,8 +24,6 @@ namespace AudioSwitcher.ApplicationModel
             _startupServices = startupServices.OrderBy(s => s.Metadata.Priority)
                                               .ToArray();
         }
-
-        public event EventHandler Idle;
 
         public string Title
         {
@@ -35,13 +35,11 @@ namespace AudioSwitcher.ApplicationModel
             get { return Resources.NotificationArea; }
         }
 
-        public void Run()
+        public void Start()
         {
-            foreach (var service in _startupServices)
-            {
-                if (!service.Value.Startup())
-                    return;
-            }
+            // Some of the startup services expect, or require a SynchronizationContext, 
+            // so we run them after the message loop has started.
+            RunOnNextIdle(() => RunStartupServices());
 
             Application.Idle += OnApplicationIdle;
             Application.Run();
@@ -53,12 +51,39 @@ namespace AudioSwitcher.ApplicationModel
             Application.Idle -= OnApplicationIdle;
         }
 
+        public void RunOnNextIdle(Action action)
+        {
+            if (action == null)
+                throw new ArgumentNullException("action");
+
+            _idleActions.Enqueue(action);
+        }
+
+        private void RunStartupServices()
+        {
+            foreach (var service in _startupServices)
+            {
+                if (!service.Value.Startup())
+                {
+                    Shutdown();
+                    break;
+                }
+            }
+        }
+
         private void OnApplicationIdle(object sender, EventArgs e)
         {
-            var handler = Idle;
-            if (handler != null)
+            if (_idleActions.Count > 0)
             {
-                handler(this, e);
+                // Snapshot actions and then clear existing in
+                // case one of actions queue additional work
+                Action[] actions = _idleActions.ToArray();
+                _idleActions.Clear();
+
+                foreach (Action action in actions)
+                {
+                    action();
+                }
             }
         }
     }

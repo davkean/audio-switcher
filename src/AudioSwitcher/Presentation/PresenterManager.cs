@@ -14,18 +14,16 @@ using AudioSwitcher.ComponentModel;
 namespace AudioSwitcher.Presentation
 {
     [Export(typeof(PresenterManager))]
-    internal class PresenterManager : IDisposable
+    internal class PresenterManager
     {
-        private readonly IApplication _application;
         private readonly ExportFactory<IPresenter, IPresenterMetadata>[] _presenters;
-        private readonly List<IDisposable> _lifetimesToDispose = new List<IDisposable>();
+        private readonly IApplication _application;
         private PresenterLifetime<ContextMenuPresenter> _current;
 
         [ImportingConstructor]
         public PresenterManager(IApplication application, [ImportMany]ExportFactory<IPresenter, IPresenterMetadata>[] presenters)
         {
             _application = application;
-            _application.Idle += OnApplicationIdle;
             _presenters = presenters;
         }
 
@@ -52,7 +50,15 @@ namespace AudioSwitcher.Presentation
             {
                 Debug.Assert(_current == presenter);
                 _current = null;
-                _lifetimesToDispose.Add(presenter);
+
+                // WORKAROUND: It's not possible to dispose of a context menu strip
+                // in its Closed event because it tries to do some work after that
+                // and throws ObjectDisposedException. To workaround this, we hold
+                // off disposing them until the next idle event.
+                _application.RunOnNextIdle(() =>
+                {
+                    presenter.Dispose();
+                });
             };
 
             presenter.Instance.Show(screenLocation);
@@ -84,25 +90,6 @@ namespace AudioSwitcher.Presentation
             ExportLifetimeContext<IPresenter> context = factory.CreateExport();
 
             return new PresenterLifetime<T>(context, factory.Metadata);
-        }
-
-        public void Dispose()
-        {
-            _application.Idle -= OnApplicationIdle;
-        }
-
-        private void OnApplicationIdle(object sender, EventArgs e)
-        {
-            // WORKAROUND: It's not possible to dispose of a context menu strip
-            // in its Closed event because it tries to do some work after that
-            // and throws ObjectDisposedException. To workaround this, we hold
-            // off disposing them until the next idle event.
-            foreach (IDisposable disposable in _lifetimesToDispose)
-            {
-                disposable.Dispose();
-            }
-
-            _lifetimesToDispose.Clear();
         }
 
         private class PresenterLifetime<T> : Lifetime<T>
