@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AudioSwitcher.Interop
+namespace AudioSwitcher.Audio.Interop
 {
     /// <summary>
     /// is defined in WTypes.h

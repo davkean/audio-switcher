@@ -1,4 +1,7 @@
-﻿/*
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean.
+// -----------------------------------------------------------------------
+/*
   LICENSE
   -------
   Copyright (C) 2007 Ray Molenkamp
@@ -22,7 +25,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 
 namespace AudioSwitcher.Audio
 {

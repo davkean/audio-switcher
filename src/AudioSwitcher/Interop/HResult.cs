@@ -1,4 +1,7 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean.
+// -----------------------------------------------------------------------
+using System;
 using AudioSwitcher.Win32.InteropServices;
 
 namespace AudioSwitcher.Interop

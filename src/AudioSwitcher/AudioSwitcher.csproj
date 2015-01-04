@@ -94,7 +94,7 @@
     <Compile Include="Audio\AudioDevice.cs" />
     <Compile Include="Audio\AudioDeviceCollection.cs" />
     <Compile Include="Audio\AudioDeviceManager.cs" />
-    <Compile Include="Audio\Interop\MMAudio\MMDeviceEnumeratorComObject.cs" />
+    <Compile Include="Audio\Interop\MMAudio\MMDeviceEnumerator.cs" />
     <Compile Include="Audio\Interop\MMAudio\PropertyKey.cs" />
     <Compile Include="Audio\Interop\MMAudio\PropertyKeys.cs" />
     <Compile Include="Audio\Interop\MMAudio\PropertyStore.cs" />

@@ -26,7 +26,7 @@ using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace AudioSwitcher.Interop
+namespace AudioSwitcher.Audio.Interop
 {
     /// <summary>
     /// from Propidl.h.

@@ -27,6 +27,7 @@ using System;
 using System.ComponentModel.Composition;
 using System.Runtime.InteropServices;
 using System.Threading;
+using AudioSwitcher.Audio.Interop;
 using AudioSwitcher.Interop;
 
 namespace AudioSwitcher.Audio
@@ -34,7 +35,7 @@ namespace AudioSwitcher.Audio
     [Export(typeof(AudioDeviceManager))]
     internal class AudioDeviceManager : IMMNotificationClient, IDisposable
     {
-        private readonly IMMDeviceEnumerator _deviceEnumerator = (IMMDeviceEnumerator)new MMDeviceEnumeratorComObject();
+        private readonly IMMDeviceEnumerator _deviceEnumerator = (IMMDeviceEnumerator)new MMDeviceEnumerator();
         private readonly SynchronizationContext _synchronizationContext;
 
         public AudioDeviceManager()

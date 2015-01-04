@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace AudioSwitcher.Interop
+namespace AudioSwitcher.Audio.Interop
 {
     internal struct Blob
     {

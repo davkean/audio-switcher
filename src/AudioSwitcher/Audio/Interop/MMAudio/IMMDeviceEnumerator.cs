@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean.
+// -----------------------------------------------------------------------
+using System;
 using System.Runtime.InteropServices;
 using AudioSwitcher.Audio;
 
-namespace AudioSwitcher.Interop
+namespace AudioSwitcher.Audio.Interop
 {
     [Guid("A95664D2-9614-4F35-A746-DE8DB63617E6")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

@@ -27,7 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
-using AudioSwitcher.Interop;
+using AudioSwitcher.Audio.Interop;
 
 namespace AudioSwitcher.Audio
 {

@@ -20,7 +20,7 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 // modified for AudioSwitcher
-using AudioSwitcher.Interop;
+using AudioSwitcher.Audio.Interop;
 using System.Runtime.InteropServices;
 
 namespace AudioSwitcher.Audio

@@ -4,7 +4,7 @@
 using System.Runtime.InteropServices;
 using AudioSwitcher.Audio;
 
-namespace AudioSwitcher.Interop
+namespace AudioSwitcher.Audio.Interop
 {
     [ComImport]
     [Guid("f8679f50-850a-41cf-9c72-430f290290c8")]

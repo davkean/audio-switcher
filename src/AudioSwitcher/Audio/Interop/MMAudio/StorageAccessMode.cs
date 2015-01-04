@@ -1,8 +1,11 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean.
+// -----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AudioSwitcher.Interop
+namespace AudioSwitcher.Audio.Interop
 {
     internal enum StorageAccessMode
     {

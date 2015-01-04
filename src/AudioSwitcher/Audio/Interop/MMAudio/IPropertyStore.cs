@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean.
+// -----------------------------------------------------------------------
+using System;
 using System.Runtime.InteropServices;
 using AudioSwitcher.Audio;
 
-namespace AudioSwitcher.Interop
+namespace AudioSwitcher.Audio.Interop
 {
     /// <summary>
     /// is defined in propsys.h

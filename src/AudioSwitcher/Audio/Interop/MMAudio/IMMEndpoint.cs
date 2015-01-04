@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using AudioSwitcher.Audio;
 
-namespace AudioSwitcher.Interop
+namespace AudioSwitcher.Audio.Interop
 {
     /// <summary>
     /// defined in MMDeviceAPI.h
