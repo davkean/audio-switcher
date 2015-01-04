@@ -1,6 +1,7 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
+using System;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,7 +16,7 @@ namespace AudioSwitcher.UI.Presenters
 {
     // Presents the device context menu when left-clicking on the notification icon
     [Presenter(PresenterId.DeviceContextMenu, IsToggle=true)]
-    internal class DeviceContextMenuPresenter : ContextMenuPresenter
+    internal class DeviceContextMenuPresenter : ContextMenuPresenter, IDisposable
     {
         private readonly AudioDeviceViewModelManager _viewModelManager;
         private readonly CommandManager _commandManager;
@@ -24,7 +25,20 @@ namespace AudioSwitcher.UI.Presenters
         public DeviceContextMenuPresenter(AudioDeviceViewModelManager viewModelManager, CommandManager commandManager)
         {
             _viewModelManager = viewModelManager;
+            _viewModelManager.Changed += OnViewModelsChanged;
             _commandManager = commandManager;
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            _viewModelManager.Changed -= OnViewModelsChanged;
+        }
+
+        private void OnViewModelsChanged(object sender, System.EventArgs e)
+        {
+            ContextMenu.RefreshCommands();
         }
 
         protected override void Bind()
@@ -52,17 +66,14 @@ namespace AudioSwitcher.UI.Presenters
                 }
                 else
                 {
-                    AddCommand(devices, AudioDeviceState.Active);
-                    AddCommand(devices, AudioDeviceState.Unplugged);
-                    AddCommand(devices, AudioDeviceState.Disabled);
-                    AddCommand(devices, AudioDeviceState.NotPresent);
+                    AddDeviceCommands(devices);
                 }
             }
         }
 
-        private void AddCommand(AudioDeviceViewModel[] devices, AudioDeviceState state)
+        private void AddDeviceCommands(AudioDeviceViewModel[] devices)
         {
-            foreach (AudioDeviceViewModel device in devices.Where(d => d.State == state))
+            foreach (AudioDeviceViewModel device in devices)
             {
                 ToolStripMenuItem menu = ContextMenu.BindCommand(_commandManager, CommandId.SetAsDefaultDevice, device);
                 menu.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, device);

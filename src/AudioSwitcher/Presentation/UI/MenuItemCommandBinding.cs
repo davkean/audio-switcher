@@ -37,7 +37,6 @@ namespace AudioSwitcher.Presentation.UI
 
             _dropDown = dropDown;
             _item = item;
-            _item.Tag = this;
             _command = command.Instance;
             _lifetime = command;
             _argument = argument;

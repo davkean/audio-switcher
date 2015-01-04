@@ -2,6 +2,7 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
+using System.Linq;
 using System.ComponentModel;
 using System.Windows.Forms;
 using AudioSwitcher.ComponentModel;
@@ -11,6 +12,36 @@ namespace AudioSwitcher.Presentation.UI
 {
     internal static partial class ToolStripExtensions
     {
+        public static void RefreshCommands(this ToolStrip strip)
+        {
+            if (strip == null)
+                throw new ArgumentNullException("strip");
+
+            // If the strip itself is not visible, don't update the items
+            if (!strip.Visible)
+                return;
+
+            foreach (ToolStripMenuItem item in strip.Items.OfType<ToolStripMenuItem>())
+            {
+                item.RefreshCommand(true);
+            }
+        }
+
+        public static void RefreshCommand(this ToolStripMenuItem item, bool refreshChildren = false)
+        {
+            if (item == null)
+                throw new ArgumentNullException("item");
+            
+            MenuItemCommandBinding binding = (MenuItemCommandBinding)item.Tag;
+            if (binding != null)
+                binding.Refresh();
+
+            if (refreshChildren)
+            {
+                RefreshCommands(item.DropDown);
+            }
+        }
+
         public static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId)
         {
             return dropDown.BindCommand(commandManager, commandId, (object)null);
@@ -28,9 +59,7 @@ namespace AudioSwitcher.Presentation.UI
         private static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, Lifetime<ICommand> command, object argument)
         {
             ToolStripMenuItem item = dropDown.Add(string.Empty);
-
-            // Should be kept alive by the strip and command hookups.
-            new MenuItemCommandBinding(dropDown, item, command, argument);
+            item.Tag = new MenuItemCommandBinding(dropDown, item, command, argument);
 
             return item;
         }

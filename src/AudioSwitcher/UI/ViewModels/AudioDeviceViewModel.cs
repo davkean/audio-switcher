@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------
 using System;
 using System.Drawing;
+using System.Windows.Forms;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.Drawing;
 
@@ -116,6 +117,16 @@ namespace AudioSwitcher.UI.ViewModels
 
         private Image GetImage()
         {
+            Image stateImage = GetStateImage();
+            Image overlayImage = GetOverlayImage();
+            if (overlayImage == null)
+                return stateImage;
+
+            return DrawingServices.CreateOverlayedImage(stateImage, overlayImage, new Size(52, 50)); // To match Sound control panel
+        }
+
+        private Image GetStateImage()
+        {
             string iconPath = _device.DeviceClassIconPath;
 
             if (String.IsNullOrEmpty(iconPath))
@@ -127,16 +138,13 @@ namespace AudioSwitcher.UI.ViewModels
 
             using (icon)
             {
-                Image overlayImage = GetOverlayImage();
+                Image image = icon.ToBitmap();
+                if (State != AudioDeviceState.Active)
+                {
+                    image = ToolStripRenderer.CreateDisabledImage(image);
+                }
 
-                if (overlayImage != null)
-                {
-                    return DrawingServices.Overlay(icon.ToBitmap(), overlayImage);
-                }
-                else
-                {
-                    return icon.ToBitmap();
-                }
+                return image;
             }
         }
 

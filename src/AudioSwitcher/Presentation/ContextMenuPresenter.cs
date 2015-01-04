@@ -41,7 +41,7 @@ namespace AudioSwitcher.Presentation
             _contextMenu.Close(ToolStripDropDownCloseReason.AppFocusChange);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _contextMenu.Dispose();
         }

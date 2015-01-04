@@ -24,14 +24,14 @@ namespace AudioSwitcher.UI.Commands
 
         public override void Run(AudioDeviceViewModel argument)
         {
-            _deviceManager.SetDefaultAudioDevice(argument.Device);
+            if (argument.Device.IsActive)
+                _deviceManager.SetDefaultAudioDevice(argument.Device);
         }
 
         public override void UpdateStatus(AudioDeviceViewModel argument)
         {
             Text = GetDisplayText(argument);
             Image = argument.Image;
-            IsEnabled = argument.State == AudioDeviceState.Active;
         }
 
         private string GetDisplayText(AudioDeviceViewModel viewModel)

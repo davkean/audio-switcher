@@ -42,9 +42,8 @@ namespace AudioSwitcher.UI.Commands
 
         public override void Run(AudioDeviceViewModel argument)
         {
-            _manager.SetDefaultAudioDevice(argument.Device, _role);
+            if (argument.Device.IsActive)
+                _manager.SetDefaultAudioDevice(argument.Device, _role);
         }
-
-        
     }
 }
