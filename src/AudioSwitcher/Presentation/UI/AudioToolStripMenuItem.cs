@@ -41,9 +41,10 @@ namespace AudioSwitcher.Presentation.UI
 
         private void OnParentLocationChanged(object sender, EventArgs e)
         {
-            // To prevent sub menus from being misaligned when additional menu items visible and toolstrip is repositioned, 
-            // we fix up the position of the sub menu if our parent's location is changed. Make note, that if the menu item 
-            // physically moves inside the strip, WinForms already fixes it up, so we don't need to handle that case.
+            // To prevent sub menus from being misaligned when additional menu items are added or made visible and the
+            // toolstrip is repositioned, we fix up the position of the sub menu if our parent's location is changed. 
+            // Make note, that if the menu item physically moves inside the strip, WinForms already fixes it up, so 
+            // we don't need to handle that case.
             if (HasDropDownItems && DropDown.Visible)
             {
                 DropDown.Location = DropDownLocation;
