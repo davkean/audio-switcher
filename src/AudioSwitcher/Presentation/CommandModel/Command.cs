@@ -129,6 +129,14 @@ namespace AudioSwitcher.Presentation.CommandModel
                 throw new ArgumentException();
 
             Refresh();
+
+            // Prevent non-visible items from contributing 
+            // to the size of the context menu
+            if (!IsVisible)
+            {
+                Image = null;
+                Text = null;
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace AudioSwitcher.UI.Commands
             _role = role;
         }
 
-        public override void UpdateStatus(AudioDeviceViewModel argument)
+        public override void Refresh(AudioDeviceViewModel argument)
         {
             IsChecked = IsDefaultDevice(argument.DefaultState);
             IsEnabled = argument.State == AudioDeviceState.Active && !IsChecked;

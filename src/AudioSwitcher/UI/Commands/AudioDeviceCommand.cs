@@ -28,11 +28,11 @@ namespace AudioSwitcher.UI.Commands
                 _deviceManager.SetDefaultAudioDevice(argument.Device);
         }
 
-        public override void UpdateStatus(AudioDeviceViewModel argument)
+        public override void Refresh(AudioDeviceViewModel argument)
         {
+            IsVisible = argument.IsVisible;
             Text = GetDisplayText(argument);
             Image = argument.Image;
-            IsVisible = argument.IsVisible;
         }
 
         private string GetDisplayText(AudioDeviceViewModel viewModel)

@@ -32,7 +32,7 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         public abstract void Run(T argument);
 
-        public virtual void UpdateStatus(T argument)
+        public virtual void Refresh(T argument)
         {
         }
 
@@ -49,7 +49,13 @@ namespace AudioSwitcher.Presentation.CommandModel
             if (!(argument is T))
                 throw new ArgumentException();
 
-            UpdateStatus((T)argument);
+            Refresh((T)argument);
+
+            if (!IsVisible)
+            {
+                Image = null;
+                Text = null;
+            }
         }
     }
 }
