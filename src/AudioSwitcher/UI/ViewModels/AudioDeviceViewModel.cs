@@ -162,6 +162,9 @@ namespace AudioSwitcher.UI.ViewModels
         private Image GetImage()
         {
             Image stateImage = GetStateImage();
+            if (stateImage == null)
+                return null;
+
             Image overlayImage = GetOverlayImage();
             if (overlayImage == null)
                 return stateImage;
@@ -177,16 +180,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         private Image GetStateImage()
         {
-            string iconPath = _device.DeviceClassIconPath;
-
-            if (String.IsNullOrEmpty(iconPath))
-                return null;
-
-            Icon icon;
-            if (!ShellIcon.TryExtractIconByIdOrIndex(iconPath, new Size(48, 48), out icon))
-                return null;
-
-            using (icon)
+            using (Icon icon = GetIconFromDeviceIconPath())
             {
                 Image image = icon.ToBitmap();
                 if (State == AudioDeviceState.Active)
@@ -197,6 +191,21 @@ namespace AudioSwitcher.UI.ViewModels
                     return ToolStripRenderer.CreateDisabledImage(image);
                 }
             }
+        }
+
+        private Icon GetIconFromDeviceIconPath()
+        {
+            Size iconSize = new Size(48, 48);
+            string iconPath = _device.DeviceClassIconPath;
+
+            if (String.IsNullOrEmpty(iconPath))
+                return null;
+
+            Icon icon;
+            if (String.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, iconSize, out icon))
+                return new Icon(Resources.FallbackDevice, iconSize);
+
+            return icon;
         }
 
         private Image GetOverlayImage()

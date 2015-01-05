@@ -181,6 +181,16 @@ namespace AudioSwitcher {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon FallbackDevice {
+            get {
+                object obj = ResourceManager.GetObject("FallbackDevice", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No devices selected.
         /// </summary>
         internal static string NoDevices {

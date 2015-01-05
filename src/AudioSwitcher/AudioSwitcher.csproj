@@ -223,5 +223,8 @@
   <ItemGroup>
     <Folder Include="UI\Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\FallbackDevice.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
