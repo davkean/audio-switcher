@@ -46,28 +46,25 @@ namespace AudioSwitcher.UI.Presenters
             ContextMenu.AutoCloseWhenItemWithDropDownClicked = true; // When something clicks the "Device" we auto close 
             ContextMenu.WorkingAreaConstrained = true;
 
-            AddDeviceCommands(AudioDeviceKind.Playback, Settings.Default.ShowPlaybackDevices, Resources.NoPlaybackDevices);
-            AddDeviceCommands(AudioDeviceKind.Recording, Settings.Default.ShowRecordingDevices, Resources.NoRecordingDevices);
+            AddDeviceCommands(AudioDeviceKind.Playback, Resources.NoPlaybackDevices);
+            AddDeviceCommands(AudioDeviceKind.Recording, Resources.NoRecordingDevices);
 
             if (ContextMenu.Items.Count == 0)
                 ContextMenu.AddDisabled(Resources.NoDevices);
         }
 
-        private void AddDeviceCommands(AudioDeviceKind kind, bool condition, string noDeviceText)
+        private void AddDeviceCommands(AudioDeviceKind kind, string noDeviceText)
         {
-            if (condition)
-            {
-                ContextMenu.AddSeparatorIfNeeded();
+            ContextMenu.AddSeparatorIfNeeded();
 
-                AudioDeviceViewModel[] devices = GetDevices(kind);
-                if (devices.Length == 0)
-                {
-                    ContextMenu.AddDisabled(noDeviceText);
-                }
-                else
-                {
-                    AddDeviceCommands(devices);
-                }
+            AudioDeviceViewModel[] devices = GetDevices(kind);
+            if (devices.Length == 0)
+            {
+                ContextMenu.AddDisabled(noDeviceText);
+            }
+            else
+            {
+                AddDeviceCommands(devices);
             }
         }
 
@@ -83,24 +80,7 @@ namespace AudioSwitcher.UI.Presenters
 
         private AudioDeviceViewModel[] GetDevices(AudioDeviceKind kind)
         {
-            AudioDeviceState state = AudioDeviceState.Active;
-            if (Settings.Default.ShowDisabledDevices)
-            {
-                state |= AudioDeviceState.Disabled;
-            }
-
-            if (Settings.Default.ShowUnpluggedDevices)
-            {
-                state |= AudioDeviceState.Unplugged;
-            }
-
-            if (Settings.Default.ShowNotPresentDevices)
-            {
-                state |= AudioDeviceState.NotPresent;
-            }
-
-            return _viewModelManager.ViewModels.Where(v => v.Device.Kind == kind &&
-                                                           state.HasFlag(v.State))
+            return _viewModelManager.ViewModels.Where(v => v.Device.Kind == kind)
                                                .ToArray();
         }
     }

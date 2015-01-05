@@ -80,6 +80,7 @@ namespace AudioSwitcher.Presentation.UI
         public void Refresh()
         {
             _command.Refresh(_argument);
+            SyncProperty(_command, CommandProperty.IsVisible);
             SyncProperty(_command, CommandProperty.IsEnabled);
             SyncProperty(_command, CommandProperty.IsChecked);
             SyncProperty(_command, CommandProperty.Text);
@@ -102,6 +103,10 @@ namespace AudioSwitcher.Presentation.UI
         {
             switch (propertyName)
             {
+                case CommandProperty.IsVisible:
+                    _item.Visible = command.IsVisible;
+                    break;
+
                 case CommandProperty.IsEnabled:
                     _item.Enabled = command.IsEnabled;
                     break;

@@ -16,6 +16,40 @@ namespace AudioSwitcher.Presentation.UI
             ImageScaling = ToolStripItemImageScaling.None;
         }
 
+        protected override void OnParentChanged(ToolStrip oldParent, ToolStrip newParent)
+        {
+            if (oldParent != null)
+                oldParent.LocationChanged -= OnParentLocationChanged;
+
+            base.OnParentChanged(oldParent, newParent);
+
+            if (newParent != null)
+                newParent.LocationChanged += OnParentLocationChanged;
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            // To prevent sub menus from being orphaned, 
+            // hide them when our visibility changes
+            if (!Visible)
+            {
+                HideDropDown();
+            }
+        }
+
+        private void OnParentLocationChanged(object sender, EventArgs e)
+        {
+            // To prevent sub menus from being misaligned when additional menu items visible and toolstrip is repositioned, 
+            // we fix up the position of the sub menu if our parent's location is changed. Make note, that if the menu item 
+            // physically moves inside the strip, WinForms already fixes it up, so we don't need to handle that case.
+            if (HasDropDownItems && DropDown.Visible)
+            {
+                DropDown.Location = DropDownLocation;
+            }
+        }
+
         protected override Point DropDownLocation
         {
             get

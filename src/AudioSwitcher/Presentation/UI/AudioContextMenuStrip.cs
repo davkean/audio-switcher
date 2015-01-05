@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -24,10 +25,23 @@ namespace AudioSwitcher.Presentation.UI
             ShowImageMargin = true;
         }
 
+        public bool AutoCloseWhenItemWithDropDownClicked
+        {
+            get { return _autoCloseWhenItemWithDropDownClicked; }
+            set { _autoCloseWhenItemWithDropDownClicked = value; }
+        }
+
         public bool WorkingAreaConstrained
         {
             get;
             set;
+        }
+
+        protected override void OnOpening(CancelEventArgs e)
+        {
+            base.OnOpening(e);
+
+            HideDuplicatedSeparators();
         }
 
         public void ShowInSystemTray(Point screenLocation)
@@ -49,12 +63,6 @@ namespace AudioSwitcher.Presentation.UI
                 Debug.Assert(info != null);
                 info.Invoke(this, new object[] { screenLocation.X, screenLocation.Y });
             }
-        }
-
-        public bool AutoCloseWhenItemWithDropDownClicked
-        {
-            get { return _autoCloseWhenItemWithDropDownClicked; }
-            set { _autoCloseWhenItemWithDropDownClicked = value; }
         }
 
         protected override void OnItemClicked(ToolStripItemClickedEventArgs e)
@@ -87,6 +95,24 @@ namespace AudioSwitcher.Presentation.UI
             item.Click += onClick;
 
             return item;
+        }
+
+        private void HideDuplicatedSeparators()
+        {
+            ToolStripItem[] availableItems = Items.Cast<ToolStripItem>()
+                                                  .Where(i => i.Available)
+                                                  .ToArray();
+
+            for (int i = 0; i < availableItems.Length; i++)
+            {
+                ToolStripItem item = availableItems[i];
+
+                if (i == 0 && item is ToolStripSeparator)
+                    item.Available = false;
+
+                if (i == availableItems.Length - 1 && item is ToolStripSeparator)
+                    item.Available = false;
+            }
         }
     }
 }

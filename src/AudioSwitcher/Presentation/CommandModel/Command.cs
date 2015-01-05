@@ -15,6 +15,7 @@ namespace AudioSwitcher.Presentation.CommandModel
     internal abstract class Command : ObservableObject, ICommand
     {
         private bool _isEnabled = true;
+        private bool _isVisible = true;
         private bool _isChecked;
         private string _text;
         private string _tooltipText;
@@ -28,6 +29,19 @@ namespace AudioSwitcher.Presentation.CommandModel
         protected Command(string text)
         {
             Text = text;
+        }
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                if (value != _isVisible)
+                {
+                    _isVisible = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
 
         public bool IsChecked

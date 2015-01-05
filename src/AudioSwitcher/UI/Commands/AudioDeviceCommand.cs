@@ -32,6 +32,7 @@ namespace AudioSwitcher.UI.Commands
         {
             Text = GetDisplayText(argument);
             Image = argument.Image;
+            IsVisible = GetIsVisible(argument);
         }
 
         private string GetDisplayText(AudioDeviceViewModel viewModel)
@@ -42,6 +43,43 @@ namespace AudioSwitcher.UI.Commands
             text.Append(viewModel.DeviceStateFriendlyName); // Ready
 
             return text.ToString();
+        }
+
+        private bool GetIsVisible(AudioDeviceViewModel viewModel)
+        {
+            bool isVisible = true;
+
+            switch (viewModel.Kind)
+            {
+                case AudioDeviceKind.Playback:
+                    isVisible &= Settings.Default.ShowPlaybackDevices;
+                    break;
+
+                case AudioDeviceKind.Recording:
+                    isVisible &= Settings.Default.ShowRecordingDevices;
+                    break;
+            }
+
+            switch (viewModel.State)
+            {
+                case AudioDeviceState.Active:
+                    break;
+
+                case AudioDeviceState.Disabled:
+                    isVisible &= Settings.Default.ShowDisabledDevices;
+                    break;
+
+                case AudioDeviceState.Unplugged:
+                    isVisible &= Settings.Default.ShowUnpluggedDevices;
+                    break;
+
+                default:
+                case AudioDeviceState.NotPresent:
+                    isVisible &= Settings.Default.ShowNotPresentDevices;
+                    break;
+            }
+
+            return isVisible;
         }
     }
 }
