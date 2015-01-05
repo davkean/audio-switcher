@@ -17,6 +17,9 @@ namespace AudioSwitcher.Presentation.Drawing
             {
                 icon = ExtractIconByIdOrIndex(fileNameAndIdOrIndex, size);
             }
+            catch (ArgumentException)
+            {
+            }
             catch (FormatException)
             {
             }
