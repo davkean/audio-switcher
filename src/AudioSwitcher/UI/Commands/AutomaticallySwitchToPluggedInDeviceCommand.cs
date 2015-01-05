@@ -14,7 +14,7 @@ namespace AudioSwitcher.UI.Commands
             Text = Resources.AutomaticallySwitchToPluggedInDevice;
         }
 
-        public override void UpdateStatus()
+        public override void Refresh()
         {
             IsChecked = Settings.Default.AutoSwitchToPluggedInDevice;
         }

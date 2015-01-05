@@ -25,7 +25,7 @@ namespace AudioSwitcher.Presentation.CommandModel
             throw new InvalidOperationException();
         }
 
-        public override sealed void UpdateStatus()
+        public override sealed void Refresh()
         {
             throw new InvalidOperationException();
         }

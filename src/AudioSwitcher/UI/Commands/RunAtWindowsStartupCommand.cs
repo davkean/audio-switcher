@@ -23,7 +23,7 @@ namespace AudioSwitcher.UI.Commands
             Text = Resources.RunAtStartup;
         }
 
-        public override void UpdateStatus()
+        public override void Refresh()
         {
             IsChecked = IsRunAtWindowsStartup();
         }

@@ -9,18 +9,18 @@ using AudioSwitcher.UI.ViewModels;
 
 namespace AudioSwitcher.UI.Commands
 {
-    [Command(CommandId.NoRecordingDevices)]
-    internal class NoRecordingDevicesCommand : NoDevicesCommandBase
+    [Command(CommandId.NoPlaybackDevices)]
+    internal class NoPlaybackDevicesCommand : NoDevicesCommandBase
     {
         [ImportingConstructor]
-        public NoRecordingDevicesCommand(AudioDeviceViewModelManager viewModelManager)
-            : base(Resources.NoRecordingDevices, viewModelManager, AudioDeviceKind.Recording)
+        public NoPlaybackDevicesCommand(AudioDeviceViewModelManager viewModelManager)
+            : base(Resources.NoPlaybackDevices, viewModelManager, AudioDeviceKind.Playback)
         {
         }
 
         public override void Refresh()
         {
-            if (Settings.Default.ShowRecordingDevices)
+            if (Settings.Default.ShowPlaybackDevices)
             {
                 base.Refresh();
             }

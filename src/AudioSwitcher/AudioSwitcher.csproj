@@ -80,6 +80,10 @@
     <Compile Include="ApplicationModel\SaveSettingsOnShutdownService.cs" />
     <Compile Include="ApplicationModel\SingleInstanceStartupService.cs" />
     <Compile Include="ApplicationModel\NotificationIconStartupService.cs" />
+    <Compile Include="UI\Commands\NoDevicesCommandBase.cs" />
+    <Compile Include="UI\Commands\NoRecordingDevicesCommand.cs" />
+    <Compile Include="UI\Commands\NoPlaybackDevicesCommand.cs" />
+    <Compile Include="UI\Commands\NoDevicesCommand.cs" />
     <Compile Include="UI\Presenters\NotificationIconPresenter.cs" />
     <Compile Include="UI\Presenters\PresenterId.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceDefaultState.cs" />

@@ -17,7 +17,7 @@ namespace AudioSwitcher.UI.Commands
             Image = Resources.PlaybackDevice;
         }
 
-        public override void UpdateStatus()
+        public override void Refresh()
         {
             IsChecked = Settings.Default.ShowPlaybackDevices;
         }

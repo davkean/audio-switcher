@@ -115,6 +115,9 @@ namespace AudioSwitcher.Audio
 
         public AudioDevice GetDevice(string id)
         {
+            if (id == null)
+                throw new ArgumentNullException("id");
+
             IMMDevice underlyingDevice;
             int hr = _deviceEnumerator.GetDevice(id, out underlyingDevice);
             if (hr == HResult.OK)
@@ -177,10 +180,10 @@ namespace AudioSwitcher.Audio
                 var handler = DefaultDeviceChanged;
                 if (handler != null)
                 {
-                    AudioDevice device = GetDevice(deviceId);
-                    if (device == null)
-                        return;     // Device was already removed by the time we got here
-
+                    AudioDevice device = null;
+                    if (deviceId != null)
+                        device = GetDevice(deviceId);
+                    
                     handler(this, new DefaultAudioDeviceEventArgs(device, kind, role));
                 }
             });

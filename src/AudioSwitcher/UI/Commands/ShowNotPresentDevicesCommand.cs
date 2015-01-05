@@ -17,7 +17,7 @@ namespace AudioSwitcher.UI.Commands
             Image = Resources.NotPresent;
         }
 
-        public override void UpdateStatus()
+        public override void Refresh()
         {
             IsChecked = Settings.Default.ShowNotPresentDevices;
         }

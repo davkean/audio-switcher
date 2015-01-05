@@ -46,26 +46,20 @@ namespace AudioSwitcher.UI.Presenters
             ContextMenu.AutoCloseWhenItemWithDropDownClicked = true; // When something clicks the "Device" we auto close 
             ContextMenu.WorkingAreaConstrained = true;
 
-            AddDeviceCommands(AudioDeviceKind.Playback, Resources.NoPlaybackDevices);
-            AddDeviceCommands(AudioDeviceKind.Recording, Resources.NoRecordingDevices);
+            AddDeviceCommands(AudioDeviceKind.Playback, CommandId.NoPlaybackDevices);
+            AddDeviceCommands(AudioDeviceKind.Recording, CommandId.NoRecordingDevices);
 
-            if (ContextMenu.Items.Count == 0)
-                ContextMenu.AddDisabled(Resources.NoDevices);
+            ContextMenu.BindCommand(_commandManager, CommandId.NoDevices);
         }
 
-        private void AddDeviceCommands(AudioDeviceKind kind, string noDeviceText)
+        private void AddDeviceCommands(AudioDeviceKind kind, string noDeviceCommandId)
         {
             ContextMenu.AddSeparatorIfNeeded();
 
             AudioDeviceViewModel[] devices = GetDevices(kind);
-            if (devices.Length == 0)
-            {
-                ContextMenu.AddDisabled(noDeviceText);
-            }
-            else
-            {
-                AddDeviceCommands(devices);
-            }
+            AddDeviceCommands(devices);
+
+            ContextMenu.BindCommand(_commandManager, noDeviceCommandId);
         }
 
         private void AddDeviceCommands(AudioDeviceViewModel[] devices)

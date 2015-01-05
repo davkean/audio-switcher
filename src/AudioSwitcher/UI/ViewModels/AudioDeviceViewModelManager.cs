@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
@@ -116,6 +117,7 @@ namespace AudioSwitcher.UI.ViewModels
 
             OnChanged(EventArgs.Empty);
         }
+
         private void RegisterHandlers(bool register = true)
         {
             if (register)
@@ -125,6 +127,7 @@ namespace AudioSwitcher.UI.ViewModels
                 _deviceManager.DevicePropertyChanged += OnDevicePropertyChanged;
                 _deviceManager.DeviceRemoved += OnDeviceRemoved;
                 _deviceManager.DeviceStateChanged += OnDeviceStateChanged;
+                Settings.Default.PropertyChanged += OnSettingsChanged;  
             }
             else
             {
@@ -133,7 +136,18 @@ namespace AudioSwitcher.UI.ViewModels
                 _deviceManager.DevicePropertyChanged -= OnDevicePropertyChanged;
                 _deviceManager.DeviceRemoved -= OnDeviceRemoved;
                 _deviceManager.DeviceStateChanged -= OnDeviceStateChanged;
+                Settings.Default.PropertyChanged -= OnSettingsChanged;
             }
+        }
+
+        private void OnSettingsChanged(object sender, PropertyChangedEventArgs e)
+        {
+            foreach (AudioDeviceViewModel model in _viewModels)
+            {
+                model.UpdateStatus(_deviceManager);
+            }
+
+            OnChanged(EventArgs.Empty);
         }
 
         private class AudioDeviceViewModelCollection : ReadOnlyCollection<AudioDeviceViewModel>

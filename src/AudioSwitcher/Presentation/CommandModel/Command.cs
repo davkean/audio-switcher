@@ -111,7 +111,7 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         public abstract void Run();
 
-        public virtual void UpdateStatus()
+        public virtual void Refresh()
         {
         }
 
@@ -128,7 +128,7 @@ namespace AudioSwitcher.Presentation.CommandModel
             if (argument != null)
                 throw new ArgumentException();
 
-            UpdateStatus();
+            Refresh();
         }
     }
 }

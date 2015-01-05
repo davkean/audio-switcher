@@ -18,7 +18,7 @@ namespace AudioSwitcher.UI.Commands
             Image = Resources.Disabled;
         }
 
-        public override void UpdateStatus()
+        public override void Refresh()
         {
             IsChecked = Settings.Default.ShowDisabledDevices;
         }

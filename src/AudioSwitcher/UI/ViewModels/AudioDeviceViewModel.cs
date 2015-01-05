@@ -65,6 +65,12 @@ namespace AudioSwitcher.UI.ViewModels
             private set;
         }
 
+        public bool IsVisible
+        {
+            get;
+            private set;
+        }
+
         public void UpdateStatus(AudioDeviceManager deviceManager)
         {
             DefaultState = CalculateDeviceDefaultState(deviceManager);
@@ -74,6 +80,44 @@ namespace AudioSwitcher.UI.ViewModels
             FriendlyName = _device.DeviceFriendlyName;
             DeviceStateFriendlyName = GetDeviceStateFriendlyName();
             Image = GetImage();
+            IsVisible = CalculateIsVisible();
+        }
+
+        private bool CalculateIsVisible()
+        {
+            bool isVisible = true;
+
+            switch (Kind)
+            {
+                case AudioDeviceKind.Playback:
+                    isVisible &= Settings.Default.ShowPlaybackDevices;
+                    break;
+
+                case AudioDeviceKind.Recording:
+                    isVisible &= Settings.Default.ShowRecordingDevices;
+                    break;
+            }
+
+            switch (State)
+            {
+                case AudioDeviceState.Active:
+                    break;
+
+                case AudioDeviceState.Disabled:
+                    isVisible &= Settings.Default.ShowDisabledDevices;
+                    break;
+
+                case AudioDeviceState.Unplugged:
+                    isVisible &= Settings.Default.ShowUnpluggedDevices;
+                    break;
+
+                default:
+                case AudioDeviceState.NotPresent:
+                    isVisible &= Settings.Default.ShowNotPresentDevices;
+                    break;
+            }
+
+            return isVisible;
         }
 
         private string GetDeviceStateFriendlyName()
