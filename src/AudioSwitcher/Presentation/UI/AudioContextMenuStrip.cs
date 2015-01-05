@@ -20,7 +20,7 @@ namespace AudioSwitcher.Presentation.UI
 
         public AudioContextMenuStrip()
         {
-            Renderer = new ToolStripNativeRenderer(ToolbarTheme.Toolbar) { RenderArrowOnDisabledItems = false };
+            Renderer = new ToolStripNativeRenderer(ToolbarTheme.Toolbar);
             ShowCheckMargin = false;
             ShowImageMargin = true;
         }

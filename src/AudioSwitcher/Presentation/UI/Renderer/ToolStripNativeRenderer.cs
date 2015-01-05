@@ -30,20 +30,12 @@ namespace AudioSwitcher.Presentation.UI
         public ToolStripNativeRenderer(ToolbarTheme theme)
         {
             Theme = theme;
-            RenderArrowOnDisabledItems = true;
-        }
-
-        public bool RenderArrowOnDisabledItems
-        {
-            get;
-            set;
         }
 
         public ToolbarTheme Theme
         {
             get;
-            set;
-
+            private set;
         }
 
         public bool IsSupported
@@ -449,15 +441,12 @@ namespace AudioSwitcher.Presentation.UI
 
         protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
         {
-            if (RenderArrowOnDisabledItems || e.Item.Enabled)
-            {
-                // The default renderer will draw an arrow for us (the UXTheme API seems not to have one for all directions),
-                // but it will get the colour wrong in many cases. The text colour is probably the best colour to use.
-                if (EnsureRenderer())
-                    e.ArrowColor = GetItemTextColor(e.Item);
+            // The default renderer will draw an arrow for us (the UXTheme API seems not to have one for all directions),
+            // but it will get the colour wrong in many cases. The text colour is probably the best colour to use.
+            if (EnsureRenderer())
+                e.ArrowColor = GetItemTextColor(e.Item);
 
-                base.OnRenderArrow(e);
-            }
+            base.OnRenderArrow(e);
         }
 
         protected override void OnRenderOverflowButtonBackground(ToolStripItemRenderEventArgs e)

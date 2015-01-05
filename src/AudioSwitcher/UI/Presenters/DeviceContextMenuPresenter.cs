@@ -9,6 +9,7 @@ using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
+using AudioSwitcher.Presentation.UI.Renderer;
 using AudioSwitcher.UI.Commands;
 using AudioSwitcher.UI.ViewModels;
 
@@ -43,6 +44,7 @@ namespace AudioSwitcher.UI.Presenters
 
         protected override void Bind()
         {
+            ContextMenu.Renderer = new DeviceToolStripNativeRender(ToolbarTheme.Toolbar);
             ContextMenu.AutoCloseWhenItemWithDropDownClicked = true; // When something clicks the "Device" we auto close 
             ContextMenu.WorkingAreaConstrained = true;
 
