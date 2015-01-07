@@ -53,14 +53,6 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\Interop\MMAudio\ConnectorType.cs" />
-    <Compile Include="Audio\Interop\MMAudio\DataFlow.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IConnector.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IDeviceTopology.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IKsControl.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IPartsList.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IPart.cs" />
-    <Compile Include="Audio\Interop\MMAudio\KSMethod.cs" />
     <Compile Include="ComponentModel\IPriorityMetadata.cs" />
     <Compile Include="Presentation\IPresenter.cs" />
     <Compile Include="Presentation\NonModalPresenter.cs" />
