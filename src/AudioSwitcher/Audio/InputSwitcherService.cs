@@ -9,7 +9,7 @@ using AudioSwitcher.Audio;
 namespace AudioSwitcher.Audio
 {
     // Watches for device plug-in and automatically switches if the given setting is turned on
-    [Export(typeof(IStartupService))]
+    [StartupService]
     internal class InputSwitcherService : IStartupService, IDisposable
     {
         private readonly AudioDeviceManager _manager;

@@ -7,7 +7,7 @@ using AudioSwitcher.UI.Presenters;
 
 namespace AudioSwitcher.ApplicationModel
 {
-    [Export(typeof(IStartupService))]
+    [StartupService]
     internal class NotificationIconStartupService : IStartupService
     {
         private readonly PresenterManager _presenterManager;

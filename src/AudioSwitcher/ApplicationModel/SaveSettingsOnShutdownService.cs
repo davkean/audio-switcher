@@ -6,7 +6,7 @@ using System.ComponentModel.Composition;
 
 namespace AudioSwitcher.ApplicationModel
 {
-    [Export(typeof(IStartupService))]
+    [StartupService]
     internal class SaveSettingsOnShutdownService : IStartupService, IDisposable
     {
         [ImportingConstructor]
