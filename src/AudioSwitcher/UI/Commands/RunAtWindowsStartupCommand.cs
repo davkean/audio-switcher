@@ -4,6 +4,7 @@
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Win32;
@@ -14,8 +15,12 @@ namespace AudioSwitcher.UI.Commands
     [Command(CommandId.RunAtWindowsStartup)]
     internal class RunAtWindowsStartupCommand : Command
     {
-        private readonly static string RunAsWindowsStartupValue = '"' + Application.ExecutablePath + "\" -silent";
-        private readonly static string RunAtWindowsStartupValueName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
+        private static readonly FileInfo AssemblyFileInfo =  new FileInfo(Assembly.GetExecutingAssembly().Location);
+        private static readonly string AssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+        private readonly static string RunAsWindowsStartupValue = Application.ExecutablePath.EndsWith("rundll32.exe")
+            ? string.Format("rundll32.exe \"{0}\" RunInTaskBar", AssemblyFileInfo.FullName)
+            : string.Format("\"{0}\"", AssemblyFileInfo.FullName);
+        private readonly static string RunAtWindowsStartupValueName = AssemblyName;
 
         [ImportingConstructor]
         public RunAtWindowsStartupCommand()
