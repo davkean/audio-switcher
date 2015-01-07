@@ -35,6 +35,11 @@ namespace AudioSwitcher.ApplicationModel
             get { return Resources.NotificationArea; }
         }
 
+        public string ExecutablePath
+        {
+            get { return Application.ExecutablePath; }
+        }
+
         public void Start()
         {
             // Some of the startup services expect, or require a SynchronizationContext, 

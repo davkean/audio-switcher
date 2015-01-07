@@ -29,5 +29,17 @@ namespace AudioSwitcher.ApplicationModel
         ///     The <see cref="Action"/> to run.
         /// </param>
         void RunOnNextIdle(Action action);
+
+        /// <summary>
+        ///     Gets the executable path of the application.
+        /// </summary>
+        /// <value>
+        ///     The executable path of the application.
+        /// </value>
+        string ExecutablePath
+        {
+            get;
+        }
+        
     }
 }

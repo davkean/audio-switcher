@@ -4,7 +4,7 @@
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
-using System.Windows.Forms;
+using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Win32;
 using Microsoft.Win32;
@@ -14,18 +14,28 @@ namespace AudioSwitcher.UI.Commands
     [Command(CommandId.RunAtWindowsStartup)]
     internal class RunAtWindowsStartupCommand : Command
     {
-        private readonly static string RunAsWindowsStartupValue = '"' + Application.ExecutablePath + "\" -silent";
-        private readonly static string RunAtWindowsStartupValueName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
+        private readonly IApplication _application;
 
         [ImportingConstructor]
-        public RunAtWindowsStartupCommand()
+        public RunAtWindowsStartupCommand(IApplication application)
+            : base(Resources.RunAtStartup)
         {
-            Text = Resources.RunAtStartup;
+            _application = application;
         }
 
         public override void Refresh()
         {
             IsChecked = IsRunAtWindowsStartup();
+        }
+
+        private string RunAtWindowsStartupValue
+        {
+            get { return '"' + _application.ExecutablePath + "\""; }
+        }
+
+        private string RunAtWindowsStartupValueName
+        {
+            get { return Path.GetFileNameWithoutExtension(_application.ExecutablePath); }
         }
 
         public override void Run()
@@ -51,7 +61,7 @@ namespace AudioSwitcher.UI.Commands
                     string value;
                     if (key.TryGetValue(RunAtWindowsStartupValueName, out value))
                     {
-                        return String.Equals(value, RunAsWindowsStartupValue, StringComparison.OrdinalIgnoreCase);
+                        return String.Equals(value, RunAtWindowsStartupValue, StringComparison.OrdinalIgnoreCase);
                     }
                 }
             }
@@ -76,7 +86,7 @@ namespace AudioSwitcher.UI.Commands
             {
                 if (key != null)
                 {
-                    key.TrySetValue(RunAtWindowsStartupValueName, RunAsWindowsStartupValue);
+                    key.TrySetValue(RunAtWindowsStartupValueName, RunAtWindowsStartupValue);
                 }
             }
         }
