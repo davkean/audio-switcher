@@ -8,7 +8,7 @@ using AudioSwitcher.ApplicationModel;
 
 namespace AudioSwitcher
 {
-    internal class Program
+    internal static class Program
     {
         [STAThread]
         public static void Main()
