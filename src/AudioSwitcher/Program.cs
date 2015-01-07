@@ -4,11 +4,13 @@
 using System;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using AudioSwitcher.ApplicationModel;
+using RGiesecke.DllExport;
 
 namespace AudioSwitcher
 {
-    internal class Program
+    internal static class Program
     {
         [STAThread]
         public static void Main()
@@ -20,6 +22,16 @@ namespace AudioSwitcher
                 IApplication application = container.GetExportedValue<IApplication>();
                 application.Start();
             }
+        }
+
+        [DllExport]
+        public static void RunInTaskBar(
+            [In] IntPtr hwnd,
+            [In] IntPtr ModuleHandle,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string CmdLineBuffer,
+            int nCmdShow)
+        {
+            Main();
         }
     }
 }
