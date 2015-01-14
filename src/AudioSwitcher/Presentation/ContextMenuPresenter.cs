@@ -18,13 +18,18 @@ namespace AudioSwitcher.Presentation
 
         protected ContextMenuPresenter()
         {
-            _contextMenu = new AudioContextMenuStrip();
+            _contextMenu = CreateContextMenu();
             _contextMenu.Closed += (sender, e) => OnClosed(EventArgs.Empty);
         }
 
         public AudioContextMenuStrip ContextMenu
         {
             get { return _contextMenu; }
+        }
+
+        protected virtual AudioContextMenuStrip CreateContextMenu()
+        {
+            return new AudioContextMenuStrip();
         }
 
         protected abstract void Bind();

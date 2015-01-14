@@ -5,7 +5,7 @@ using System;
 
 namespace AudioSwitcher.ComponentModel
 {
-    internal class Lifetime<T> : IDisposable
+    internal class Lifetime<T> : ILifetime<T>
     {
         private readonly Func<T> _instanceGetter;
         private readonly Action _disposer;

@@ -18,7 +18,7 @@ namespace AudioSwitcher.Presentation
     {
         private readonly ExportFactory<IPresenter, IPresenterMetadata>[] _presenters;
         private readonly IApplication _application;
-        private PresenterLifetime<ContextMenuPresenter> _current;
+        private ILifetime<ContextMenuPresenter, IPresenterMetadata> _current;
 
         [ImportingConstructor]
         public PresenterManager(IApplication application, [ImportMany]ExportFactory<IPresenter, IPresenterMetadata>[] presenters)
@@ -32,7 +32,7 @@ namespace AudioSwitcher.Presentation
             if (id == null)
                 throw new ArgumentNullException("id");
 
-            PresenterLifetime<NonModalPresenter> presenter = CreatePresenter<NonModalPresenter>(id);
+            ILifetime<NonModalPresenter> presenter = CreatePresenter<NonModalPresenter>(id);
             presenter.Instance.Closed += (sender, e) => presenter.Dispose();
             presenter.Instance.ShowNonModal();
         }
@@ -45,7 +45,8 @@ namespace AudioSwitcher.Presentation
             if (CloseOpenContextMenu(id))
                 return;
 
-            PresenterLifetime<ContextMenuPresenter> presenter = _current = CreatePresenter<ContextMenuPresenter>(id);
+            ILifetime<ContextMenuPresenter, IPresenterMetadata> presenter = CreatePresenter<ContextMenuPresenter>(id);
+            _current = presenter;
             presenter.Instance.Closed += (sender, e) =>
             {
                 Debug.Assert(_current == presenter);
@@ -66,7 +67,7 @@ namespace AudioSwitcher.Presentation
 
         private bool CloseOpenContextMenu(string id)
         {
-            PresenterLifetime<ContextMenuPresenter> current = _current;
+            ILifetime<ContextMenuPresenter, IPresenterMetadata> current = _current;
             if (current != null)
             {
                 current.Instance.Close();
@@ -80,7 +81,7 @@ namespace AudioSwitcher.Presentation
             return false;
         }
 
-        private PresenterLifetime<T> CreatePresenter<T>(string id) where T : IPresenter
+        private ILifetime<T, IPresenterMetadata> CreatePresenter<T>(string id) where T : IPresenter
         {
             ExportFactory<IPresenter, IPresenterMetadata> factory = _presenters.Where(c => c.Metadata.Id == id)
                                                                                .SingleOrDefault();
@@ -92,7 +93,7 @@ namespace AudioSwitcher.Presentation
             return new PresenterLifetime<T>(context, factory.Metadata);
         }
 
-        private class PresenterLifetime<T> : Lifetime<T>
+        private class PresenterLifetime<T> : Lifetime<T>, ILifetime<T, IPresenterMetadata>
             where T : IPresenter
         {
             private readonly IPresenterMetadata _metadata;

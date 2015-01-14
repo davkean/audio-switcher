@@ -94,13 +94,18 @@ namespace AudioSwitcher.Presentation.UI
             }
         }
 
+        public VisualStyleRenderer Renderer
+        {
+            get { return _renderer;}
+        }
+
         private VisualStyleElement Subclass(VisualStyleElement element)
         {
             return VisualStyleElement.CreateElement(SubclassPrefix + element.ClassName,
                     element.Part, element.State);
         }
 
-        private bool EnsureRenderer()
+        protected bool EnsureRenderer()
         {
             if (!IsSupported)
                 return false;
@@ -164,7 +169,7 @@ namespace AudioSwitcher.Presentation.UI
             }
         }
 
-        private Rectangle GetBackgroundRectangle(ToolStripItem item)
+        protected virtual Rectangle GetBackgroundRectangle(ToolStripItem item)
         {
             if (!item.IsOnDropDown)
                 return new Rectangle(new Point(), item.Bounds.Size);

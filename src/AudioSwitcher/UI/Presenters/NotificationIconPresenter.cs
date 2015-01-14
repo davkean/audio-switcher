@@ -40,7 +40,7 @@ namespace AudioSwitcher.UI.Presenters
 
             if (e.Button == MouseButtons.Left)
             {
-                _presenterManager.ShowContextMenu(PresenterId.DeviceContextMenu, Cursor.Position);
+                _presenterManager.ShowContextMenu(PresenterId.DeviceFlyout, Cursor.Position);
             }
             else if (e.Button == MouseButtons.Right)
             {
