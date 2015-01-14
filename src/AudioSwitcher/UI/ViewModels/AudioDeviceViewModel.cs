@@ -161,27 +161,30 @@ namespace AudioSwitcher.UI.ViewModels
 
         private Image GetImage()
         {
-            Image stateImage = GetStateImage();
-            if (stateImage == null)
+            Image deviceImage = GetDeviceImage();
+            if (deviceImage == null)
                 return null;
 
             Image overlayImage = GetOverlayImage();
             if (overlayImage == null)
-                return stateImage;
+                return deviceImage;
 
-            using (stateImage)
+            using (deviceImage)
             using (overlayImage)
             {
                 // Makes a copy
-                return DrawingServices.CreateOverlayedImage(stateImage, overlayImage, new Size(48, 48));
+                return DrawingServices.CreateOverlayedImage(deviceImage, overlayImage, new Size(48, 48));
             }
 
         }
 
-        private Image GetStateImage()
+        private Image GetDeviceImage()
         {
             using (Icon icon = GetIconFromDeviceIconPath())
             {
+                if (icon == null)
+                    return null;
+
                 Image image = icon.ToBitmap();
                 if (State == AudioDeviceState.Active)
                     return image;
