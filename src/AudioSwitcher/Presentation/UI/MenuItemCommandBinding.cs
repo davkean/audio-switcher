@@ -4,6 +4,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Media;
 using System.Windows.Forms;
 using AudioSwitcher.ComponentModel;
 using AudioSwitcher.Presentation.CommandModel;
@@ -45,20 +46,25 @@ namespace AudioSwitcher.Presentation.UI
             Refresh();
         }
 
+        public object Argument
+        {
+            get { return _argument; }
+        }
+
         private void RegisterEvents(bool register = true)
         {
             if (register)
             {
                 _dropDown.Opening += OnContextMenuStripOpening;
                 _dropDown.ItemRemoved += OnItemRemoved;
-                _dropDown.ItemClicked += OnItemClicked;
+                _item.Click += OnItemClicked;
                 _command.PropertyChanged += OnCommandPropertyChanged;
             }
             else
             {
                 _dropDown.Opening -= OnContextMenuStripOpening;
                 _dropDown.ItemRemoved -= OnItemRemoved;
-                _dropDown.ItemClicked -= OnItemClicked;
+                _item.Click -= OnItemClicked;
                 _command.PropertyChanged -= OnCommandPropertyChanged;
             }
         }
@@ -71,10 +77,16 @@ namespace AudioSwitcher.Presentation.UI
             _lifetime.Dispose();
         }
 
-        private void OnItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void OnItemClicked(object sender, EventArgs e)
         {
-			if (e.ClickedItem == _item)
+            if (_command.IsInvokable)
+            {
                 _command.Run(_argument);
+            }
+            else
+            {
+                SystemSounds.Beep.Play();
+            }
         }
 
         public void Refresh()
@@ -121,6 +133,14 @@ namespace AudioSwitcher.Presentation.UI
 
                 case CommandProperty.TooltipText:
                     _item.ToolTipText = command.TooltipText;
+                    break;
+
+                case CommandProperty.IsInvokable:
+                    AudioToolStripMenuItem item = _item as AudioToolStripMenuItem;
+                    if (item != null)
+                    {
+                        item.AutoCloseOnClick = command.IsInvokable;
+                    }
                     break;
 
                 case CommandProperty.Image:

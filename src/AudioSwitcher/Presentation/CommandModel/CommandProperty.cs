@@ -7,6 +7,7 @@ namespace AudioSwitcher.Presentation.CommandModel
 {
     internal static class CommandProperty
     {
+        public const string IsInvokable = "IsInvokable";
         public const string IsEnabled = "IsEnabled";
         public const string IsVisible = "IsVisible";
         public const string IsChecked = "IsChecked";

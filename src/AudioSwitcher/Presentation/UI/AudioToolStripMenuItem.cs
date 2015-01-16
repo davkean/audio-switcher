@@ -14,6 +14,13 @@ namespace AudioSwitcher.Presentation.UI
         public AudioToolStripMenuItem()
         {
             ImageScaling = ToolStripItemImageScaling.None;
+            AutoCloseOnClick = true;
+        }
+
+        public bool AutoCloseOnClick
+        {
+            get;
+            set;
         }
 
         protected override void OnParentChanged(ToolStrip oldParent, ToolStrip newParent)

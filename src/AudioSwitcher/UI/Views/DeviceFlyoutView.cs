@@ -21,7 +21,6 @@ namespace AudioSwitcher.Presentation.UI.Views
         {
             DropShadowEnabled = false;
             Renderer = new DeviceToolStripNativeRender();
-            AutoCloseOnContextMenuShow = false;
             WorkingAreaConstrained = true;
         }
 

@@ -30,6 +30,7 @@ namespace AudioSwitcher.UI.Commands
 
         public override void Refresh(AudioDeviceViewModel argument)
         {
+            IsInvokable = argument.Device.IsActive;
             IsVisible = argument.IsVisible;
             Text = GetDisplayText(argument);
             Image = argument.Image;

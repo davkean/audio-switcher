@@ -13,6 +13,8 @@ namespace AudioSwitcher.Presentation.CommandModel
         bool IsVisible { get; }
 
         bool IsChecked { get; }
+        
+        bool IsInvokable { get; }
 
         bool IsEnabled { get; }
 

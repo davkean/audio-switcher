@@ -16,19 +16,13 @@ namespace AudioSwitcher.Presentation.UI
     // Represents a context menu strip that adds additional behavior for audio switcher
     internal class AudioContextMenuStrip : ContextMenuStrip
     {
-        private bool _autoCloseWhenItemWithDropDownClicked;
+        private bool _cancelNextAttemptedClose;
 
         public AudioContextMenuStrip()
         {
             Renderer = new ToolStripNativeRenderer(ToolbarTheme.Toolbar);
             ShowCheckMargin = false;
             ShowImageMargin = true;
-        }
-
-        public bool AutoCloseWhenItemWithDropDownClicked
-        {
-            get { return _autoCloseWhenItemWithDropDownClicked; }
-            set { _autoCloseWhenItemWithDropDownClicked = value; }
         }
 
         public bool WorkingAreaConstrained
@@ -67,21 +61,25 @@ namespace AudioSwitcher.Presentation.UI
 
         protected override void OnItemClicked(ToolStripItemClickedEventArgs e)
         {
-            try
+            AudioToolStripMenuItem item = e.ClickedItem as AudioToolStripMenuItem;
+            if (item != null && !item.AutoCloseOnClick)
             {
-                base.OnItemClicked(e);
+                _cancelNextAttemptedClose = true;
             }
-            finally
+
+            base.OnItemClicked(e);
+        }
+
+        protected override void OnClosing(ToolStripDropDownClosingEventArgs e)
+        {
+            if (_cancelNextAttemptedClose && e.CloseReason == ToolStripDropDownCloseReason.ItemClicked)
             {
-                if (AutoCloseWhenItemWithDropDownClicked)
-                {
-                    ToolStripDropDownItem item = e.ClickedItem as ToolStripDropDownItem;
-                    if (item != null && item.DropDown.Visible)
-                    {
-                        Close(ToolStripDropDownCloseReason.ItemClicked);
-                    }
-                }
+                e.Cancel = true;
+                _cancelNextAttemptedClose = false;
+                return;
             }
+
+            base.OnClosing(e);
         }
 
         protected override ToolStripItem CreateDefaultItem(string text, Image image, EventHandler onClick)

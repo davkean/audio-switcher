@@ -16,6 +16,7 @@ namespace AudioSwitcher.Presentation.CommandModel
     {
         private bool _isEnabled = true;
         private bool _isVisible = true;
+        private bool _isInvokable = true;
         private bool _isChecked;
         private string _text;
         private string _tooltipText;
@@ -52,6 +53,20 @@ namespace AudioSwitcher.Presentation.CommandModel
                 if (value != _isChecked)
                 {
                     _isChecked = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+
+        public bool IsInvokable
+        {
+            get { return _isInvokable; }
+            set
+            {
+                if (value != _isInvokable)
+                {
+                    _isInvokable = value;
                     RaisePropertyChanged();
                 }
             }
