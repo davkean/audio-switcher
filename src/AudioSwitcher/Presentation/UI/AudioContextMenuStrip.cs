@@ -53,7 +53,7 @@ namespace AudioSwitcher.Presentation.UI
                 // that allows it to be shown outside of the working area of the desktop and over
                 // the top of the taskbar. To mimic that same thing, we need to call the same method 
                 // that NotifyIcon uses.
-                MethodInfo info = typeof(AudioContextMenuStrip).GetMethod("ShowInTaskbar", BindingFlags.NonPublic | BindingFlags.Public | System.Reflection.BindingFlags.Instance, null, new Type[] { typeof(int), typeof(int) }, null);
+                MethodInfo info = typeof(AudioContextMenuStrip).GetMethod("ShowInTaskbar", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance, null, new Type[] { typeof(int), typeof(int) }, null);
                 Debug.Assert(info != null);
                 info.Invoke(this, new object[] { screenLocation.X, screenLocation.Y });
             }
