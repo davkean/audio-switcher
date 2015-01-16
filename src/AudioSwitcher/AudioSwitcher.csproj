@@ -73,7 +73,7 @@
     <Compile Include="ApplicationModel\IApplication.cs" />
     <Compile Include="Audio\InputSwitcherService.cs" />
     <Compile Include="ApplicationModel\IStartupService.cs" />
-    <Compile Include="ApplicationModel\SaveSettingsOnShutdownService.cs" />
+    <Compile Include="ApplicationModel\SaveSettingsService.cs" />
     <Compile Include="ApplicationModel\SingleInstanceStartupService.cs" />
     <Compile Include="ApplicationModel\NotificationIconStartupService.cs" />
     <Compile Include="UI\Commands\NoDevicesCommandBase.cs" />

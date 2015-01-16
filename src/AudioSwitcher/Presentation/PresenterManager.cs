@@ -2,12 +2,10 @@
 // Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.ComponentModel;
 
