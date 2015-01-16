@@ -3,21 +3,19 @@
 // -----------------------------------------------------------------------
 using System;
 using System.ComponentModel.Composition;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
-using AudioSwitcher.Presentation.UI.Renderer;
 using AudioSwitcher.Presentation.UI.Views;
 using AudioSwitcher.UI.Commands;
 using AudioSwitcher.UI.ViewModels;
 
 namespace AudioSwitcher.UI.Presenters
 {
-    // Presents the device context menu when left-clicking on the notification icon
+    // Presents the device context flyout window when left-clicking on the notification icon
     [Presenter(PresenterId.DeviceFlyout, IsToggle=true)]
     internal class DeviceFlyoutPresenter : ContextMenuPresenter, IDisposable
     {

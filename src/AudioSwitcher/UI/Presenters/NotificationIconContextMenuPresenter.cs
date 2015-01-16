@@ -24,20 +24,20 @@ namespace AudioSwitcher.UI.Presenters
 
         protected override void Bind()
         {
-            ToolStripMenuItem settings = ContextMenu.Add(Resources.Settings);
-            settings.DropDown.BindCommand(_commandManager, CommandId.RunAtWindowsStartup);
-            settings.DropDown.AddSeparator();
-            settings.DropDown.BindCommand(_commandManager, CommandId.AutomaticallySwitchToPluggedInDevice);
+            ToolStripDropDown settings = ContextMenu.Add(Resources.Settings).DropDown;
+            settings.BindCommand(_commandManager, CommandId.RunAtWindowsStartup);
+            settings.AddSeparator();
+            settings.BindCommand(_commandManager, CommandId.AutomaticallySwitchToPluggedInDevice);
 
             ContextMenu.AddSeparator();
 
-            ToolStripMenuItem appearance = ContextMenu.Add(Resources.Appearance);
-            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowPlaybackDevices);
-            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowRecordingDevices);
-            appearance.DropDown.AddSeparator();
-            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowUnpluggedDevices);
-            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowDisabledDevices);
-            appearance.DropDown.BindCommand(_commandManager, CommandId.ShowNotPresentDevices);
+            ToolStripDropDown appearance = ContextMenu.Add(Resources.Appearance).DropDown;
+            appearance.BindCommand(_commandManager, CommandId.ShowPlaybackDevices);
+            appearance.BindCommand(_commandManager, CommandId.ShowRecordingDevices);
+            appearance.AddSeparator();
+            appearance.BindCommand(_commandManager, CommandId.ShowUnpluggedDevices);
+            appearance.BindCommand(_commandManager, CommandId.ShowDisabledDevices);
+            appearance.BindCommand(_commandManager, CommandId.ShowNotPresentDevices);
 
             ContextMenu.AddSeparator();
             ContextMenu.BindCommand(_commandManager, CommandId.Exit);
