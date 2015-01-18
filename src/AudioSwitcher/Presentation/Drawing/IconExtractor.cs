@@ -8,8 +8,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using AudioSwitcher.IO;
 using AudioSwitcher.Presentation.Drawing.Interop;
-using AudioSwitcher.Presentation.Drawing.Utilities;
 using AudioSwitcher.Win32.InteropServices;
 
 namespace AudioSwitcher.Presentation.Drawing
@@ -131,21 +131,20 @@ namespace AudioSwitcher.Presentation.Drawing
             using (MemoryStream destStream = new MemoryStream())
             {
                 //Read the GroupIconDir header.
-                GroupIconDir grpDir = Utility.ReadStructure<GroupIconDir>(inputStream);
+                GroupIconDir grpDir = inputStream.Read<GroupIconDir>();
 
                 int numEntries = grpDir.Count;
                 int iconImageOffset = IconInfo.SizeOfIconDir + numEntries * IconInfo.SizeOfIconDirEntry;
 
-                //Write the IconDir header.
-                Utility.WriteStructure<IconDir>(destStream, grpDir.ToIconDir());
+                destStream.Write<IconDir>(grpDir.ToIconDir());
                 for (int i = 0; i < numEntries; i++)
                 {
                     //Read the GroupIconDirEntry.
-                    GroupIconDirEntry grpEntry = Utility.ReadStructure<GroupIconDirEntry>(inputStream);
+                    GroupIconDirEntry grpEntry = inputStream.Read<GroupIconDirEntry>();
 
                     //Write the IconDirEntry.
                     destStream.Seek(IconInfo.SizeOfIconDir + i * IconInfo.SizeOfIconDirEntry, SeekOrigin.Begin);
-                    Utility.WriteStructure<IconDirEntry>(destStream, grpEntry.ToIconDirEntry(iconImageOffset));
+                    destStream.Write<IconDirEntry>(grpEntry.ToIconDirEntry(iconImageOffset));
 
                     //Get the icon image raw data and write it to the stream.
                     byte[] imgBuf = GetResourceData(this.ModuleHandle, grpEntry.ID, ResourceTypes.RT_ICON);

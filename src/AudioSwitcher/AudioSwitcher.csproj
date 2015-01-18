@@ -57,6 +57,7 @@
     <Compile Include="ComponentModel\ILifetime`2.cs" />
     <Compile Include="ComponentModel\ILifetime.cs" />
     <Compile Include="ComponentModel\IPriorityMetadata.cs" />
+    <Compile Include="IO\StreamExtensions.cs" />
     <Compile Include="Presentation\IPresenter.cs" />
     <Compile Include="Presentation\NonModalPresenter.cs" />
     <Compile Include="Presentation\PresenterAttribute.cs" />
@@ -140,7 +141,6 @@
     <Compile Include="Presentation\Drawing\Interop\SafeModuleHandle.cs" />
     <Compile Include="Presentation\Drawing\ResourceName.cs" />
     <Compile Include="Presentation\Drawing\ShellIcon.cs" />
-    <Compile Include="Presentation\Drawing\Utility.cs" />
     <Compile Include="Presentation\UI\AudioContextMenuStrip.cs">
       <SubType>Component</SubType>
     </Compile>

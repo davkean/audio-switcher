@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using AudioSwitcher.Presentation.Drawing.Utilities;
+using AudioSwitcher.IO;
 using AudioSwitcher.Presentation.Drawing.Interop;
 
 namespace AudioSwitcher.Presentation.Drawing
@@ -278,8 +278,8 @@ namespace AudioSwitcher.Presentation.Drawing
             this.SourceIcon.Save(inputStream);
 
             inputStream.Seek(0, SeekOrigin.Begin);
-            IconDir dir = Utility.ReadStructure<IconDir>(inputStream);
-            
+            IconDir dir = inputStream.Read<IconDir>();
+
             this.IconDir = dir;
             this.GroupIconDir = dir.ToGroupIconDir();
 
@@ -294,8 +294,8 @@ namespace AudioSwitcher.Presentation.Drawing
             {
                 inputStream.Seek(SizeOfIconDir + i * SizeOfIconDirEntry, SeekOrigin.Begin);
 
-                IconDirEntry entry = Utility.ReadStructure<IconDirEntry>(inputStream);
-                
+                IconDirEntry entry = inputStream.Read<IconDirEntry>();
+
                 this.IconDirEntries.Add(entry);
                 this.GroupIconDirEntries.Add(entry.ToGroupIconDirEntry(i));
 
@@ -308,8 +308,8 @@ namespace AudioSwitcher.Presentation.Drawing
                 newEntry.ImageOffset = SizeOfIconDir + SizeOfIconDirEntry;
 
                 MemoryStream outputStream = new MemoryStream();
-                Utility.WriteStructure<IconDir>(outputStream, newDir);
-                Utility.WriteStructure<IconDirEntry>(outputStream, newEntry);
+                outputStream.Write<IconDir>(newDir);
+                outputStream.Write<IconDirEntry>(newEntry);
                 outputStream.Write(content, 0, content.Length);
 
                 outputStream.Seek(0, SeekOrigin.Begin);
@@ -346,14 +346,17 @@ namespace AudioSwitcher.Presentation.Drawing
 
         private byte[] GetIconResourceData()
         {
-            MemoryStream outputStream = new MemoryStream();
-            Utility.WriteStructure<GroupIconDir>(outputStream, this.GroupIconDir);
-            foreach (GroupIconDirEntry entry in this.GroupIconDirEntries)
+            using (MemoryStream outputStream = new MemoryStream())
             {
-                Utility.WriteStructure<GroupIconDirEntry>(outputStream, entry);
-            }
+                outputStream.Write(GroupIconDir);
 
-            return outputStream.ToArray();
+                foreach (GroupIconDirEntry entry in this.GroupIconDirEntries)
+                {
+                    outputStream.Write(entry);
+                }
+
+                return outputStream.ToArray();
+            }
         }
     }
 }
