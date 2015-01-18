@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------
 using System.ComponentModel.Composition;
 using System.Windows.Forms;
+using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.Presentation;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.Presentation.UI;
@@ -17,7 +18,8 @@ namespace AudioSwitcher.UI.Presenters
         private readonly CommandManager _commandManager;
 
         [ImportingConstructor]
-        public NotificationIconContextMenuPresenter(CommandManager commandManager)
+        public NotificationIconContextMenuPresenter(IApplication application, CommandManager commandManager)
+            : base(application)
         {
             _commandManager = commandManager;
         }

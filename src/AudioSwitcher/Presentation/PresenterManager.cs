@@ -15,13 +15,11 @@ namespace AudioSwitcher.Presentation
     internal class PresenterManager
     {
         private readonly ExportFactory<IPresenter, IPresenterMetadata>[] _presenters;
-        private readonly IApplication _application;
         private ILifetime<ContextMenuPresenter, IPresenterMetadata> _current;
 
         [ImportingConstructor]
-        public PresenterManager(IApplication application, [ImportMany]ExportFactory<IPresenter, IPresenterMetadata>[] presenters)
+        public PresenterManager([ImportMany]ExportFactory<IPresenter, IPresenterMetadata>[] presenters)
         {
-            _application = application;
             _presenters = presenters;
         }
 
@@ -47,17 +45,8 @@ namespace AudioSwitcher.Presentation
             _current = presenter;
             presenter.Instance.Closed += (sender, e) =>
             {
-                Debug.Assert(_current == presenter);
+                _current.Dispose();
                 _current = null;
-
-                // WORKAROUND: It's not possible to dispose of a context menu strip
-                // in its Closed event because it tries to do some work after that
-                // and throws ObjectDisposedException. To workaround this, we hold
-                // off disposing them until the next idle event.
-                _application.RunOnNextIdle(() =>
-                {
-                    presenter.Dispose();
-                });
             };
 
             presenter.Instance.Show(screenLocation);

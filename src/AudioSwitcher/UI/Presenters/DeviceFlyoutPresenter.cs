@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Forms;
+using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation;
 using AudioSwitcher.Presentation.CommandModel;
@@ -24,7 +25,8 @@ namespace AudioSwitcher.UI.Presenters
         private readonly PresenterManager _presenterManager;
 
         [ImportingConstructor]
-        public DeviceFlyoutPresenter(AudioDeviceViewModelManager viewModelManager, CommandManager commandManager, PresenterManager presenterManager)
+        public DeviceFlyoutPresenter(IApplication application, AudioDeviceViewModelManager viewModelManager, CommandManager commandManager, PresenterManager presenterManager)
+            : base(application)
         {
             _viewModelManager = viewModelManager;
             _viewModelManager.Changed += OnViewModelsChanged;

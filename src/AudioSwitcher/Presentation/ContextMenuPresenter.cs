@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using AudioSwitcher.ApplicationModel;
 using AudioSwitcher.Presentation.UI;
 using AudioSwitcher.Presentation.UI.Interop;
 
@@ -15,9 +16,11 @@ namespace AudioSwitcher.Presentation
     internal abstract class ContextMenuPresenter : Presenter, IDisposable
     {
         private readonly AudioContextMenuStrip _contextMenu;
+        private readonly IApplication _application;
 
-        protected ContextMenuPresenter()
+        protected ContextMenuPresenter(IApplication application)
         {
+            _application = application;
             _contextMenu = CreateContextMenu();
             _contextMenu.Closed += (sender, e) => OnClosed(EventArgs.Empty);
         }
@@ -48,7 +51,11 @@ namespace AudioSwitcher.Presentation
 
         public virtual void Dispose()
         {
-            _contextMenu.Dispose();
+            // WORKAROUND: It's not possible to dispose of a context menu strip
+            // in its Closed event because it tries to do some work after that
+            // and throws ObjectDisposedException. To workaround this, we hold
+            // off disposing them until the next idle event.
+            _application.RunOnNextIdle(() => _contextMenu.Dispose());
         }
     }
 }
