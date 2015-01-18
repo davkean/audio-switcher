@@ -92,6 +92,7 @@ namespace AudioSwitcher.Presentation.UI
         public void Refresh()
         {
             _command.Refresh(_argument);
+            SyncProperty(_command, CommandProperty.IsInvokable);
             SyncProperty(_command, CommandProperty.IsVisible);
             SyncProperty(_command, CommandProperty.IsEnabled);
             SyncProperty(_command, CommandProperty.IsChecked);
