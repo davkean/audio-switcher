@@ -5,7 +5,8 @@ if ($DTE -eq $null) {
   exit 1
 }
 
-mkdir -p $tempDirectoryName
+mkdir -Path $tempDirectoryName
 rm -r -fo "$tempDirectoryName\*.nupkg"
-NuGet pack .\src\AudioSwitcher.sln -OutputDirectory "$tempDirectoryName"
-ls "$tempDirectoryName\*.nupkg" | %{Squirrel --releasify $_ -p .\packages}
+NuGet pack .\src\AudioSwitcher\AudioSwitcher.csproj -OutputDirectory "$tempDirectoryName" -Prop Configuration=Release
+ls "$tempDirectoryName\*.nupkg" | %{Squirrel --releasify $_ -p .\src\packages -r .\Releases}
+rm -r -fo "$tempDirectoryName"
