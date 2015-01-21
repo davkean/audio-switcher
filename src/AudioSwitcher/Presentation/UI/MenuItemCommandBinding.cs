@@ -57,28 +57,32 @@ namespace AudioSwitcher.Presentation.UI
             {
                 _dropDown.Opening += OnContextMenuStripOpening;
                 _dropDown.ItemRemoved += OnItemRemoved;
-                _item.Click += OnItemClicked;
+                _dropDown.ItemClicked += OnItemClicked;
                 _command.PropertyChanged += OnCommandPropertyChanged;
             }
             else
             {
                 _dropDown.Opening -= OnContextMenuStripOpening;
                 _dropDown.ItemRemoved -= OnItemRemoved;
-                _item.Click -= OnItemClicked;
+                _dropDown.ItemClicked -= OnItemClicked;
                 _command.PropertyChanged -= OnCommandPropertyChanged;
             }
         }
 
         private void OnItemRemoved(object sender, ToolStripItemEventArgs e)
         {
-			if (e.Item == _item)
-				RegisterEvents(register: false);
+            if (e.Item != _item)
+                return;
 
+            RegisterEvents(register: false);
             _lifetime.Dispose();
         }
 
-        private void OnItemClicked(object sender, EventArgs e)
+        private void OnItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            if (e.ClickedItem != _item)
+                return;
+            
             if (_command.IsInvokable)
             {
                 _command.Run(_argument);
