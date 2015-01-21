@@ -32,8 +32,16 @@ namespace AudioSwitcher.UI.Commands
         {
             IsInvokable = argument.Device.IsActive;
             IsVisible = argument.IsVisible;
-            Text = GetDisplayText(argument);
-            Image = argument.Image;
+            if (IsVisible)
+            {
+                Text = GetDisplayText(argument);
+                Image = argument.Image;
+            }
+            else
+            {
+                Text = null;
+                Image = null;
+            }
         }
 
         private string GetDisplayText(AudioDeviceViewModel viewModel)
