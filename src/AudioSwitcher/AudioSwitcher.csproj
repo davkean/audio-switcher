@@ -82,7 +82,6 @@
     <Compile Include="UI\Commands\NoRecordingDevicesCommand.cs" />
     <Compile Include="UI\Commands\NoPlaybackDevicesCommand.cs" />
     <Compile Include="UI\Commands\NoDevicesCommand.cs" />
-    <Compile Include="UI\Presenters\DeviceFlyoutContextMenuPresenter.cs" />
     <Compile Include="UI\Presenters\NotificationIconPresenter.cs" />
     <Compile Include="UI\Presenters\PresenterId.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceDefaultState.cs" />

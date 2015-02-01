@@ -24,7 +24,7 @@ namespace AudioSwitcher.UI.Presenters
             _commandManager = commandManager;
         }
 
-        public override void Bind(object argument)
+        public override void Bind()
         {
             ToolStripDropDown settings = ContextMenu.Add(Resources.Settings).DropDown;
             settings.BindCommand(_commandManager, CommandId.RunAtWindowsStartup);

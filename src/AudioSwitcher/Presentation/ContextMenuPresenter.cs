@@ -40,11 +40,6 @@ namespace AudioSwitcher.Presentation
 			ContextMenu.ShowInSystemTray(screenLocation);
 		}
 
-		public void Show(Control control, Point controlLocation)
-		{
-			ContextMenu.Show(control, controlLocation);
-		}
-
 		public void Close()
 		{
 			_contextMenu.Close(ToolStripDropDownCloseReason.AppFocusChange);

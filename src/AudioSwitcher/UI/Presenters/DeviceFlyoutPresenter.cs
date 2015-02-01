@@ -3,7 +3,6 @@
 // -----------------------------------------------------------------------
 using System;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using AudioSwitcher.ApplicationModel;
@@ -45,7 +44,7 @@ namespace AudioSwitcher.UI.Presenters
             ContextMenu.RefreshCommands();
         }
 
-        public override void Bind(object argument)
+        public override void Bind()
         {
             AddDeviceCommands(AudioDeviceKind.Playback, CommandId.NoPlaybackDevices);
             AddDeviceCommands(AudioDeviceKind.Recording, CommandId.NoRecordingDevices);

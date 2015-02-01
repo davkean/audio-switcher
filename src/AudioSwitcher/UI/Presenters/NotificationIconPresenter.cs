@@ -23,7 +23,7 @@ namespace AudioSwitcher.UI.Presenters
             _presenterManager = presenterManager;
         }
 
-		public override void Bind(object argument)
+		public override void Bind()
 		{
 			_icon.Text = _application.Title;
 			_icon.Icon = _application.NotificationAreaIcon;
