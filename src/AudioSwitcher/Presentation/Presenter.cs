@@ -13,6 +13,8 @@ namespace AudioSwitcher.Presentation
         {
         }
 
+		public abstract void Bind(object argument);
+		
         public event EventHandler Closed;
 
         protected virtual void OnClosed(EventArgs e)

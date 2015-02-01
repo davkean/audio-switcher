@@ -27,6 +27,10 @@ namespace AudioSwitcher.Presentation.UI.Renderer
         {   // Don't render border            
         }
 
+		protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
+		{	
+		}
+
         protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
         {
             if (EnsureRenderer())
@@ -43,13 +47,13 @@ namespace AudioSwitcher.Presentation.UI.Renderer
 
             string[] text = e.Text.Split(NewLine, 3, StringSplitOptions.None);
 
-            Debug.Assert(text.Length == 3);
+			Debug.Assert(text.Length == 3);
 
-            // First render the first line in normal menu text color
-            base.OnRenderItemText(new ToolStripItemTextRenderEventArgs(e.Graphics, e.Item, String.Concat(text[0], Environment.NewLine, Environment.NewLine), e.TextRectangle, e.TextColor, e.TextFont, e.TextFormat));
+			// First render the first line in normal menu text color
+			base.OnRenderItemText(new ToolStripItemTextRenderEventArgs(e.Graphics, e.Item, String.Concat(text[0], Environment.NewLine, Environment.NewLine), e.TextRectangle, e.TextColor, e.TextFont, e.TextFormat));
 
-            // Then render, the bottom two lines in gray text
-            TextRenderer.DrawText(e.Graphics, String.Concat(Environment.NewLine, text[1], Environment.NewLine, text[2]), e.TextFont, e.TextRectangle, SystemColors.GrayText, e.TextFormat);
+			// Then render, the bottom two lines in gray text
+			TextRenderer.DrawText(e.Graphics, String.Concat(Environment.NewLine, text[1], Environment.NewLine, text[2]), e.TextFont, e.TextRectangle, SystemColors.GrayText, e.TextFormat);
         }
 
         protected override Rectangle GetBackgroundRectangle(ToolStripItem item)

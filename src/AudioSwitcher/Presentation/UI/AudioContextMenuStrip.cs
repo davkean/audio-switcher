@@ -38,6 +38,15 @@ namespace AudioSwitcher.Presentation.UI
             HideDuplicatedSeparators();
         }
 
+		public new void Show(Control control, Point controlLocation)
+		{
+			// Prevents the context menu from causing the app to show in the taskbar
+			DllImports.SetForegroundWindow(new HandleRef(this, Handle));
+
+            Capture = true;
+			base.Show(control, controlLocation);
+		}
+
         public void ShowInSystemTray(Point screenLocation)
         {
             // Prevents the context menu from causing the app to show in the taskbar

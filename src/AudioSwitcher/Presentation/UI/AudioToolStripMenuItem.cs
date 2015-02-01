@@ -15,6 +15,7 @@ namespace AudioSwitcher.Presentation.UI
         {
             ImageScaling = ToolStripItemImageScaling.None;
             AutoCloseOnClick = true;
+			DropDown = new AudioContextMenuStrip();	// Make sure we never get an auto-generated menu item
         }
 
         public bool AutoCloseOnClick
@@ -58,10 +59,28 @@ namespace AudioSwitcher.Presentation.UI
             }
         }
 
-        protected override Point DropDownLocation
+
+		private Point? _location;
+		private ToolStripDropDownDirection? _direction;
+
+		public void ShowDropDown(Point location, ToolStripDropDownDirection direction)
+		{
+			_location = this.ToScreenPoint(location);
+			_direction = direction;
+
+			ShowDropDown();
+
+			_location = null;
+			_direction = null;
+		}
+
+		protected override Point DropDownLocation
         {
             get
             {
+				if (_location != null)
+					return _location.Value;
+
                 // BUG #3: The default location of a menu's drop down can appear on a different screen than the parent
                 // of that menu. To prevent that, we prefer the reverse side of the current direction, if that results 
                 // in the drop down appearing on the same screen.
@@ -87,11 +106,6 @@ namespace AudioSwitcher.Presentation.UI
                 _doNotCheckDropDownLocation = false;
                 return location;
             }
-        }
-
-        protected override ToolStripDropDown CreateDefaultDropDown()
-        {
-            return new AudioContextMenuStrip();
         }
     }
 }

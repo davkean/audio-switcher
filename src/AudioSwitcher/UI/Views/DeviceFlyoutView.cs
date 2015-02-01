@@ -16,6 +16,7 @@ namespace AudioSwitcher.Presentation.UI.Views
         private const int WM_NCHITTEST = 0x0084;
         private const int WS_THICKFRAME = 0x00040000;
         private const int HTCLIENT = 0x1;
+        private bool _ignoreNextItemClicked;
 
         public DeviceFlyoutView()
         {
@@ -31,6 +32,28 @@ namespace AudioSwitcher.Presentation.UI.Views
             // Account for windows borders
             return new Size(proposedSize.Width + (Size.Width - ClientSize.Width), proposedSize.Height + (Size.Height - ClientSize.Height));
         }
+
+		protected override void OnMouseUp(MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				_ignoreNextItemClicked = true;
+			}
+
+			base.OnMouseUp(e);
+		}
+
+        protected override void OnItemClicked(ToolStripItemClickedEventArgs e)
+        {
+            if (_ignoreNextItemClicked)
+            {
+                _ignoreNextItemClicked = false;
+                return;
+            }
+
+            base.OnItemClicked(e);
+        }
+
 
         protected override CreateParams CreateParams
         {

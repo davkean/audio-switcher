@@ -13,6 +13,6 @@ namespace AudioSwitcher.Presentation
         {
         }
 
-        public abstract void ShowNonModal();
+		public abstract void Show();
     }
 }

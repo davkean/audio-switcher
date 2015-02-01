@@ -10,17 +10,17 @@ namespace AudioSwitcher.ApplicationModel
     [StartupService]
     internal class NotificationIconStartupService : IStartupService
     {
-        private readonly PresenterManager _presenterManager;
+        private readonly PresenterHost _presenterHost;
 
         [ImportingConstructor]
-        public NotificationIconStartupService(PresenterManager presenterManager)
+        public NotificationIconStartupService(PresenterHost presenterHost)
         {
-            _presenterManager = presenterManager;
+            _presenterHost = presenterHost;
         }
 
         public bool Startup()
         {
-            _presenterManager.ShowNonModal(PresenterId.NotificationIcon);
+            _presenterHost.Show(PresenterId.NotificationIcon);
             return true;
         }
     }

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using AudioSwitcher.ComponentModel;
 using AudioSwitcher.Presentation.CommandModel;
+using System.Drawing;
 
 namespace AudioSwitcher.Presentation.UI
 {
@@ -79,5 +80,30 @@ namespace AudioSwitcher.Presentation.UI
             if (dropDown.Items.Count != 0)
                 dropDown.AddSeparator();
         }
+
+        public static object GetArgument(this ToolStripItem item)
+        {
+            MenuItemCommandBinding binding = (MenuItemCommandBinding)item.Tag;
+            if (binding != null)
+            {
+                return binding.Argument;
+            }
+
+            return null;
+        }
+
+		public static Point ToParentPoint(this ToolStripItem item, Point point)
+		{
+            Point itemLocation = item.Bounds.Location;
+
+			return new Point(point.X + itemLocation.X, point.Y + itemLocation.Y);
+		}
+
+		public static Point ToScreenPoint(this ToolStripItem item, Point point)
+		{
+			Point parentLocation = ToParentPoint(item, point);
+
+			return item.GetCurrentParent().PointToScreen(parentLocation);
+		}
     }
 }
