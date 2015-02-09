@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?define PRODUCT="Audio Switcher"?>
+<?define MANUFACTURER="David Kean"?>
+<?define MAINEXE=$(var.AudioSwitcher.TargetFileName)?>
+<?define VERSION=!(bind.FileVersion.$(var.MAINEXE))?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="$(var.PRODUCT) $(var.VERSION)" Language="1033" Version="$(var.VERSION)"
+					 Manufacturer="$(var.MANUFACTURER)" UpgradeCode="57fb117f-e557-4084-8d1c-acd5c1c265cd">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of $(var.PRODUCT) is already installed." />
+		<Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="ApplicationRootDirectory" Name="$(var.PRODUCT)" />
+			</Directory>
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="$(var.PRODUCT)" />
+			</Directory>
+		</Directory>
+
+		<DirectoryRef Id="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortcut">
+				<Shortcut Id="ApplicationStartMenuShortcut"
+				          Name="$(var.PRODUCT)"
+				          Description="$(var.PRODUCT)"
+				          Target="[#$(var.MAINEXE)]"
+				          WorkingDirectory="ApplicationRootDirectory"/>
+				<RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+				<RegistryValue Root="HKCU" Key="Software\$(var.MANUFACTURER)\$(var.PRODUCT)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="ApplicationRootDirectory"> <!-- INSTALLDIR -->
+			<Component Id="ApplicationFilesComponent"> 
+				<File Source="$(var.AudioSwitcher.TargetPath)" Id="$(var.MAINEXE)"/>
+				<File Source="$(var.AudioSwitcher.TargetDir)\AudioSwitcher.exe.config" />
+			</Component> 
+		</DirectoryRef>
+
+		<Feature Id="ProductFeature" Title="$(var.PRODUCT)" Level="1">
+			<ComponentRef Id="ApplicationFilesComponent" />
+			<ComponentRef Id="ApplicationShortcut" />
+		</Feature>
+
+		<UIRef Id="WixUI_Mondo" />
+	</Product>
+</Wix>
