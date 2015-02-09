@@ -85,16 +85,12 @@ namespace AudioSwitcher.UI.Presenters
             // TODO: This should be WM_CONTEXTMENU
 			if (e.Button == MouseButtons.Right)
 			{
-                Console.WriteLine(">>>>>>>>>>>>>>>>>>>>Right-click");
-
 				AudioToolStripMenuItem item = (AudioToolStripMenuItem)sender;
 				item.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, item.GetArgument());
 				item.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, item.GetArgument());
 				item.DropDownClosed += OnDropDownClosed;
                 item.DropDown.Capture = true;
 				item.ShowDropDown(e.Location);
-
-                Console.WriteLine(">>>>>>>>>>>>>>>>>>>>done Right-click");
 			}
 		}
 
