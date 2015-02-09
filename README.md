@@ -18,6 +18,9 @@ Right-click on the __Audio Switcher__ icon in the notification area, and expand 
 Right-click on the __Sound__ icon in the notification area, choose __Playback devices__. Double-click any device to customize its name and icon.
 
 ## Acknowledgements
+Paul Betts ([@paulcbetts](http://github.com/paulcbetts)
+* [#22](https://github.com/davkean/audio-switcher/issues/22): Provided Squirrel for Windows setup
+
 Ian van der Linde ([@Ianvdl](http://github.com/ianvdl))
 * [#4](https://github.com/davkean/audio-switcher/issues/4): Provided the headphones tray icon
 
@@ -29,6 +32,3 @@ NAudio (http://naudio.codeplex.com)
  
 svotar (https://code.google.com/p/szotar)
 * Provided the original code for the native Toolstrip renderer
-
-
-
