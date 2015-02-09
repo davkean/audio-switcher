@@ -6,9 +6,9 @@ using System.Resources;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("AudioSwitcher")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("App that lets you easily switch Windows audio devices")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("David Kean")]
 [assembly: AssemblyProduct("AudioSwitcher")]
 [assembly: AssemblyCopyright("Copyright (c) David Kean")]
 [assembly: AssemblyTrademark("")]
