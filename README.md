@@ -10,6 +10,13 @@ Tired of having to perform a song and dance through the Windows Sound dialogs ju
 ## How do I install this thing?
 Currently, there is no installer or binary that you can run or download. You'll need to build the project yourself. Open the solution in Visual Studio 2013, build and then run `AudioSwitcher.exe` from the bin directory.
 
+## FAQ
+#### How do I hide microphones or unplugged devices?
+Right-click on the __Audio Switcher__ icon in the notification area, and expand __Appearance__.
+
+#### In the screenshot above, I see that you have given the devices custom names and icons. How do you do that?
+Right-click on the __Sound__ icon in the notification area, choose __Playback devices__. Double-click any device to customize its name and icon.
+
 ## Acknowledgements
 Ian van der Linde ([@Ianvdl](http://github.com/ianvdl))
 * [#4](https://github.com/davkean/audio-switcher/issues/4): Provided the headphones tray icon
