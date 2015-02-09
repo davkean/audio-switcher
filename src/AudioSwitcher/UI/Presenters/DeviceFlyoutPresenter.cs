@@ -66,7 +66,8 @@ namespace AudioSwitcher.UI.Presenters
             AudioDeviceViewModel[] devices = GetDevices(kind);
             foreach (AudioDeviceViewModel device in devices)
             {
-                var item = ContextMenu.BindCommand(_commandManager, CommandId.SetAsDefaultDevice, device);
+                ToolStripMenuItem item = ContextMenu.BindCommand(_commandManager, CommandId.SetAsDefaultDevice, device);
+                item.DropDownDirection = ToolStripDropDownDirection.AboveRight;
 				item.MouseUp += OnItemMouseUp;
             }
 
@@ -84,12 +85,16 @@ namespace AudioSwitcher.UI.Presenters
             // TODO: This should be WM_CONTEXTMENU
 			if (e.Button == MouseButtons.Right)
 			{
+                Console.WriteLine(">>>>>>>>>>>>>>>>>>>>Right-click");
+
 				AudioToolStripMenuItem item = (AudioToolStripMenuItem)sender;
 				item.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, item.GetArgument());
 				item.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, item.GetArgument());
 				item.DropDownClosed += OnDropDownClosed;
-				item.DropDown.Capture = true;
-				item.ShowDropDown(e.Location, ToolStripDropDownDirection.BelowRight);
+                item.DropDown.Capture = true;
+				item.ShowDropDown(e.Location);
+
+                Console.WriteLine(">>>>>>>>>>>>>>>>>>>>done Right-click");
 			}
 		}
 

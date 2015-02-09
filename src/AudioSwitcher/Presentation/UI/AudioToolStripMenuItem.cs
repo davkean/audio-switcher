@@ -61,32 +61,25 @@ namespace AudioSwitcher.Presentation.UI
 
 
 		private Point? _location;
-		private ToolStripDropDownDirection? _direction;
 
-		public void ShowDropDown(Point location, ToolStripDropDownDirection direction)
+		public void ShowDropDown(Point location)
 		{
 			_location = this.ToScreenPoint(location);
-			_direction = direction;
 
 			ShowDropDown();
 
 			_location = null;
-			_direction = null;
 		}
 
 		protected override Point DropDownLocation
         {
             get
             {
-				if (_location != null)
-					return _location.Value;
-
+                
                 // BUG #3: The default location of a menu's drop down can appear on a different screen than the parent
                 // of that menu. To prevent that, we prefer the reverse side of the current direction, if that results 
                 // in the drop down appearing on the same screen.
-                
-
-                Point location = base.DropDownLocation;
+                Point location = _location == null ? base.DropDownLocation : _location.Value;
                 if (_doNotCheckDropDownLocation || Parent == null || UIServices.BelongToSameScreen(location, Parent.Location))
                     return location;
 
@@ -100,9 +93,14 @@ namespace AudioSwitcher.Presentation.UI
                 Point newLocation = base.DropDownLocation;
 
                 if (UIServices.BelongToSameScreen(newLocation, Parent.Location))
+                {
                     location = newLocation; // Better match
+                }
+                else
+                {
+                    DropDownDirection = currentDirection;
+                }
 
-                DropDownDirection = currentDirection;
                 _doNotCheckDropDownLocation = false;
                 return location;
             }
