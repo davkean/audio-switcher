@@ -42,10 +42,15 @@ namespace AudioSwitcher.Presentation.UI.Renderer
 
         protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
         {
-            if (e.Text.Length == 0) // Separator
+            if (String.IsNullOrEmpty(e.Text)) // Separator
                 return;
 
             string[] text = e.Text.Split(NewLine, 3, StringSplitOptions.None);
+            if (text.Length != 3)
+            {
+                base.OnRenderItemText(e);
+                return;
+            }
 
 			Debug.Assert(text.Length == 3);
 
