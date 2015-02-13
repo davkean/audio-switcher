@@ -25,7 +25,18 @@ namespace AudioSwitcher.UI.Commands
 
         public override void Refresh()
         {
-            IsChecked = IsRunAtWindowsStartup();
+            bool localMachine;
+            IsChecked = IsRunAtWindowsStartup(out localMachine);
+
+            // We don't let the user uncheck IsChecked if its machine-wide
+            if (IsChecked)
+            {
+                IsEnabled = !localMachine;
+            }
+            else
+            {
+                IsEnabled = true;
+            }
         }
 
         private string RunAtWindowsStartupValue
@@ -52,9 +63,21 @@ namespace AudioSwitcher.UI.Commands
             
         }
 
-        private bool IsRunAtWindowsStartup()
+        private bool IsRunAtWindowsStartup(out bool localMachine)
         {
-            using (RegistryKey key = GetRunAtWindowsStartupRegistryKey(writable: false))
+            if (IsRunAtWindowsStartup(Registry.LocalMachine))
+            {
+                localMachine = true;
+                return true;
+            }
+
+            localMachine = false;
+            return IsRunAtWindowsStartup(Registry.CurrentUser);
+        }
+
+        private bool IsRunAtWindowsStartup(RegistryKey root)
+        {
+            using (RegistryKey key = GetRunAtWindowsStartupRegistryKey(root, writable: false))
             {
                 if (key != null)
                 {
@@ -93,8 +116,13 @@ namespace AudioSwitcher.UI.Commands
 
         private RegistryKey GetRunAtWindowsStartupRegistryKey(bool writable)
         {
+            return GetRunAtWindowsStartupRegistryKey(Registry.CurrentUser, writable);
+        }
+
+        private RegistryKey GetRunAtWindowsStartupRegistryKey(RegistryKey root, bool writable)
+        {
             RegistryKey key;
-            Registry.CurrentUser.TryOpenSubkey(@"Software\Microsoft\Windows\CurrentVersion\Run", writable, out key);
+            root.TryOpenSubkey(@"Software\Microsoft\Windows\CurrentVersion\Run", writable, out key);
 
             return key;
         }
