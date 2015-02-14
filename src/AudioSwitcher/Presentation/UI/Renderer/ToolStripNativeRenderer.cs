@@ -394,13 +394,13 @@ namespace AudioSwitcher.Presentation.UI
         {
             if (EnsureRenderer())
             {
-                Rectangle bgRect = GetBackgroundRectangle(e.Item);
+                Rectangle backgroundRectangle = GetBackgroundRectangle(e.Item);
                 //Rectangle bgRect = e.ImageRectangle;
-                bgRect.Width = bgRect.Height;
+                backgroundRectangle.Width = backgroundRectangle.Height;
 
                 // Now, mirror its position if the menu item is RTL.
                 if (e.Item.RightToLeft == RightToLeft.Yes)
-                    bgRect = new Rectangle(e.ToolStrip.ClientSize.Width - bgRect.X - bgRect.Width, bgRect.Y, bgRect.Width, bgRect.Height);
+                    backgroundRectangle = new Rectangle(e.ToolStrip.ClientSize.Width - backgroundRectangle.X - backgroundRectangle.Width, backgroundRectangle.Y, backgroundRectangle.Width, backgroundRectangle.Height);
 
                 bool isRendereringImageCheck = IsRenderingImageCheck(e.Item);
 
@@ -409,13 +409,13 @@ namespace AudioSwitcher.Presentation.UI
                 //_renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheckBackground, e.Item.Enabled ? (isRendereringImageCheck ? (int)MenuPopupCheckBackgroundStates.Bitmap : (int)MenuPopupCheckBackgroundStates.Normal) : (int)MenuPopupCheckBackgroundStates.Disabled);
 
                 _renderer.SetParameters(MenuClass, (int)MenuParts.PopupItem, e.Item.Enabled ? (int)MenuPopupItemStates.Hover : (int)MenuPopupItemStates.DisabledHover);
-                _renderer.DrawBackground(e.Graphics, bgRect);
+                _renderer.DrawBackground(e.Graphics, backgroundRectangle);
 
                 if (!isRendereringImageCheck)
                 {
                     Rectangle checkRect = e.ImageRectangle;
-                    checkRect.X = bgRect.X + bgRect.Width / 2 - checkRect.Width / 2;
-                    checkRect.Y = bgRect.Y + bgRect.Height / 2 - checkRect.Height / 2;
+                    checkRect.X = backgroundRectangle.X + backgroundRectangle.Width / 2 - checkRect.Width / 2;
+                    checkRect.Y = backgroundRectangle.Y + backgroundRectangle.Height / 2 - checkRect.Height / 2;
 
 
                     ToolStripMenuItem item = e.Item as ToolStripMenuItem;
