@@ -404,7 +404,11 @@ namespace AudioSwitcher.Presentation.UI
 
                 bool isRendereringImageCheck = IsRenderingImageCheck(e.Item);
 
-                _renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheckBackground, e.Item.Enabled ? (isRendereringImageCheck ? (int)MenuPopupCheckBackgroundStates.Bitmap : (int)MenuPopupCheckBackgroundStates.Normal) : (int)MenuPopupCheckBackgroundStates.Disabled);
+                // WORKAROUND: On Windows 8.1 (not sure about anywhere else), the check background has the wrong 
+                // border, see #29, instead we just use the same border as the hover state of a menu item
+                //_renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheckBackground, e.Item.Enabled ? (isRendereringImageCheck ? (int)MenuPopupCheckBackgroundStates.Bitmap : (int)MenuPopupCheckBackgroundStates.Normal) : (int)MenuPopupCheckBackgroundStates.Disabled);
+
+                _renderer.SetParameters(MenuClass, (int)MenuParts.PopupItem, e.Item.Enabled ? (int)MenuPopupItemStates.Hover : (int)MenuPopupItemStates.DisabledHover);
                 _renderer.DrawBackground(e.Graphics, bgRect);
 
                 if (!isRendereringImageCheck)
