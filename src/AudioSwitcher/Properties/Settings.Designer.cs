@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AudioSwitcher.Properties {
+namespace AudioSwitcher {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
