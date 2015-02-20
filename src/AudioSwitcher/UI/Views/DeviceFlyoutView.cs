@@ -9,7 +9,7 @@ using AudioSwitcher.Presentation.UI.Renderer;
 namespace AudioSwitcher.Presentation.UI.Views
 {
     // Represents the flyout window that lists the audio devices, it's a context menu with thick
-    // non-resizable borders, to make it look like the other notification windows, such as Volume 
+    // non-resizable borders to make it look like the other notification windows, such as Volume 
     // and Action Center.
     internal class DeviceFlyoutView : AudioContextMenuStrip
     {
