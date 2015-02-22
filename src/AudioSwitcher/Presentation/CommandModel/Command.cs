@@ -87,7 +87,7 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         public string Text
         {
-            get { return _text; }
+            get { return IsVisible ? _text : null; }    // Prevent non-visible items from contributing to the size of context menu
             set 
             {
                 if (value != _text)
@@ -113,7 +113,7 @@ namespace AudioSwitcher.Presentation.CommandModel
 
         public Image Image
         {
-            get { return _image; }
+            get { return IsVisible ? _image : null; }    // Prevent non-visible items from contributing to the size of context menu
             set
             {
                 if (value != _image)
@@ -144,14 +144,6 @@ namespace AudioSwitcher.Presentation.CommandModel
                 throw new ArgumentException();
 
             Refresh();
-
-            // Prevent non-visible items from contributing 
-            // to the size of the context menu
-            if (!IsVisible)
-            {
-                Image = null;
-                Text = null;
-            }
         }
     }
 }
