@@ -6,11 +6,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.Drawing;
+using AudioSwitcher.Presentation.UI;
 
 namespace AudioSwitcher.UI.ViewModels
 {
     internal class AudioDeviceViewModel
     {
+        private static readonly Size IconSize = DpiServices.Scale(new Size(48, 48));
+
         private readonly AudioDevice _device;
 
         public AudioDeviceViewModel(AudioDevice device)
@@ -183,7 +186,7 @@ namespace AudioSwitcher.UI.ViewModels
             using (overlayImage)
             {
                 // Makes a copy
-                return DrawingServices.CreateOverlayedImage(deviceImage, overlayImage, new Size(48, 48));
+                return DrawingServices.CreateOverlayedImage(deviceImage, overlayImage, deviceImage.Size);
             }
         }
 
@@ -207,14 +210,12 @@ namespace AudioSwitcher.UI.ViewModels
 
         private Icon GetIconFromDeviceIconPath(string iconPath)
         {
-            Size iconSize = new Size(48, 48);
-            
             if (String.IsNullOrEmpty(iconPath))
                 return null;
 
             Icon icon;
-            if (String.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, iconSize, out icon))
-                return new Icon(Resources.FallbackDevice, iconSize);
+            if (String.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, IconSize, out icon))
+                return new Icon(Resources.FallbackDevice, IconSize);
 
             return icon;
         }
