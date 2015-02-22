@@ -29,24 +29,23 @@ namespace AudioSwitcher.UI.Presenters
             : base(application)
         {
             _viewModelManager = viewModelManager;
-            _viewModelManager.Changed += OnViewModelsChanged;
             _commandManager = commandManager;
             _presenterManager = presenterManager;
         }
 
         protected override AudioContextMenuStrip CreateContextMenu()
         {
-            return new DeviceFlyoutView();
-        }
-
-        private void OnViewModelsChanged(object sender, System.EventArgs e)
-        {
-            ContextMenu.RefreshCommands();
+            return new DeviceFlyoutView() { AutoClose = false };
         }
 
         public override void Bind()
         {
+            RegisterHandlers();
+
             AddDeviceCommands(AudioDeviceKind.Playback, CommandId.NoPlaybackDevices);
+
+            ContextMenu.BindSeparator(_commandManager, CommandId.DeviceSeparator);
+
             AddDeviceCommands(AudioDeviceKind.Recording, CommandId.NoRecordingDevices);
 
             ContextMenu.BindCommand(_commandManager, CommandId.NoDevices);
@@ -56,13 +55,11 @@ namespace AudioSwitcher.UI.Presenters
         {
             base.Dispose();
 
-            _viewModelManager.Changed -= OnViewModelsChanged;
+            RegisterHandlers(add:false);
         }
 
-        private void AddDeviceCommands(AudioDeviceKind kind, string noDeviceCommandId)
+        private void AddDeviceCommands(AudioDeviceKind kind, string noDeviceCommandId, bool firstRun = false)
         {
-            ContextMenu.AddSeparatorIfNeeded();
-
             AudioDeviceViewModel[] devices = GetDevices(kind);
             foreach (AudioDeviceViewModel device in devices)
             {
@@ -85,7 +82,7 @@ namespace AudioSwitcher.UI.Presenters
             // TODO: This should be WM_CONTEXTMENU
 			if (e.Button == MouseButtons.Right)
 			{
-				AudioToolStripMenuItem item = (AudioToolStripMenuItem)sender;
+                AudioToolStripMenuItem item = (AudioToolStripMenuItem)sender;
 				item.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, item.GetArgument());
 				item.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, item.GetArgument());
 				item.DropDownClosed += OnDropDownClosed;
@@ -100,5 +97,49 @@ namespace AudioSwitcher.UI.Presenters
 			item.DropDownClosed -= OnDropDownClosed;
 			item.DropDown.Items.Clear();
 		}
+
+        private void RegisterHandlers(bool add = true)
+        {
+            if (add)
+            {
+                _viewModelManager.ViewModelPropertyChanged += OnViewModelsChanged;
+                _viewModelManager.ViewModelAdded += OnViewModelsAdded;
+                _viewModelManager.ViewModelRemoved += OnViewModelsRemoved;
+            }
+            else
+            {
+                _viewModelManager.ViewModelPropertyChanged -= OnViewModelsChanged;
+                _viewModelManager.ViewModelAdded -= OnViewModelsAdded;
+                _viewModelManager.ViewModelRemoved -= OnViewModelsRemoved;
+            }
+        }
+
+        private void OnViewModelsChanged(object sender, AudioDeviceViewModelEventArgs e)
+        {
+            // We refresh all commmands, so that non-device commands 
+            // (such as separaters, "no devices" text, etc are 
+            // updated based on state changes.
+            ContextMenu.RefreshCommands();
+        }
+
+        private void OnViewModelsRemoved(object sender, AudioDeviceViewModelEventArgs e)
+        {
+            ToolStripMenuItem item = FindMenuItem(e.ViewModel);
+            if (item != null)
+            {
+                ContextMenu.Items.Remove(item);
+            }
+        }
+
+        private void OnViewModelsAdded(object sender, AudioDeviceViewModelEventArgs e)
+        {   
+        }
+
+        private ToolStripMenuItem FindMenuItem(AudioDeviceViewModel viewModel)
+        {
+            return ContextMenu.Items.OfType<ToolStripMenuItem>()
+                                    .Where(m => m.GetArgument() == viewModel)
+                                    .SingleOrDefault();
+        }
     }
 }

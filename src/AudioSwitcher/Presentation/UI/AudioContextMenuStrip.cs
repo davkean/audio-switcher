@@ -31,13 +31,6 @@ namespace AudioSwitcher.Presentation.UI
             set;
         }
 
-        protected override void OnOpening(CancelEventArgs e)
-        {
-            base.OnOpening(e);
-
-            HideDuplicatedSeparators();
-        }
-
 		public new void Show(Control control, Point controlLocation)
 		{
 			// Prevents the context menu from causing the app to show in the taskbar
@@ -102,24 +95,6 @@ namespace AudioSwitcher.Presentation.UI
             item.Click += onClick;
 
             return item;
-        }
-
-        private void HideDuplicatedSeparators()
-        {
-            ToolStripItem[] availableItems = Items.Cast<ToolStripItem>()
-                                                  .Where(i => i.Available)
-                                                  .ToArray();
-
-            for (int i = 0; i < availableItems.Length; i++)
-            {
-                ToolStripItem item = availableItems[i];
-
-                if (i == 0 && item is ToolStripSeparator)
-                    item.Available = false;
-
-                if (i == availableItems.Length - 1 && item is ToolStripSeparator)
-                    item.Available = false;
-            }
         }
     }
 }

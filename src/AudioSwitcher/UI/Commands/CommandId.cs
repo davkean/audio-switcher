@@ -24,6 +24,7 @@ namespace AudioSwitcher.UI.Commands
         public const string SetAsDefaultDevice =                    "Device.SetAsDefaultDevice";
 
         public const string NoDevices =                             "Device.NoDevices";
+        public const string DeviceSeparator =                       "Device.Seperator";
         public const string NoPlaybackDevices =                     "Device.NoPlaybackDevices";
         public const string NoRecordingDevices =                    "Device.NoRecordingDevices";
     }

@@ -29,40 +29,30 @@ using AudioSwitcher.Audio.Interop;
 
 namespace AudioSwitcher.Audio
 {
-    /// <summary>
-    /// Property Store Property
-    /// </summary>
     internal class PropertyStoreProperty
     {
-        private PropertyKey propertyKey;
-        private PropVariant propertyValue;
+        private PropertyKey _key;
+        private PropVariant _value;
 
         internal PropertyStoreProperty(PropertyKey key, PropVariant value)
         {
-            propertyKey = key;
-            propertyValue = value;
+            _key = key;
+            _value = value;
         }
 
-        /// <summary>
-        /// Property Key
-        /// </summary>
+        public bool IsEmpty
+        {
+            get { return _value.IsEmpty; }
+        }
+
         public PropertyKey Key
         {
-            get
-            {
-                return propertyKey;
-            }
+            get { return _key; }
         }
 
-        /// <summary>
-        /// Property Value
-        /// </summary>
         public object Value
         {
-            get
-            {
-                return propertyValue.Value;
-            }
+            get { return _value.Value; }
         }
     }
 }

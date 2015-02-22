@@ -107,6 +107,7 @@
     <Compile Include="Presentation\CommandModel\Command.cs" />
     <Compile Include="Presentation\CommandModel\CommandAttribute.cs" />
     <Compile Include="Presentation\UI\Renderer\DeviceToolStripNativeRender.cs" />
+    <Compile Include="StringComparers.cs" />
     <Compile Include="UI\Commands\CommandId.cs" />
     <Compile Include="ApplicationModel\IApplication.cs" />
     <Compile Include="Audio\InputSwitcherService.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="ApplicationModel\SaveSettingsService.cs" />
     <Compile Include="ApplicationModel\SingleInstanceStartupService.cs" />
     <Compile Include="ApplicationModel\NotificationIconStartupService.cs" />
+    <Compile Include="UI\Commands\DeviceSeparatorCommand.cs" />
     <Compile Include="UI\Commands\NoDevicesCommandBase.cs" />
     <Compile Include="UI\Commands\NoRecordingDevicesCommand.cs" />
     <Compile Include="UI\Commands\NoPlaybackDevicesCommand.cs" />
@@ -151,7 +153,7 @@
     <Compile Include="Audio\Interop\MMAudio\StorageAccessMode.cs" />
     <Compile Include="Audio\Interop\MMAudio\PolicyConfig.cs" />
     <Compile Include="Interop\ExternalDll.cs" />
-    <Compile Include="Presentation\UI\MenuItemCommandBinding.cs" />
+    <Compile Include="Presentation\UI\ToolStripItemCommandBinding.cs" />
     <Compile Include="Presentation\CommandModel\CommandManager.cs" />
     <Compile Include="Presentation\CommandModel\CommandOfT.cs" />
     <Compile Include="Presentation\CommandModel\CommandProperty.cs" />
@@ -209,6 +211,7 @@
     <Compile Include="Presentation\UI\Renderer\ToolbarTheme.cs" />
     <Compile Include="Presentation\UI\UIServices.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModelManager.cs" />
+    <Compile Include="UI\ViewModels\AudioDeviceViewModelEventArgs.cs" />
     <Compile Include="UI\Views\DeviceFlyoutView.cs">
       <SubType>Component</SubType>
     </Compile>

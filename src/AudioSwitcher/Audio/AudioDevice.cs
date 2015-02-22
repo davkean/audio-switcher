@@ -51,52 +51,56 @@ namespace AudioSwitcher.Audio
             }
         }
 
-        public string DeviceDescription
+        public bool TryGetDeviceDescription(out string result)
         {
-            get
+            object value;
+            if (Properties.TryGetValue(PropertyKeys.PKEY_Device_DeviceDesc, out value))
             {
-                object value;
-                if (Properties.TryGetValue(PropertyKeys.PKEY_Device_DeviceDesc, out value))
-                    return (string)value;
-
-                return string.Empty;
+                result = (string)value;
+                return true;
             }
+
+            result = string.Empty;
+            return false;
         }
 
-        public string FriendlyName
+        public bool TryGetFriendlyName(out string result)
         {
-            get
+            object value;
+            if (Properties.TryGetValue(PropertyKeys.PKEY_Device_FriendlyName, out value))
             {
-                object value;
-                if (Properties.TryGetValue(PropertyKeys.PKEY_Device_FriendlyName, out value))
-                    return (string)value;
-
-                return string.Empty;
+                result = (string)value;
+                return true;
             }
+
+            result = string.Empty;
+            return false;
         }
 
-        public string DeviceFriendlyName
+        public bool TryDeviceFriendlyName(out string result)
         {
-            get
+            object value;
+            if (Properties.TryGetValue(PropertyKeys.PKEY_DeviceInterface_FriendlyName, out value))
             {
-                object value;
-                if (Properties.TryGetValue(PropertyKeys.PKEY_DeviceInterface_FriendlyName, out value))
-                    return (string)value;
-
-                return string.Empty;
+                result = (string)value;
+                return true;
             }
+
+            result = string.Empty;
+            return false;
         }
 
-        public string DeviceClassIconPath
+        public bool TryGetDeviceClassIconPath(out string result)
         {
-            get
+            object value;
+            if (Properties.TryGetValue(PropertyKeys.PKEY_DeviceClass_IconPath, out value))
             {
-                object value;
-                if (Properties.TryGetValue(PropertyKeys.PKEY_DeviceClass_IconPath, out value))
-                    return (string)value;
-             
-                return string.Empty;
+                result = (string)value;
+                return true;
             }
+
+            result = string.Empty;
+            return false;
         }
 
         public string Id
@@ -132,7 +136,10 @@ namespace AudioSwitcher.Audio
 
         public override string ToString()
         {
-            return FriendlyName;
+            string result;
+            TryGetFriendlyName(out result);
+
+            return result;
         }
 
         private PropertyStore OpenPropertyStore()

@@ -76,11 +76,21 @@ namespace AudioSwitcher.UI.ViewModels
             DefaultState = CalculateDeviceDefaultState(deviceManager);
             Kind = _device.Kind;
             State = _device.State;
-            Description = _device.DeviceDescription;
-            FriendlyName = _device.DeviceFriendlyName;
-            DeviceStateFriendlyName = GetDeviceStateFriendlyName();
-            Image = GetImage();
             IsVisible = CalculateIsVisible();
+
+            // Only do work such as get text, icons, etc if we're visible
+            if (IsVisible)
+            {   
+                Description = TryGetOrDefault(_device.TryGetDeviceDescription, Description);
+                FriendlyName = TryGetOrDefault(_device.TryDeviceFriendlyName, FriendlyName);
+                DeviceStateFriendlyName = GetDeviceStateFriendlyName();
+
+                string iconPath;
+                if (_device.TryGetDeviceClassIconPath(out iconPath))
+                {
+                    Image = GetImage(iconPath);
+                }
+            }
         }
 
         private bool CalculateIsVisible()
@@ -159,9 +169,9 @@ namespace AudioSwitcher.UI.ViewModels
             return String.Empty;
         }
 
-        private Image GetImage()
+        private Image GetImage(string iconPath)
         {
-            Image deviceImage = GetDeviceImage();
+            Image deviceImage = GetDeviceImage(iconPath);
             if (deviceImage == null)
                 return null;
 
@@ -175,12 +185,11 @@ namespace AudioSwitcher.UI.ViewModels
                 // Makes a copy
                 return DrawingServices.CreateOverlayedImage(deviceImage, overlayImage, new Size(48, 48));
             }
-
         }
 
-        private Image GetDeviceImage()
+        private Image GetDeviceImage(string iconPath)
         {
-            using (Icon icon = GetIconFromDeviceIconPath())
+            using (Icon icon = GetIconFromDeviceIconPath(iconPath))
             {
                 if (icon == null)
                     return null;
@@ -196,11 +205,10 @@ namespace AudioSwitcher.UI.ViewModels
             }
         }
 
-        private Icon GetIconFromDeviceIconPath()
+        private Icon GetIconFromDeviceIconPath(string iconPath)
         {
             Size iconSize = new Size(48, 48);
-            string iconPath = _device.DeviceClassIconPath;
-
+            
             if (String.IsNullOrEmpty(iconPath))
                 return null;
 
@@ -254,5 +262,18 @@ namespace AudioSwitcher.UI.ViewModels
 
             return state;
         }
+
+        private static string TryGetOrDefault(TryDelegate getter, string defaultValue)
+        {
+            string result;
+            if (getter(out result))
+            {
+                return result;
+            }
+
+            return defaultValue;
+        }
+
+        private delegate bool TryDelegate(out string result);
     }
 }

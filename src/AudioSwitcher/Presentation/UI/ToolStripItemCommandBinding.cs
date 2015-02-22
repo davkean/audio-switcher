@@ -12,20 +12,16 @@ using AudioSwitcher.Presentation.CommandModel;
 namespace AudioSwitcher.Presentation.UI
 {
     // Responsible for sync'ing between a Command and a ToolStripMenuItem
-    internal class MenuItemCommandBinding
+    internal class ToolStripItemCommandBinding
     {
-        private readonly ToolStripMenuItem _item;
+        private readonly ToolStripItem _item;
+        private readonly ToolStripMenuItem _menuItem;
         private readonly ToolStripDropDown _dropDown;
         private readonly Lifetime<ICommand> _lifetime;
         private readonly ICommand _command;
         private readonly object _argument;
 
-        public MenuItemCommandBinding(ToolStripDropDown dropDown, ToolStripMenuItem item, Lifetime<ICommand> command)
-            : this(dropDown, item, command, (Func<object>)null)
-        {
-        }
-
-        public MenuItemCommandBinding(ToolStripDropDown dropDown, ToolStripMenuItem item, Lifetime<ICommand> command, object argument)
+        public ToolStripItemCommandBinding(ToolStripDropDown dropDown, ToolStripItem item, Lifetime<ICommand> command, object argument)
         {
             if (dropDown == null)
                 throw new ArgumentNullException("dropDown");
@@ -38,6 +34,7 @@ namespace AudioSwitcher.Presentation.UI
 
             _dropDown = dropDown;
             _item = item;
+            _menuItem = item as ToolStripMenuItem;
             _command = command.Instance;
             _lifetime = command;
             _argument = argument;
@@ -104,6 +101,7 @@ namespace AudioSwitcher.Presentation.UI
             SyncProperty(_command, CommandProperty.Image);
             SyncProperty(_command, CommandProperty.TooltipText);
         }
+
         private void OnContextMenuStripOpening(object sender, CancelEventArgs e)
         {
             Refresh();
@@ -129,7 +127,10 @@ namespace AudioSwitcher.Presentation.UI
                     break;
 
                 case CommandProperty.IsChecked:
-                    _item.Checked = command.IsChecked;
+                    if (_menuItem != null)
+                    {
+                        _menuItem.Checked = command.IsChecked;
+                    }
                     break;
 
                 case CommandProperty.Text:

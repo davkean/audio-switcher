@@ -136,7 +136,7 @@ namespace AudioSwitcher.Audio
             try
             {
                 var property = this[key];
-                if (property == null)
+                if (property == null || property.IsEmpty)
                     return false;
                 
                 value = property.Value;
@@ -147,6 +147,7 @@ namespace AudioSwitcher.Audio
             {
                 const int NoSuchHDevinst = unchecked((int)0xE000020B);
 
+                // Bad installation of driver
                 if (ex.HResult == NoSuchHDevinst)
                 {
                     return false;

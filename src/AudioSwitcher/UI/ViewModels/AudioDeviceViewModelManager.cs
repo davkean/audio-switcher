@@ -26,7 +26,9 @@ namespace AudioSwitcher.UI.ViewModels
             AddAll();
         }
 
-        public event EventHandler Changed;
+        public event EventHandler<AudioDeviceViewModelEventArgs> ViewModelPropertyChanged;
+        public event EventHandler<AudioDeviceViewModelEventArgs> ViewModelRemoved;
+        public event EventHandler<AudioDeviceViewModelEventArgs> ViewModelAdded;
 
         public ReadOnlyCollection<AudioDeviceViewModel> ViewModels
         {
@@ -38,9 +40,27 @@ namespace AudioSwitcher.UI.ViewModels
             RegisterHandlers(false);
         }
 
-        protected virtual void OnChanged(EventArgs e)
+        protected virtual void OnViewModelPropertyChanged(AudioDeviceViewModelEventArgs e)
         {
-            var handler = Changed;
+            var handler = ViewModelPropertyChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        protected virtual void OnViewModelAdded(AudioDeviceViewModelEventArgs e)
+        {
+            var handler = ViewModelAdded;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        protected virtual void OnViewModelRemoved(AudioDeviceViewModelEventArgs e)
+        {
+            var handler = ViewModelRemoved;
             if (handler != null)
             {
                 handler(this, e);
@@ -55,17 +75,19 @@ namespace AudioSwitcher.UI.ViewModels
             }
         }
 
-        private void AddViewModel(AudioDevice device)
+        private AudioDeviceViewModel AddViewModel(AudioDevice device)
         {
             AudioDeviceViewModel model = new AudioDeviceViewModel(device);
             model.UpdateStatus(_deviceManager);
 
             _viewModels.Add(model);
+
+            return model;
         }
 
         private AudioDeviceViewModel FindViewModel(string id)
         {
-            return _viewModels.Where(m => m.Device.Id == id)
+            return _viewModels.Where(m => StringComparers.DeviceIds.Equals(m.Device.Id, id))
                               .SingleOrDefault();
         }
 
@@ -76,7 +98,7 @@ namespace AudioSwitcher.UI.ViewModels
             {
                 viewModel.UpdateStatus(_deviceManager);
 
-                OnChanged(EventArgs.Empty);
+                OnViewModelPropertyChanged(new AudioDeviceViewModelEventArgs(viewModel));
             }
         }
 
@@ -87,15 +109,15 @@ namespace AudioSwitcher.UI.ViewModels
             {
                 viewModel.UpdateStatus(_deviceManager);
 
-                OnChanged(EventArgs.Empty);
+                OnViewModelPropertyChanged(new AudioDeviceViewModelEventArgs(viewModel));
             }
         }
 
         private void OnDeviceAdded(object sender, AudioDeviceEventArgs e)
         {
-            AddViewModel(e.Device);
+            AudioDeviceViewModel viewModel = AddViewModel(e.Device);
 
-            OnChanged(EventArgs.Empty);
+            OnViewModelAdded(new AudioDeviceViewModelEventArgs(viewModel));
         }
 
         private void OnDeviceRemoved(object sender, AudioDeviceRemovedEventArgs e)
@@ -104,18 +126,17 @@ namespace AudioSwitcher.UI.ViewModels
             if (viewModel != null)
             {
                 _viewModels.Remove(viewModel);
-                OnChanged(EventArgs.Empty);
+                OnViewModelRemoved(new AudioDeviceViewModelEventArgs(viewModel));
             }
         }
 
         private void OnDefaultDeviceChanged(object sender, DefaultAudioDeviceEventArgs e)
         {
-            foreach (AudioDeviceViewModel model in _viewModels)
+            foreach (AudioDeviceViewModel viewModel in _viewModels)
             {
-                model.UpdateStatus(_deviceManager);
+                viewModel.UpdateStatus(_deviceManager);
+                OnViewModelPropertyChanged(new AudioDeviceViewModelEventArgs(viewModel));
             }
-
-            OnChanged(EventArgs.Empty);
         }
 
         private void RegisterHandlers(bool register = true)
@@ -142,12 +163,11 @@ namespace AudioSwitcher.UI.ViewModels
 
         private void OnSettingsChanged(object sender, PropertyChangedEventArgs e)
         {
-            foreach (AudioDeviceViewModel model in _viewModels)
+            foreach (AudioDeviceViewModel viewModel in _viewModels)
             {
-                model.UpdateStatus(_deviceManager);
+                viewModel.UpdateStatus(_deviceManager);
+                OnViewModelPropertyChanged(new AudioDeviceViewModelEventArgs(viewModel));
             }
-
-            OnChanged(EventArgs.Empty);
         }
 
         private class AudioDeviceViewModelCollection : ReadOnlyCollection<AudioDeviceViewModel>

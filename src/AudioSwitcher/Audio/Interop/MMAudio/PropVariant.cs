@@ -162,6 +162,11 @@ namespace AudioSwitcher.Audio.Interop
             get { return (VarEnum) vt; }
         }
 
+        public bool IsEmpty
+        {
+            get { return DataType == VarEnum.VT_EMPTY; }
+        }
+
     /// <summary>
         /// Property value
         /// </summary>

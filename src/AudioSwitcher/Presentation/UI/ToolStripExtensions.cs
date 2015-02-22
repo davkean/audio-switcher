@@ -22,25 +22,41 @@ namespace AudioSwitcher.Presentation.UI
             if (!strip.Visible)
                 return;
 
-            foreach (ToolStripMenuItem item in strip.Items.OfType<ToolStripMenuItem>())
+            foreach (ToolStripItem item in strip.Items)
             {
                 item.RefreshCommand(true);
             }
         }
 
-        public static void RefreshCommand(this ToolStripMenuItem item, bool refreshChildren = false)
+        public static void RefreshCommand(this ToolStripItem item, bool refreshChildren = false)
         {
             if (item == null)
                 throw new ArgumentNullException("item");
             
-            MenuItemCommandBinding binding = (MenuItemCommandBinding)item.Tag;
+            ToolStripItemCommandBinding binding = (ToolStripItemCommandBinding)item.Tag;
             if (binding != null)
                 binding.Refresh();
 
             if (refreshChildren)
             {
-                RefreshCommands(item.DropDown);
+                ToolStripMenuItem menuItem = item as ToolStripMenuItem;
+                if (menuItem != null)
+                {
+                    RefreshCommands(menuItem.DropDown);
+                }
             }
+        }
+
+        public static ToolStripSeparator BindSeparator(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId)
+        {
+            Lifetime<ICommand> command = commandManager.FindCommand(commandId);
+            if (command == null)
+                throw new ArgumentException();
+
+            ToolStripSeparator item = dropDown.AddSeparator();
+            item.Tag = new ToolStripItemCommandBinding(dropDown, item, command, (object)null);
+
+            return item;
         }
 
         public static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, CommandManager commandManager, string commandId)
@@ -60,7 +76,7 @@ namespace AudioSwitcher.Presentation.UI
         private static ToolStripMenuItem BindCommand(this ToolStripDropDown dropDown, Lifetime<ICommand> command, object argument)
         {
             ToolStripMenuItem item = dropDown.Add(string.Empty);
-            item.Tag = new MenuItemCommandBinding(dropDown, item, command, argument);
+            item.Tag = new ToolStripItemCommandBinding(dropDown, item, command, argument);
 
             return item;
         }
@@ -70,20 +86,14 @@ namespace AudioSwitcher.Presentation.UI
             return (ToolStripMenuItem)dropDown.Items.Add(text);
         }
 
-        public static void AddSeparator(this ToolStripDropDown dropDown)
+        public static ToolStripSeparator AddSeparator(this ToolStripDropDown dropDown)
         {
-            dropDown.Items.Add("-");
-        }
-
-        public static void AddSeparatorIfNeeded(this ToolStripDropDown dropDown)
-        {
-            if (dropDown.Items.Count != 0)
-                dropDown.AddSeparator();
+            return (ToolStripSeparator)dropDown.Items.Add("-");
         }
 
         public static object GetArgument(this ToolStripItem item)
         {
-            MenuItemCommandBinding binding = (MenuItemCommandBinding)item.Tag;
+            ToolStripItemCommandBinding binding = (ToolStripItemCommandBinding)item.Tag;
             if (binding != null)
             {
                 return binding.Argument;
