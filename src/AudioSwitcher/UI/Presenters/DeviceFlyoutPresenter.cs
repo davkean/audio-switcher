@@ -35,7 +35,7 @@ namespace AudioSwitcher.UI.Presenters
 
         protected override AudioContextMenuStrip CreateContextMenu()
         {
-            return new DeviceFlyoutView() { AutoClose = false };
+            return new DeviceFlyoutView();
         }
 
         public override void Bind()
