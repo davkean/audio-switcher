@@ -78,12 +78,23 @@ namespace AudioSwitcher.Audio
             if (device == null)
                 throw new ArgumentNullException("device");
 
-            // BADNESS: The following code uses an undocumented interface provided by the Audio SDK. This is completely
+            // BADNESS: The following code uses undocumented interfaces provided by the Audio SDK. This is completely
             // unsupported, and should be used for amusement purposes only. This is *extremely likely* to be broken 
             // in future updates and/or versions of Windows. If Larry Osterman was dead, he would be rolling over 
             // in his grave if he knew you were using this for nefarious purposes.
-            IPolicyConfig config = (IPolicyConfig)new PolicyConfig();
-            int hr = config.SetDefaultEndpoint(device.Id, role);
+            var config = new PolicyConfig();
+
+            int hr;
+            IPolicyConfig2 config2 = config as IPolicyConfig2;
+            if (config2 != null)
+            {   // Windows 7 -> Windows 8.1
+                hr = config2.SetDefaultEndpoint(device.Id, role);
+            }
+            else
+            {   // Windows 10+
+                hr = ((IPolicyConfig3)config).SetDefaultEndpoint(device.Id, role);
+            }
+
             if (hr != HResult.OK)
                 throw Marshal.GetExceptionForHR(hr);
         }

@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationModel\StartupServiceAttribute.cs" />
+    <Compile Include="Audio\Interop\MMAudio\IPolicyConfig2.cs" />
     <Compile Include="ComponentModel\ILifetime`2.cs" />
     <Compile Include="ComponentModel\ILifetime.cs" />
     <Compile Include="ComponentModel\IPriorityMetadata.cs" />
@@ -191,7 +192,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\UI\Interop\DllImports.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IPolicyConfig.cs" />
+    <Compile Include="Audio\Interop\MMAudio\IPolicyConfig3.cs" />
     <Compile Include="UI\Presenters\NotificationIconContextMenuPresenter.cs" />
     <Compile Include="UI\Presenters\DeviceFlyoutPresenter.cs" />
     <Compile Include="UI\Commands\ExitCommand.cs" />

@@ -7,9 +7,9 @@ using AudioSwitcher.Audio;
 namespace AudioSwitcher.Audio.Interop
 {
     [ComImport]
-    [Guid("f8679f50-850a-41cf-9c72-430f290290c8")]
+    [Guid("8F9FB2AA-1C0B-4D54-B6BB-B2F2A10CE03C")]  // Windows 10+
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IPolicyConfig
+    internal interface IPolicyConfig3
     {
         void Reserved1();
 
