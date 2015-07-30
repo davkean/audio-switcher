@@ -118,7 +118,7 @@ namespace AudioSwitcher.Audio
             if (hr == HResult.OK)
                 return new AudioDevice(underlyingDevice);
 
-            if (hr == HResult.NotFound)
+            if (hr == HResult.NotFound || hr == HResult.FileNotFound)   // See #33
                 return null;
 
             throw Marshal.GetExceptionForHR(hr);
