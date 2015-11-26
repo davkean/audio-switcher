@@ -7,7 +7,7 @@ using AudioSwitcher.Audio;
 namespace AudioSwitcher.Audio.Interop
 {
     [ComImport]
-    [Guid("CA286FC3-91FD-42C3-8E9B-CAAFA66242E3")]  // Windows 10+
+    [Guid("00000000-0000-0000-C000-000000000046")]  // We just cast it to IUnknown, and pray that v-table layout is correct
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     internal interface IPolicyConfig3
     {
