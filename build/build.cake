@@ -1,4 +1,8 @@
+
+var target = Argument("target", "Default");
 var solutionFile = "./../src/AudioSwitcher.sln";
+var buildConfiguration = "Release";
+var artifactPath = "./artifacts";
 
 Task("Build")
     .Does(() =>
@@ -6,7 +10,7 @@ Task("Build")
     MSBuild(solutionFile, 
         new MSBuildSettings()
             .WithTarget("Rebuild")
-            .SetConfiguration("Release")
+            .SetConfiguration(buildConfiguration)
             .SetPlatformTarget(PlatformTarget.MSIL)
     );
    
@@ -18,8 +22,20 @@ Task("Restore-NuGet-Packages")
     NuGetRestore(solutionFile);
 });
 
+Task("Package-Zip")
+    .Does(() => 
+{
+    EnsureDirectoryExists(artifactPath);
+    CleanDirectory(artifactPath);
+    Zip("./../src/AudioSwitcher/bin/" + buildConfiguration, artifactPath + "/AudioSwitcher.zip");
+});
+
 Task("Default")
     .IsDependentOn("Restore-NuGet-Packages")
     .IsDependentOn("Build");
 
-RunTarget("Default");
+Task("Ci-Build")
+    .IsDependentOn("Default")
+    .IsDependentOn("Package-Zip");
+
+RunTarget(target);
