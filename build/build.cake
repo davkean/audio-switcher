@@ -27,7 +27,10 @@ Task("Package-Zip")
 {
     EnsureDirectoryExists(artifactPath);
     CleanDirectory(artifactPath);
-    Zip("./../src/AudioSwitcher/bin/" + buildConfiguration, artifactPath + "/AudioSwitcher.zip");
+    var zipDestination = artifactPath + "/AudioSwitcher.zip";
+    Zip("./../src/AudioSwitcher/bin/" + buildConfiguration, zipDestination);
+    Information("Zip package saved to " + zipDestination);
+
 });
 
 Task("Default")
