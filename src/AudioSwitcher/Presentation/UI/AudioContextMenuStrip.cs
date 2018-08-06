@@ -2,10 +2,8 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -31,14 +29,14 @@ namespace AudioSwitcher.Presentation.UI
             set;
         }
 
-		public new void Show(Control control, Point controlLocation)
-		{
-			// Prevents the context menu from causing the app to show in the taskbar
-			DllImports.SetForegroundWindow(new HandleRef(this, Handle));
+        public new void Show(Control control, Point controlLocation)
+        {
+            // Prevents the context menu from causing the app to show in the taskbar
+            DllImports.SetForegroundWindow(new HandleRef(this, Handle));
 
             Capture = true;
-			base.Show(control, controlLocation);
-		}
+            base.Show(control, controlLocation);
+        }
 
         public void ShowInSystemTray(Point screenLocation)
         {
@@ -87,11 +85,15 @@ namespace AudioSwitcher.Presentation.UI
         protected override ToolStripItem CreateDefaultItem(string text, Image image, EventHandler onClick)
         {
             if (text == "-")
+            {
                 return new ToolStripSeparator();
+            }
 
-            AudioToolStripMenuItem item = new AudioToolStripMenuItem();
-            item.Text = text;
-            item.Image = image;
+            AudioToolStripMenuItem item = new AudioToolStripMenuItem
+            {
+                Text = text,
+                Image = image
+            };
             item.Click += onClick;
 
             return item;
