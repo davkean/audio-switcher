@@ -24,6 +24,8 @@ namespace AudioSwitcher.Presentation
 
         public AudioContextMenuStrip ContextMenu => _contextMenu;
 
+        public IApplication Application => _application;
+
         protected virtual AudioContextMenuStrip CreateContextMenu()
         {
             return new AudioContextMenuStrip();
