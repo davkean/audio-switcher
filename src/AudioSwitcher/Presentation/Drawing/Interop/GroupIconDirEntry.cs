@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -23,13 +23,13 @@ namespace AudioSwitcher.Presentation.Drawing
         public IconDirEntry ToIconDirEntry(int imageOffiset)
         {
             IconDirEntry entry = new IconDirEntry();
-            entry.Width = this.Width;
-            entry.Height = this.Height;
-            entry.ColorCount = this.ColorCount;
-            entry.Reserved = this.Reserved;
-            entry.Planes = this.Planes;
-            entry.BitCount = this.BitCount;
-            entry.BytesInRes = this.BytesInRes;
+            entry.Width = Width;
+            entry.Height = Height;
+            entry.ColorCount = ColorCount;
+            entry.Reserved = Reserved;
+            entry.Planes = Planes;
+            entry.BitCount = BitCount;
+            entry.BytesInRes = BytesInRes;
             entry.ImageOffset = imageOffiset;
             return entry;
         }
