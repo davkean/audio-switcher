@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationModel\StartupServiceAttribute.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IPolicyConfig2.cs" />
+    <Compile Include="Interop\MMAudio\IPolicyConfig2.cs" />
     <Compile Include="ComponentModel\ILifetime`2.cs" />
     <Compile Include="ComponentModel\ILifetime.cs" />
     <Compile Include="ComponentModel\IPriorityMetadata.cs" />
@@ -96,28 +96,28 @@
     <Compile Include="Audio\AudioDeviceEventArgs.cs" />
     <Compile Include="ApplicationModel\AudioSwitcherApp.cs" />
     <Compile Include="Interop\HResult.cs" />
-    <Compile Include="Audio\Interop\MMAudio\Blob.cs" />
-    <Compile Include="Audio\Interop\MMAudio\ClsCtx.cs" />
+    <Compile Include="Interop\MMAudio\Blob.cs" />
+    <Compile Include="Interop\MMAudio\ClsCtx.cs" />
     <Compile Include="Audio\AudioDeviceKind.cs" />
     <Compile Include="Audio\AudioDeviceState.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IMMDevice.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IMMDeviceCollection.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IMMDeviceEnumerator.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IMMEndpoint.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IMMNotificationClient.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IPropertyStore.cs" />
+    <Compile Include="Interop\MMAudio\IMMDevice.cs" />
+    <Compile Include="Interop\MMAudio\IMMDeviceCollection.cs" />
+    <Compile Include="Interop\MMAudio\IMMDeviceEnumerator.cs" />
+    <Compile Include="Interop\MMAudio\IMMEndpoint.cs" />
+    <Compile Include="Interop\MMAudio\IMMNotificationClient.cs" />
+    <Compile Include="Interop\MMAudio\IPropertyStore.cs" />
     <Compile Include="Audio\AudioDevice.cs" />
     <Compile Include="Audio\AudioDeviceCollection.cs" />
     <Compile Include="Audio\AudioDeviceManager.cs" />
-    <Compile Include="Audio\Interop\MMAudio\MMDeviceEnumerator.cs" />
-    <Compile Include="Audio\Interop\MMAudio\PropertyKey.cs" />
-    <Compile Include="Audio\Interop\MMAudio\PropertyKeys.cs" />
-    <Compile Include="Audio\Interop\MMAudio\PropertyStore.cs" />
-    <Compile Include="Audio\Interop\MMAudio\PropertyStoreProperty.cs" />
-    <Compile Include="Audio\Interop\MMAudio\PropVariant.cs" />
+    <Compile Include="Interop\MMAudio\MMDeviceEnumerator.cs" />
+    <Compile Include="Interop\MMAudio\PropertyKey.cs" />
+    <Compile Include="Interop\MMAudio\PropertyKeys.cs" />
+    <Compile Include="Interop\MMAudio\PropertyStore.cs" />
+    <Compile Include="Interop\MMAudio\PropertyStoreProperty.cs" />
+    <Compile Include="Interop\MMAudio\PropVariant.cs" />
     <Compile Include="Audio\AudioDeviceRole.cs" />
-    <Compile Include="Audio\Interop\MMAudio\StorageAccessMode.cs" />
-    <Compile Include="Audio\Interop\MMAudio\PolicyConfig.cs" />
+    <Compile Include="Interop\MMAudio\StorageAccessMode.cs" />
+    <Compile Include="Interop\MMAudio\PolicyConfig.cs" />
     <Compile Include="Interop\ExternalDll.cs" />
     <Compile Include="Presentation\UI\ToolStripItemCommandBinding.cs" />
     <Compile Include="Presentation\CommandModel\CommandManager.cs" />
@@ -156,7 +156,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\UI\Interop\DllImports.cs" />
-    <Compile Include="Audio\Interop\MMAudio\IPolicyConfig3.cs" />
+    <Compile Include="Interop\MMAudio\IPolicyConfig3.cs" />
     <Compile Include="UI\Presenters\NotificationIconContextMenuPresenter.cs" />
     <Compile Include="UI\Presenters\DeviceFlyoutPresenter.cs" />
     <Compile Include="UI\Commands\ExitCommand.cs" />
