@@ -65,7 +65,7 @@ namespace AudioSwitcher.Presentation.CommandModel
                 return new Lifetime<ICommand>(() => context.Value, (Action)null);
             }
 
-            // Don't catch non-reusable commands, they are created for every request to FindCommand
+            // Don't cache non-reusable commands, they are created for every request to FindCommand
             return new Lifetime<ICommand>(() => context.Value, () => context.Dispose());
         }
     }
