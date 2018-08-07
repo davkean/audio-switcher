@@ -3,7 +3,6 @@
 // -----------------------------------------------------------------------
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Media;
 using System.Windows.Forms;
 using AudioSwitcher.ComponentModel;
@@ -79,7 +78,7 @@ namespace AudioSwitcher.Presentation.UI
         {
             if (e.ClickedItem != _item)
                 return;
-            
+
             if (_command.IsInvokable)
             {
                 _command.Run(_argument);
@@ -111,49 +110,54 @@ namespace AudioSwitcher.Presentation.UI
         {
             var command = (Command)sender;
 
-            SyncProperty(command, e.PropertyName);
+            var propertyName = (CommandProperty)Enum.Parse(typeof(CommandProperty), e.PropertyName);
+
+            SyncProperty(command, propertyName);
         }
 
-        private void SyncProperty(ICommand command, string propertyName)
+        private void SyncProperty(ICommand command, CommandProperty propertyName)
         {
-            switch (propertyName)
+            if (propertyName == CommandProperty.IsVisible)
             {
-                case CommandProperty.IsVisible:
-                    _item.Visible = command.IsVisible;
-                    break;
-
-                case CommandProperty.IsEnabled:
-                    _item.Enabled = command.IsEnabled;
-                    break;
-
-                case CommandProperty.IsChecked:
-                    if (_menuItem != null)
-                    {
-                        _menuItem.Checked = command.IsChecked;
-                    }
-                    break;
-
-                case CommandProperty.Text:
-                    _item.Text = command.Text;
-                    break;
-
-                case CommandProperty.TooltipText:
-                    _item.ToolTipText = command.TooltipText;
-                    break;
-
-                case CommandProperty.IsInvokable:
-                    var item = _item as AudioToolStripMenuItem;
-                    if (item != null)
-                    {
-                        item.AutoCloseOnClick = command.IsInvokable;
-                    }
-                    break;
-
-                case CommandProperty.Image:
-				default:
-                    Debug.Assert(propertyName == CommandProperty.Image);
-                    _item.Image = command.Image;
-                    break;
+                _item.Visible = command.IsVisible;
+                return;
+            }
+            else if (propertyName == CommandProperty.IsEnabled)
+            {
+                _item.Enabled = command.IsEnabled;
+                return;
+            }
+            else if (propertyName == CommandProperty.IsChecked)
+            {
+                if (_menuItem != null)
+                {
+                    _menuItem.Checked = command.IsChecked;
+                }
+                return;
+            }
+            else if (propertyName == CommandProperty.Text)
+            {
+                _item.Text = command.Text;
+                return;
+            }
+            else if (propertyName == CommandProperty.TooltipText)
+            {
+                _item.ToolTipText = command.TooltipText;
+                return;
+            }
+            else if (propertyName == CommandProperty.IsInvokable)
+            {
+                var item = _item as AudioToolStripMenuItem;
+                if (item != null)
+                {
+                    item.AutoCloseOnClick = command.IsInvokable;
+                }
+                return;
+            }
+            else if (propertyName == CommandProperty.Image)
+            {
+                _item.Image = command.Image;
+                return;
             }
         }
     }
