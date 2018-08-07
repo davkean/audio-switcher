@@ -57,6 +57,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationModel\Settings\ISettingService.cs" />
+    <Compile Include="ApplicationModel\Settings\JsonSettingsService.cs" />
     <Compile Include="ApplicationModel\StartupServiceAttribute.cs" />
     <Compile Include="Interop\MMAudio\IPolicyConfig2.cs" />
     <Compile Include="ComponentModel\ILifetime`2.cs" />
@@ -220,5 +222,8 @@
       <CustomToolNamespace>AudioSwitcher</CustomToolNamespace>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.3-build001580" />
   </ItemGroup>
 </Project>

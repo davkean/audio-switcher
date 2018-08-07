@@ -17,18 +17,18 @@ namespace AudioSwitcher.ApplicationModel
 
         public bool Startup()
         {
-            Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
+            //Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
             return true;
         }
 
         private void OnSettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            Settings.Default.Save();
+            //Settings.Default.Save();
         }
 
         public void Dispose()
         {
-            Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
+            //Settings.Default.PropertyChanged -= OnSettingsPropertyChanged;
         }
     }
 }

@@ -16,4 +16,19 @@
     <ProjectReference Include="..\AudioSwitcher\AudioSwitcher.csproj" />
   </ItemGroup>
 
+  <Target Name="_ResolveCopyLocalNuGetPackagePdbs"
+         Condition="$(CopyLocalLockFileAssemblies) == true"
+         AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths
+        Include="@(ReferenceCopyLocalPaths->'%(RootDir)%(Directory)%(Filename).pdb')"
+        Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' != ''
+                    and Exists('%(RootDir)%(Directory)%(Filename).pdb')" />
+      <ReferenceCopyLocalPaths
+        Include="@(ReferenceCopyLocalPaths->'%(RootDir)%(Directory)%(Filename).xml')"
+        Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' != ''
+                    and Exists('%(RootDir)%(Directory)%(Filename).xml')" />
+    </ItemGroup>
+  </Target>
+  
 </Project>
