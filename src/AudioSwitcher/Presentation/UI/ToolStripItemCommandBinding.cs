@@ -79,13 +79,13 @@ namespace AudioSwitcher.Presentation.UI
             if (e.ClickedItem != _item)
                 return;
 
-            if (_command.IsInvokable)
+            if (!_command.IsInvokable)
             {
-                _command.Run(_argument);
+                SystemSounds.Beep.Play();
             }
             else
             {
-                SystemSounds.Beep.Play();
+                _command.Run(_argument);
             }
         }
 
@@ -147,8 +147,7 @@ namespace AudioSwitcher.Presentation.UI
             }
             else if (propertyName == CommandProperty.IsInvokable)
             {
-                var item = _item as AudioToolStripMenuItem;
-                if (item != null)
+                if (_item is AudioToolStripMenuItem item)
                 {
                     item.AutoCloseOnClick = command.IsInvokable;
                 }
