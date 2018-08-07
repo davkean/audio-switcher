@@ -37,25 +37,25 @@ namespace AudioSwitcher.Audio.Interop
     internal struct PropVariant
     {
         [FieldOffset(0)] private short vt;
-        [FieldOffset(2)] private short wReserved1;
-        [FieldOffset(4)] private short wReserved2;
-        [FieldOffset(6)] private short wReserved3;
-        [FieldOffset(8)] private sbyte cVal;
-        [FieldOffset(8)] private byte bVal;
-        [FieldOffset(8)] private short iVal;
-        [FieldOffset(8)] private ushort uiVal;
-        [FieldOffset(8)] private int lVal;
-        [FieldOffset(8)] private uint ulVal;
-        [FieldOffset(8)] private int intVal;
-        [FieldOffset(8)] private uint uintVal;
+        [FieldOffset(2)] private readonly short wReserved1;
+        [FieldOffset(4)] private readonly short wReserved2;
+        [FieldOffset(6)] private readonly short wReserved3;
+        [FieldOffset(8)] private readonly sbyte cVal;
+        [FieldOffset(8)] private readonly byte bVal;
+        [FieldOffset(8)] private readonly short iVal;
+        [FieldOffset(8)] private readonly ushort uiVal;
+        [FieldOffset(8)] private readonly int lVal;
+        [FieldOffset(8)] private readonly uint ulVal;
+        [FieldOffset(8)] private readonly int intVal;
+        [FieldOffset(8)] private readonly uint uintVal;
         [FieldOffset(8)] private long hVal;
-        [FieldOffset(8)] private long uhVal;
-        [FieldOffset(8)] private float fltVal;
-        [FieldOffset(8)] private double dblVal;
-        [FieldOffset(8)] private bool boolVal;
-        [FieldOffset(8)] private int scode;
+        [FieldOffset(8)] private readonly long uhVal;
+        [FieldOffset(8)] private readonly float fltVal;
+        [FieldOffset(8)] private readonly double dblVal;
+        [FieldOffset(8)] private readonly bool boolVal;
+        [FieldOffset(8)] private readonly int scode;
         //CY cyVal;
-        [FieldOffset(8)] private DateTime date;
+        [FieldOffset(8)] private readonly DateTime date;
         [FieldOffset(8)] private System.Runtime.InteropServices.ComTypes.FILETIME filetime;
         //CLSID* puuid;
         //CLIPDATA* pclipdata;
@@ -63,7 +63,7 @@ namespace AudioSwitcher.Audio.Interop
         //BSTRBLOB bstrblobVal;
         [FieldOffset(8)] private Blob blobVal;
         //LPSTR pszVal;
-        [FieldOffset(8)] private IntPtr pointerValue; //LPWSTR 
+        [FieldOffset(8)] private readonly IntPtr pointerValue; //LPWSTR 
         //IUnknown* punkVal;
         /*IDispatch* pdispVal;
         IStream* pStream;
@@ -142,11 +142,11 @@ namespace AudioSwitcher.Audio.Interop
             var structSize = Marshal.SizeOf(singleInstance);
             if (blobByteLength%structSize != 0)
             {
-                throw new InvalidDataException(String.Format("Blob size {0} not a multiple of struct size {1}", blobByteLength, structSize));
+                throw new InvalidDataException(string.Format("Blob size {0} not a multiple of struct size {1}", blobByteLength, structSize));
             }
             var items = blobByteLength/structSize;
             var array = new T[items];
-            for (int n = 0; n < items; n++)
+            for (var n = 0; n < items; n++)
             {
                 array[n] = (T) Activator.CreateInstance(typeof (T));
                 Marshal.PtrToStructure(new IntPtr((long) blobVal.Data + n*structSize), array[n]);

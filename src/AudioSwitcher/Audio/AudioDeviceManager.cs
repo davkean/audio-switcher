@@ -55,8 +55,7 @@ namespace AudioSwitcher.Audio
 
         public AudioDeviceCollection GetAudioDevices(AudioDeviceKind kind, AudioDeviceState state)
         {
-            IMMDeviceCollection underlyingCollection;
-            int hr = _deviceEnumerator.EnumAudioEndpoints(kind, state, out underlyingCollection);
+            int hr = _deviceEnumerator.EnumAudioEndpoints(kind, state, out IMMDeviceCollection underlyingCollection);
             if (hr == HResult.OK)
                 return new AudioDeviceCollection(underlyingCollection);
 
@@ -85,8 +84,7 @@ namespace AudioSwitcher.Audio
             var config = new PolicyConfig();
 
             int hr;
-            IPolicyConfig2 config2 = config as IPolicyConfig2;
-            if (config2 != null)
+            if (config is IPolicyConfig2 config2)
             {   // Windows 7 -> Windows 8.1
                 hr = config2.SetDefaultEndpoint(device.Id, role);
             }
@@ -108,13 +106,12 @@ namespace AudioSwitcher.Audio
             if (defaultDevice == null)
                 return false;
 
-            return String.Equals(defaultDevice.Id, device.Id, StringComparison.OrdinalIgnoreCase);
+            return string.Equals(defaultDevice.Id, device.Id, StringComparison.OrdinalIgnoreCase);
         }
 
         public AudioDevice GetDefaultAudioDevice(AudioDeviceKind kind, AudioDeviceRole role)
         {
-            IMMDevice underlyingDevice;
-            int hr = _deviceEnumerator.GetDefaultAudioEndpoint(kind, role, out underlyingDevice);
+            int hr = _deviceEnumerator.GetDefaultAudioEndpoint(kind, role, out IMMDevice underlyingDevice);
             if (hr == HResult.OK)
                 return new AudioDevice(underlyingDevice);
 
@@ -129,8 +126,7 @@ namespace AudioSwitcher.Audio
             if (id == null)
                 throw new ArgumentNullException("id");
 
-            IMMDevice underlyingDevice;
-            int hr = _deviceEnumerator.GetDevice(id, out underlyingDevice);
+            int hr = _deviceEnumerator.GetDevice(id, out IMMDevice underlyingDevice);
             if (hr == HResult.OK)
                 return new AudioDevice(underlyingDevice);
 
@@ -144,7 +140,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DeviceStateChanged;
+                EventHandler<AudioDeviceStateEventArgs> handler = DeviceStateChanged;
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);
@@ -160,7 +156,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DeviceAdded;
+                EventHandler<AudioDeviceEventArgs> handler = DeviceAdded;
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);
@@ -176,11 +172,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DeviceRemoved;
-                if (handler != null)
-                {
-                    handler(this, new AudioDeviceRemovedEventArgs(deviceId));
-                }
+                DeviceRemoved?.Invoke(this, new AudioDeviceRemovedEventArgs(deviceId));
             });
         }
 
@@ -188,7 +180,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DefaultDeviceChanged;
+                EventHandler<DefaultAudioDeviceEventArgs> handler = DefaultDeviceChanged;
                 if (handler != null)
                 {
                     AudioDevice device = null;
@@ -204,7 +196,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DevicePropertyChanged;
+                EventHandler<AudioDeviceEventArgs> handler = DevicePropertyChanged;
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);

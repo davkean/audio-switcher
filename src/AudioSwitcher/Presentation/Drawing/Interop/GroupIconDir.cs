@@ -20,10 +20,12 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public IconDir ToIconDir()
         {
-            IconDir dir = new IconDir();
-            dir.Reserved = Reserved;
-            dir.Type = Type;
-            dir.Count = Count;
+            var dir = new IconDir
+            {
+                Reserved = Reserved,
+                Type = Type,
+                Count = Count
+            };
             return dir;
         }
     }

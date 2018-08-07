@@ -84,11 +84,13 @@ namespace AudioSwitcher.Presentation.UI.Views
 
         private bool IsOverClientArea(IntPtr hWnd, IntPtr wParam, IntPtr lParam)
         {
-            Message m = new Message();
-            m.HWnd = hWnd;
-            m.Msg = WM_NCHITTEST;
-            m.WParam = wParam;
-            m.LParam = lParam;
+            var m = new Message
+            {
+                HWnd = hWnd,
+                Msg = WM_NCHITTEST,
+                WParam = wParam,
+                LParam = lParam
+            };
 
             base.WndProc(ref m);
 

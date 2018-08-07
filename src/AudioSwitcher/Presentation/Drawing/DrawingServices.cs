@@ -15,7 +15,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
             Image copy = new Bitmap(size.Width, size.Height);
 
-            using (Graphics g = Graphics.FromImage(copy))
+            using (var g = Graphics.FromImage(copy))
             {
                 g.DrawImage(image, 0, 0);
                 // Overlay starting in the bottom right-hand corner

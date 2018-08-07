@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -17,10 +17,12 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public GroupIconDir ToGroupIconDir()
         {
-            GroupIconDir grpDir = new GroupIconDir();
-            grpDir.Reserved = Reserved;
-            grpDir.Type = Type;
-            grpDir.Count = Count;
+            var grpDir = new GroupIconDir
+            {
+                Reserved = Reserved,
+                Type = Type,
+                Count = Count
+            };
             return grpDir;
         }
     }

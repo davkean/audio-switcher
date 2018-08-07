@@ -29,11 +29,10 @@ namespace AudioSwitcher.Presentation.CommandModel
             Lifetime<ICommand> command;
             if (!_commandCache.TryGetValue(id, out command))
             {
-                bool cache;
-                command = CreateCommand(id, out cache);
+                command = CreateCommand(id, out bool cache);
 
                 if (cache)
-                {   
+                {
                     _commandCache.Add(id, command);
                 }
             }

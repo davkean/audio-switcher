@@ -53,8 +53,7 @@ namespace AudioSwitcher.Audio
 
         public bool TryGetDeviceDescription(out string result)
         {
-            object value;
-            if (Properties.TryGetValue(PropertyKeys.PKEY_Device_DeviceDesc, out value))
+            if (Properties.TryGetValue(PropertyKeys.PKEY_Device_DeviceDesc, out object value))
             {
                 result = (string)value;
                 return true;
@@ -66,8 +65,7 @@ namespace AudioSwitcher.Audio
 
         public bool TryGetFriendlyName(out string result)
         {
-            object value;
-            if (Properties.TryGetValue(PropertyKeys.PKEY_Device_FriendlyName, out value))
+            if (Properties.TryGetValue(PropertyKeys.PKEY_Device_FriendlyName, out object value))
             {
                 result = (string)value;
                 return true;
@@ -79,8 +77,7 @@ namespace AudioSwitcher.Audio
 
         public bool TryDeviceFriendlyName(out string result)
         {
-            object value;
-            if (Properties.TryGetValue(PropertyKeys.PKEY_DeviceInterface_FriendlyName, out value))
+            if (Properties.TryGetValue(PropertyKeys.PKEY_DeviceInterface_FriendlyName, out object value))
             {
                 result = (string)value;
                 return true;
@@ -92,8 +89,7 @@ namespace AudioSwitcher.Audio
 
         public bool TryGetDeviceClassIconPath(out string result)
         {
-            object value;
-            if (Properties.TryGetValue(PropertyKeys.PKEY_DeviceClass_IconPath, out value))
+            if (Properties.TryGetValue(PropertyKeys.PKEY_DeviceClass_IconPath, out object value))
             {
                 result = (string)value;
                 return true;
@@ -107,8 +103,7 @@ namespace AudioSwitcher.Audio
         {
             get
             {
-                string result;
-                Marshal.ThrowExceptionForHR(_underlyingDevice.GetId(out result));
+                Marshal.ThrowExceptionForHR(_underlyingDevice.GetId(out string result));
                 return result;
             }
         }
@@ -117,9 +112,8 @@ namespace AudioSwitcher.Audio
         {
             get
             {
-                AudioDeviceKind result;
                 var ep = (IMMEndpoint)_underlyingDevice;
-                ep.GetDataFlow(out result);
+                ep.GetDataFlow(out AudioDeviceKind result);
                 return result;
             }
         }
@@ -128,24 +122,21 @@ namespace AudioSwitcher.Audio
         {
             get
             {
-                AudioDeviceState result;
-                Marshal.ThrowExceptionForHR(_underlyingDevice.GetState(out result));
+                Marshal.ThrowExceptionForHR(_underlyingDevice.GetState(out AudioDeviceState result));
                 return result;
             }
         }
 
         public override string ToString()
         {
-            string result;
-            TryGetFriendlyName(out result);
+            TryGetFriendlyName(out string result);
 
             return result;
         }
 
         private PropertyStore OpenPropertyStore()
         {
-            IPropertyStore underlyingPropertyStore;
-            Marshal.ThrowExceptionForHR(_underlyingDevice.OpenPropertyStore(StorageAccessMode.Read, out underlyingPropertyStore));
+            Marshal.ThrowExceptionForHR(_underlyingDevice.OpenPropertyStore(StorageAccessMode.Read, out IPropertyStore underlyingPropertyStore));
             return new PropertyStore(underlyingPropertyStore);
         }
     }

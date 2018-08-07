@@ -12,7 +12,7 @@ namespace AudioSwitcher.UI.ViewModels
 {
     internal class AudioDeviceViewModel
     {
-        private static readonly Size IconSize = DpiServices.Scale(new Size(48, 48));
+        private static readonly Size s_iconSize = DpiServices.Scale(new Size(48, 48));
 
         private readonly AudioDevice _device;
 
@@ -88,8 +88,7 @@ namespace AudioSwitcher.UI.ViewModels
                 FriendlyName = TryGetOrDefault(_device.TryDeviceFriendlyName, FriendlyName);
                 DeviceStateFriendlyName = GetDeviceStateFriendlyName();
 
-                string iconPath;
-                if (_device.TryGetDeviceClassIconPath(out iconPath))
+                if (_device.TryGetDeviceClassIconPath(out string iconPath))
                 {
                     Image = GetImage(iconPath);
                 }
@@ -169,7 +168,7 @@ namespace AudioSwitcher.UI.ViewModels
                     return Resources.DeviceState_Unplugged;
             }
 
-            return String.Empty;
+            return string.Empty;
         }
 
         private Image GetImage(string iconPath)
@@ -210,12 +209,11 @@ namespace AudioSwitcher.UI.ViewModels
 
         private Icon GetIconFromDeviceIconPath(string iconPath)
         {
-            if (String.IsNullOrEmpty(iconPath))
+            if (string.IsNullOrEmpty(iconPath))
                 return null;
 
-            Icon icon;
-            if (String.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, IconSize, out icon))
-                return new Icon(Resources.FallbackDevice, IconSize);
+            if (string.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, s_iconSize, out Icon icon))
+                return new Icon(Resources.FallbackDevice, s_iconSize);
 
             return icon;
         }
@@ -266,8 +264,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         private static string TryGetOrDefault(TryDelegate getter, string defaultValue)
         {
-            string result;
-            if (getter(out result))
+            if (getter(out string result))
             {
                 return result;
             }

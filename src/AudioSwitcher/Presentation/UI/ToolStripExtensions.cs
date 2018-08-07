@@ -33,14 +33,13 @@ namespace AudioSwitcher.Presentation.UI
             if (item == null)
                 throw new ArgumentNullException("item");
             
-            ToolStripItemCommandBinding binding = (ToolStripItemCommandBinding)item.Tag;
+            var binding = (ToolStripItemCommandBinding)item.Tag;
             if (binding != null)
                 binding.Refresh();
 
             if (refreshChildren)
             {
-                ToolStripMenuItem menuItem = item as ToolStripMenuItem;
-                if (menuItem != null)
+                if (item is ToolStripMenuItem menuItem)
                 {
                     RefreshCommands(menuItem.DropDown);
                 }
@@ -93,7 +92,7 @@ namespace AudioSwitcher.Presentation.UI
 
         public static object GetArgument(this ToolStripItem item)
         {
-            ToolStripItemCommandBinding binding = (ToolStripItemCommandBinding)item.Tag;
+            var binding = (ToolStripItemCommandBinding)item.Tag;
             if (binding != null)
             {
                 return binding.Argument;

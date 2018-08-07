@@ -22,7 +22,7 @@ namespace AudioSwitcher.ApplicationModel
         ///     Gets or sets the priority in which the <see cref="IService"/> object's <see cref="IStartup.Startup"/> method 
         /// </summary>
         /// <value>
-        ///     An <see cref="Int32"/> containing the priority in which <see cref="IService"/> object's <see cref="IStartup.Startup"/> method is called. Lower is higher in priority.
+        ///     An <see cref="int"/> containing the priority in which <see cref="IService"/> object's <see cref="IStartup.Startup"/> method is called. Lower is higher in priority.
         /// </value>
         public int Priority
         {

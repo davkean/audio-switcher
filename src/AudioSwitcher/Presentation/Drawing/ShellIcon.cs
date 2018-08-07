@@ -50,8 +50,7 @@ namespace AudioSwitcher.Presentation.Drawing
             if (parts.Length == 1)
                 return ExtractIcon(parts[0]);
 
-            int index;
-            if (!Int32.TryParse(parts[1], out index))
+            if (!int.TryParse(parts[1], out int index))
                 throw new FormatException();
 
             if (index >= 0)
@@ -63,8 +62,7 @@ namespace AudioSwitcher.Presentation.Drawing
         private static Icon ExtractIcon(string fileName)
         {
             // Are we looking at an icon itself?
-            Icon icon;
-            if (TryExtractIconFromIco(fileName, out icon))
+            if (TryExtractIconFromIco(fileName, out Icon icon))
                 return icon;
 
             // Otherwise, fall back to the first icon in the file
