@@ -42,11 +42,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>AudioSwitcher.Program</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup>
     <ApplicationIcon>Resources\Images\Executable.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
     <ApplicationManifest>Properties\App.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
@@ -154,15 +150,11 @@
     <Compile Include="Presentation\Drawing\Interop\SafeModuleHandle.cs" />
     <Compile Include="Presentation\Drawing\ResourceName.cs" />
     <Compile Include="Presentation\Drawing\ShellIcon.cs" />
-    <Compile Include="Presentation\UI\AudioContextMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Presentation\UI\AudioContextMenuStrip.cs" />
     <Compile Include="Presentation\CommandModel\DisabledCommand.cs" />
     <Compile Include="UI\Commands\ShowPlaybackDevicesCommand.cs" />
     <Compile Include="UI\Commands\ShowRecordingDevicesCommand.cs" />
-    <Compile Include="Presentation\UI\AudioToolStripMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Presentation\UI\AudioToolStripMenuItem.cs" />
     <Compile Include="Presentation\UI\Interop\DllImports.cs" />
     <Compile Include="Interop\MMAudio\IPolicyConfig3.cs" />
     <Compile Include="UI\Presenters\NotificationIconContextMenuPresenter.cs" />
@@ -186,42 +178,15 @@
     <Compile Include="Presentation\UI\UIServices.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModelManager.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModelEventArgs.cs" />
-    <Compile Include="UI\Views\DeviceFlyoutView.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="UI\Views\DeviceFlyoutView.cs" />
     <Compile Include="Win32\InteropServices\Win32Marshal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Resources\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Win32\RegistryKeyExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\App.config" />
     <None Include="Properties\App.manifest" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>AudioSwitcher</CustomToolNamespace>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <CustomToolNamespace>AudioSwitcher</CustomToolNamespace>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Images\Disabled_16x16.png" />
     <None Include="Resources\Images\Unplugged_16x16.png" />
     <None Include="Resources\Images\NotificationArea.ico" />
@@ -232,5 +197,28 @@
     <None Include="Resources\Images\RecordingDevice_16x16.png" />
     <None Include="Resources\Images\NotPresent_16x16.png" />
     <None Include="Resources\Images\FallbackDevice.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>AudioSwitcher</CustomToolNamespace>
+    </None>
+    <EmbeddedResource Include="Resources\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>AudioSwitcher</CustomToolNamespace>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
