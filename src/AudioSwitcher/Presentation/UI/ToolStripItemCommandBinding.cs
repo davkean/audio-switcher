@@ -154,11 +154,6 @@ namespace AudioSwitcher.Presentation.UI
                 }
                 return;
             }
-            else if (propertyName == CommandProperty.Image)
-            {
-                _item.Image = command.Image;
-                return;
-            }
         }
     }
 }
