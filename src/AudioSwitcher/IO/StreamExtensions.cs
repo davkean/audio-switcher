@@ -12,9 +12,6 @@ namespace AudioSwitcher.IO
     {
         public static T Read<T>(this Stream stream) where T : struct
         {
-            if (stream == null)
-                throw new ArgumentNullException(nameof(stream));
-
             int size = Marshal.SizeOf(typeof(T));
             byte[] buffer = new byte[size];
             int bytesRead = stream.Read(buffer, 0, size);
