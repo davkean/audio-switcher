@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace AudioSwitch.Audio
+namespace AudioSwitcher.Win32
 {
     public class IntegerTests
     {
