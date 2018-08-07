@@ -16,7 +16,8 @@ namespace AudioSwitcher.IO
             byte[] buffer = new byte[size];
             int bytesRead = stream.Read(buffer, 0, size);
 
-            Debug.Assert(bytesRead == size);
+            if (bytesRead != size)
+                throw new InvalidDataException();
 
             IntPtr ptr = Marshal.AllocHGlobal(size);
 
