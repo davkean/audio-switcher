@@ -120,12 +120,10 @@ namespace AudioSwitcher.Presentation.UI
             if (propertyName == CommandProperty.IsVisible)
             {
                 _item.Visible = command.IsVisible;
-                return;
             }
             else if (propertyName == CommandProperty.IsEnabled)
             {
                 _item.Enabled = command.IsEnabled;
-                return;
             }
             else if (propertyName == CommandProperty.IsChecked)
             {
@@ -133,17 +131,14 @@ namespace AudioSwitcher.Presentation.UI
                 {
                     _menuItem.Checked = command.IsChecked;
                 }
-                return;
             }
             else if (propertyName == CommandProperty.Text)
             {
                 _item.Text = command.Text;
-                return;
             }
             else if (propertyName == CommandProperty.TooltipText)
             {
                 _item.ToolTipText = command.TooltipText;
-                return;
             }
             else if (propertyName == CommandProperty.IsInvokable)
             {
@@ -151,7 +146,6 @@ namespace AudioSwitcher.Presentation.UI
                 {
                     item.AutoCloseOnClick = command.IsInvokable;
                 }
-                return;
             }
         }
     }
