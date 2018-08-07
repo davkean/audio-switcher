@@ -7,7 +7,7 @@ namespace AudioSwitcher.UI.ViewModels
 {
     internal class AudioDeviceViewModelEventArgs
     {
-        private readonly AudioDeviceViewModel _viewModel;
+        private AudioDeviceViewModel _viewModel;
 
         public AudioDeviceViewModelEventArgs(AudioDeviceViewModel viewModel)
         {
