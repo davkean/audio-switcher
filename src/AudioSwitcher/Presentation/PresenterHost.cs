@@ -14,6 +14,23 @@ namespace AudioSwitcher.Presentation
     [Export(typeof(PresenterHost))]
     internal partial class PresenterHost
     {
+        private class PresenterLifetime<T> : Lifetime<T>, ILifetime<T, IPresenterMetadata>
+    where T : IPresenter
+        {
+            private IPresenterMetadata _metadata;
+
+            public PresenterLifetime(ExportLifetimeContext<IPresenter> presenter, IPresenterMetadata metadata)
+                : base(() => (T)presenter.Value, () => presenter.Dispose())
+            {
+                _metadata = metadata;
+            }
+
+            public IPresenterMetadata Metadata
+            {
+                get { return _metadata; }
+            }
+        }
+
         private readonly ExportFactory<IPresenter, IPresenterMetadata>[] _presenters;
         private readonly List<ILifetime<ContextMenuPresenter, IPresenterMetadata>> _openContextMenus = new List<ILifetime<ContextMenuPresenter, IPresenterMetadata>>();
 

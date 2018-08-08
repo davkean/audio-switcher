@@ -70,7 +70,6 @@
     <Compile Include="Presentation\PresenterAttribute.cs" />
     <Compile Include="Presentation\ContextMenuPresenter.cs" />
     <Compile Include="Presentation\Presenter.cs" />
-    <Compile Include="Presentation\PresenterHost.PresenterLifetime.cs" />
     <Compile Include="Presentation\PresenterHost.cs" />
     <Compile Include="Presentation\IPresenterMetadata.cs" />
     <Compile Include="ComponentModel\Lifetime.cs" />
