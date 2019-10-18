@@ -9,6 +9,7 @@ using Xunit;
 
 namespace AudioSwitcher.IO
 {
+    [Trait("", "UnitTests")]
     public class StreamExtensionsTests
     {
         [Fact]
@@ -27,8 +28,8 @@ namespace AudioSwitcher.IO
             {
                 StreamExtensions.Read<int>(null);
             });
-        }
-
+        }                        
+      
         [Theory]
         [InlineData(0)]
         [InlineData(1)]

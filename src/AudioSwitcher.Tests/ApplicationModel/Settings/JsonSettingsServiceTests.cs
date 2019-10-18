@@ -7,6 +7,7 @@ using Xunit;
 
 namespace AudioSwitcher.ApplicationModel.Settings
 {
+    [Trait("", "UnitTests")]
     public class JsonSettingsServiceTests
     {
         private readonly string _json =

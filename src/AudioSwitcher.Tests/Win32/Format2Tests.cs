@@ -3,6 +3,7 @@ using Xunit;
 
 namespace AudioSwitcher.Win32
 {
+    [Trait("", "Integration")]
     public class Format2Tests
 
     {

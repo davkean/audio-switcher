@@ -2,6 +2,7 @@
 
 namespace AudioSwitcher.Win32
 {
+    [Trait("", "Integration")]
     public class IntegerTests
     {
         [Fact] public void Test_0() { var dw = new Work(); Assert.IsType<int>(dw.GetInteger()); }

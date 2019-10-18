@@ -3,6 +3,7 @@ using Xunit;
 
 namespace AudioSwitcher.Win32
 {
+    [Trait("", "Integration")]
     public class DateTimeTests
     {
         [Fact] public void Test_0() { var dw = new Work(); Assert.IsType<DateTime>(dw.GetDateTime()); }
