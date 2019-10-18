@@ -1011,17 +1011,17 @@ namespace AudioSwitcher.Win32
 
         internal DateTime GetDateTime()
         {
-            return default(DateTime);
+            return default;
         }
 
         internal double GetDouble()
         {
-            return default(double);
+            return default;
         }
 
         internal int GetInteger()
         {
-            return default(int);
+            return default;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable IDE0059 // Unnecessary assignment of a value
+
+using System;
 using Xunit;
 
 namespace AudioSwitcher.Win32
@@ -7,7 +9,7 @@ namespace AudioSwitcher.Win32
     public class Format1Tests
 
     {
-        private static Random s_rand = new Random((int)DateTime.Now.Ticks);
+        private static readonly Random s_rand = new Random((int)DateTime.Now.Ticks);
 
         [Fact] public void Test_0() { var dw = new Work(); var i = s_rand.Next(); Assert.NotNull(dw); }
         [Fact] public void Test_1() { var dw = new Work(); var i = s_rand.Next(); Assert.NotNull(dw); }

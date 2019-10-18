@@ -28,7 +28,7 @@ namespace AudioSwitcher.IO
             {
                 StreamExtensions.Read<int>(null);
             });
-        }                        
+        }               
       
         [Theory]
         [InlineData(0)]

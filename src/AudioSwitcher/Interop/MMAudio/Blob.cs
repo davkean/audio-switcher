@@ -39,7 +39,9 @@ namespace AudioSwitcher.Audio.Interop
         //the warning for the whole project, it's a nice warning and we do want 
         //it in other places so we make a nice dummy function to keep the compiler
         //happy.
+#pragma warning disable IDE0051 // Remove unused private members
         private void FixCS0649()
+#pragma warning restore IDE0051 // Remove unused private members
         {
             Length = 0;
             Data = IntPtr.Zero;

@@ -22,7 +22,6 @@ namespace AudioSwitcher.UI.Presenters
     {
         private readonly AudioDeviceViewModelManager _viewModelManager;
         private readonly CommandManager _commandManager;
-        private readonly PresenterHost _presenterManager;
 
         [ImportingConstructor]
         public DeviceFlyoutPresenter(IApplication application, AudioDeviceViewModelManager viewModelManager, CommandManager commandManager, PresenterHost presenterManager)
@@ -30,7 +29,6 @@ namespace AudioSwitcher.UI.Presenters
         {
             _viewModelManager = viewModelManager;
             _commandManager = commandManager;
-            _presenterManager = presenterManager;
         }
 
         protected override AudioContextMenuStrip CreateContextMenu()
@@ -58,7 +56,7 @@ namespace AudioSwitcher.UI.Presenters
             RegisterHandlers(add:false);
         }
 
-        private void AddDeviceCommands(AudioDeviceKind kind, string noDeviceCommandId, bool firstRun = false)
+        private void AddDeviceCommands(AudioDeviceKind kind, string noDeviceCommandId)
         {
             AudioDeviceViewModel[] devices = GetDevices(kind);
             foreach (AudioDeviceViewModel device in devices)
