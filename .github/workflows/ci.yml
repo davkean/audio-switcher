@@ -21,7 +21,7 @@ jobs:
       run: nuget restore src\AudioSwitcher.sln
  
     - name: Build and Publish Web App
-      run: msbuild src\AudioSwitcher.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+      run: msbuild src\AudioSwitcher.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=src\AudioSwitcher\Properties\PublishProfiles\FolderProfile.pubxml
  
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
