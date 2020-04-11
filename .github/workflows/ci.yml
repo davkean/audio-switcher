@@ -8,9 +8,29 @@ jobs:
     runs-on: windows-latest
  
     steps:
-    - uses: actions/checkout@v1
-      name: Checkout Code
+    - name: Checkout
+      uses: actions/checkout@v2
      
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.2
+      with:
+          versionSpec: '5.2.x'
+    
+    - name: Use GitVersion
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9.2
+      
+    - name: Update project version
+      uses: roryprimrose/set-vs-sdk-project-version@v1
+      with:
+        version: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        assemblyVersion: ${{ steps.gitversion.outputs.assemblySemVer }}
+        fileVersion: ${{ steps.gitversion.outputs.majorMinorPatch }}
+        informationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}  
+    
     - name: Setup MSBuild Path
       uses: warrenbuckley/Setup-MSBuild@v1
        
@@ -26,5 +46,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: published_app
+        name: AudioSwitcher-${{ steps.gitversion.outputs.nuGetVersionV2 }}
         path: src\AudioSwitcher\bin\Release\net48\win7-x86\
