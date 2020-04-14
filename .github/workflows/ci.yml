@@ -50,10 +50,10 @@ jobs:
         path: src\AudioSwitcher\bin\Release\net48\win7-x86\
 
     - name: Create release package
-      uses: thedoctor0/zip-release@master
+      uses: papeloto/action-zip@v1
       with:
-        filename: publish\AudioSwitcher-${{ steps.gitversion.outputs.NuGetVersionV2 }}.zip
-        directory: src\AudioSwitcher\bin\Release\net48\win7-x86\
+        files: src\AudioSwitcher\bin\Release\net48\win7-x86\
+        dest: publish\AudioSwitcher-${{ steps.gitversion.outputs.NuGetVersionV2 }}.zip
         
     - name: Create Release
       id: create_release
