@@ -8,9 +8,29 @@ jobs:
     runs-on: windows-latest
  
     steps:
-    - uses: actions/checkout@v1
-      name: Checkout Code
+    - name: Checkout
+      uses: actions/checkout@v2
      
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.2
+      with:
+          versionSpec: '5.2.x'
+    
+    - name: Use GitVersion
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9.2
+
+    - name: Update project version
+      uses: roryprimrose/set-vs-sdk-project-version@v1
+      with:
+        version: ${{ steps.gitversion.outputs.NuGetVersionV2 }}
+        assemblyVersion: ${{ steps.gitversion.outputs.AssemblySemVer }}
+        fileVersion: ${{ steps.gitversion.outputs.MajorMinorPatch }}
+        informationalVersion: ${{ steps.gitversion.outputs.InformationalVersion }}  
+    
     - name: Setup MSBuild Path
       uses: warrenbuckley/Setup-MSBuild@v1
        
@@ -20,11 +40,42 @@ jobs:
     - name: Restore NuGet Packages
       run: nuget restore src\AudioSwitcher.sln
  
-    - name: Build and Publish Web App
-      run: msbuild src\AudioSwitcher.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+    - name: Build and Publish Application
+      run: msbuild src\AudioSwitcher.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=src\AudioSwitcher\Properties\PublishProfiles\FolderProfile.pubxml
  
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: published_app
-        path: src\AudioSwitcher\bin\Release\net48\publish\
+        name: AudioSwitcher-${{ steps.gitversion.outputs.NuGetVersionV2 }}
+        path: src\AudioSwitcher\bin\Release\net48\win7-x86\
+
+    - name: Create release package
+      uses: papeloto/action-zip@v1
+      with:
+        files: src\AudioSwitcher\bin\Release\net48\win7-x86\
+        dest: publish\AudioSwitcher-${{ steps.gitversion.outputs.NuGetVersionV2 }}.zip
+        
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.gitversion.outputs.NuGetVersionV2 }}
+        release_name: Release ${{ steps.gitversion.outputs.NuGetVersionV2 }}
+        draft: false
+        prerelease: ${{ contains(steps.gitversion.outputs.NuGetVersionV2, 'beta') }}
+      if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v')
+    
+    - name: Upload Release Asset
+      id: upload-release-asset-package
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: publish\AudioSwitcher-${{ steps.gitversion.outputs.NuGetVersionV2 }}.zip
+        asset_name: AudioSwitcher-${{ steps.gitversion.outputs.NuGetVersionV2 }}.zip
+        asset_content_type: application/zip
+      if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v')   
+      
