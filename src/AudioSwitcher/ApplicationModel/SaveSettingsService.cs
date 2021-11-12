@@ -15,7 +15,7 @@ namespace AudioSwitcher.ApplicationModel
         {
         }
 
-        public bool Startup()
+        public bool Run()
         {
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
             return true;

@@ -68,7 +68,7 @@ namespace AudioSwitcher.ApplicationModel
         {
             foreach (var service in _startupServices)
             {
-                if (!service.Value.Startup())
+                if (!service.Value.Run())
                 {
                     Shutdown();
                     break;

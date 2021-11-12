@@ -14,6 +14,6 @@ namespace AudioSwitcher.ApplicationModel
         /// <returns>
         ///     <see langword="true"/> if the application can start; otherwise, <see langword="false"/>.
         /// </returns>
-        bool Startup();
+        bool Run();
     }
 }

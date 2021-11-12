@@ -20,7 +20,7 @@ namespace AudioSwitcher.Audio
             _manager = manager;
         }
 
-        public bool Startup()
+        public bool Run()
         {
             _manager.DeviceStateChanged += OnDeviceStateChanged;
             return true;
