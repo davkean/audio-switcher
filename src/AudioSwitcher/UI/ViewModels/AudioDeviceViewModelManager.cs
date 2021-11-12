@@ -42,7 +42,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         protected virtual void OnViewModelPropertyChanged(AudioDeviceViewModelEventArgs e)
         {
-            var handler = ViewModelPropertyChanged;
+            EventHandler<AudioDeviceViewModelEventArgs> handler = ViewModelPropertyChanged;
             if (handler != null)
             {
                 handler(this, e);
@@ -51,7 +51,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         protected virtual void OnViewModelAdded(AudioDeviceViewModelEventArgs e)
         {
-            var handler = ViewModelAdded;
+            EventHandler<AudioDeviceViewModelEventArgs> handler = ViewModelAdded;
             if (handler != null)
             {
                 handler(this, e);
@@ -60,7 +60,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         protected virtual void OnViewModelRemoved(AudioDeviceViewModelEventArgs e)
         {
-            var handler = ViewModelRemoved;
+            EventHandler<AudioDeviceViewModelEventArgs> handler = ViewModelRemoved;
             if (handler != null)
             {
                 handler(this, e);

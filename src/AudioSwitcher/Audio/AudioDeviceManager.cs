@@ -144,7 +144,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DeviceStateChanged;
+                EventHandler<AudioDeviceStateEventArgs> handler = DeviceStateChanged;
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);
@@ -160,7 +160,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DeviceAdded;
+                EventHandler<AudioDeviceEventArgs> handler = DeviceAdded;
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);
@@ -176,7 +176,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DeviceRemoved;
+                EventHandler<AudioDeviceRemovedEventArgs> handler = DeviceRemoved;
                 if (handler != null)
                 {
                     handler(this, new AudioDeviceRemovedEventArgs(deviceId));
@@ -188,7 +188,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DefaultDeviceChanged;
+                EventHandler<DefaultAudioDeviceEventArgs> handler = DefaultDeviceChanged;
                 if (handler != null)
                 {
                     AudioDevice device = null;
@@ -204,7 +204,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                var handler = DevicePropertyChanged;
+                EventHandler<AudioDeviceEventArgs> handler = DevicePropertyChanged;
                 if (handler != null)
                 {
                     AudioDevice device = GetDevice(deviceId);

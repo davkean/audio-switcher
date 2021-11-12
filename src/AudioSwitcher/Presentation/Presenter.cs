@@ -19,7 +19,7 @@ namespace AudioSwitcher.Presentation
 
         protected virtual void OnClosed(EventArgs e)
         {
-            var handler = Closed;
+            EventHandler handler = Closed;
             if (handler != null)
             {
                 handler(this, e);

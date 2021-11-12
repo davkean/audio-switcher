@@ -135,7 +135,7 @@ namespace AudioSwitcher.Audio
 
             try
             {
-                var property = this[key];
+                PropertyStoreProperty property = this[key];
                 if (property == null || property.IsEmpty)
                     return false;
                 
