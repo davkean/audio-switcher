@@ -85,7 +85,7 @@ namespace AudioSwitcher.Audio
             var config = new PolicyConfig();
 
             int hr;
-            IPolicyConfig2 config2 = config as IPolicyConfig2;
+            var config2 = config as IPolicyConfig2;
             if (config2 != null)
             {   // Windows 7 -> Windows 8.1
                 hr = config2.SetDefaultEndpoint(device.Id, role);

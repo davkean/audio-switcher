@@ -17,7 +17,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public GroupIconDir ToGroupIconDir()
         {
-            GroupIconDir grpDir = new GroupIconDir();
+            var grpDir = new GroupIconDir();
             grpDir.Reserved = Reserved;
             grpDir.Type = Type;
             grpDir.Count = Count;

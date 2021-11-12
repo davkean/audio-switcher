@@ -274,7 +274,7 @@ namespace AudioSwitcher.Presentation.Drawing
                 throw new ArgumentNullException("icon");
 
             SourceIcon = icon;
-            MemoryStream inputStream = new MemoryStream();
+            var inputStream = new MemoryStream();
             SourceIcon.Save(inputStream);
 
             inputStream.Seek(0, SeekOrigin.Begin);
@@ -307,13 +307,13 @@ namespace AudioSwitcher.Presentation.Drawing
                 IconDirEntry newEntry = entry;
                 newEntry.ImageOffset = SizeOfIconDir + SizeOfIconDirEntry;
 
-                MemoryStream outputStream = new MemoryStream();
+                var outputStream = new MemoryStream();
                 outputStream.Write<IconDir>(newDir);
                 outputStream.Write<IconDirEntry>(newEntry);
                 outputStream.Write(content, 0, content.Length);
 
                 outputStream.Seek(0, SeekOrigin.Begin);
-                Icon newIcon = new Icon(outputStream);
+                var newIcon = new Icon(outputStream);
                 outputStream.Close();
 
                 Images.Add(newIcon);
@@ -346,7 +346,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
         private byte[] GetIconResourceData()
         {
-            using (MemoryStream outputStream = new MemoryStream())
+            using (var outputStream = new MemoryStream())
             {
                 outputStream.Write(GroupIconDir);
 

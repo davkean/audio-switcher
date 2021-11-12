@@ -61,7 +61,7 @@ namespace AudioSwitcher.Presentation.UI
 
         protected override void OnItemClicked(ToolStripItemClickedEventArgs e)
         {
-            AudioToolStripMenuItem item = e.ClickedItem as AudioToolStripMenuItem;
+            var item = e.ClickedItem as AudioToolStripMenuItem;
             if (item != null && !item.AutoCloseOnClick)
             {
                 _cancelNextAttemptedClose = true;
@@ -89,7 +89,7 @@ namespace AudioSwitcher.Presentation.UI
                 return new ToolStripSeparator();
             }
 
-            AudioToolStripMenuItem item = new AudioToolStripMenuItem
+            var item = new AudioToolStripMenuItem
             {
                 Text = text,
                 Image = image

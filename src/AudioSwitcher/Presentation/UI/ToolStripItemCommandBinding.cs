@@ -109,7 +109,7 @@ namespace AudioSwitcher.Presentation.UI
 
         private void OnCommandPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            Command command = (Command)sender;
+            var command = (Command)sender;
 
             SyncProperty(command, e.PropertyName);
         }
@@ -142,7 +142,7 @@ namespace AudioSwitcher.Presentation.UI
                     break;
 
                 case CommandProperty.IsInvokable:
-                    AudioToolStripMenuItem item = _item as AudioToolStripMenuItem;
+                    var item = _item as AudioToolStripMenuItem;
                     if (item != null)
                     {
                         item.AutoCloseOnClick = command.IsInvokable;

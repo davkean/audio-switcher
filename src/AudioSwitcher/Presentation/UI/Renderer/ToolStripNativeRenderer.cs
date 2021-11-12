@@ -286,7 +286,7 @@ namespace AudioSwitcher.Presentation.UI
         {
             if (EnsureRenderer())
             {
-                ToolStripSplitButton sb = (ToolStripSplitButton)e.Item;
+                var sb = (ToolStripSplitButton)e.Item;
 
                 base.OnRenderSplitButtonBackground(e);
 
@@ -380,7 +380,7 @@ namespace AudioSwitcher.Presentation.UI
             {
                 _renderer.SetParameters(MenuClass, (int)MenuParts.PopupSeparator, 0);
 
-                Rectangle rect = new Rectangle(e.ToolStrip.DisplayRectangle.Left - 4, 0, e.ToolStrip.DisplayRectangle.Width + 4, e.Item.Height);
+                var rect = new Rectangle(e.ToolStrip.DisplayRectangle.Left - 4, 0, e.ToolStrip.DisplayRectangle.Width + 4, e.Item.Height);
 
                 _renderer.DrawBackground(e.Graphics, rect, rect);
             }
@@ -418,7 +418,7 @@ namespace AudioSwitcher.Presentation.UI
                     checkRect.Y = backgroundRectangle.Y + backgroundRectangle.Height / 2 - checkRect.Height / 2;
 
 
-                    ToolStripMenuItem item = e.Item as ToolStripMenuItem;
+                    var item = e.Item as ToolStripMenuItem;
                     if (item != null && item.CheckState == CheckState.Indeterminate)
                     {
                         _renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheck, e.Item.Enabled ? (int)MenuPopupCheckStates.BulletNormal : (int)MenuPopupCheckStates.BulletDisabled);
@@ -439,11 +439,11 @@ namespace AudioSwitcher.Presentation.UI
 
         private bool IsRenderingImageCheck(ToolStripItem item)
         {
-            ToolStripMenuItem menuItem = item as ToolStripMenuItem;
+            var menuItem = item as ToolStripMenuItem;
             if (menuItem == null)
                 return false;
 
-            ToolStripDropDownMenu menu = menuItem.Owner as ToolStripDropDownMenu;
+            var menu = menuItem.Owner as ToolStripDropDownMenu;
 
             return (menu != null && !menu.ShowCheckMargin && menuItem.Image != null);
         }

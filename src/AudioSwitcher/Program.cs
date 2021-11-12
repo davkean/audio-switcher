@@ -15,7 +15,7 @@ namespace AudioSwitcher
         {
             var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
 
-            using (CompositionContainer container = new CompositionContainer(catalog))
+            using (var container = new CompositionContainer(catalog))
             {
                 IApplication application = container.GetExportedValue<IApplication>();
                 application.Start();

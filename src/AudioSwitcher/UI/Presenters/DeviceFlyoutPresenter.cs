@@ -82,7 +82,7 @@ namespace AudioSwitcher.UI.Presenters
             // TODO: This should be WM_CONTEXTMENU
 			if (e.Button == MouseButtons.Right)
 			{
-                AudioToolStripMenuItem item = (AudioToolStripMenuItem)sender;
+                var item = (AudioToolStripMenuItem)sender;
 				item.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultMultimediaDevice, item.GetArgument());
 				item.DropDown.BindCommand(_commandManager, CommandId.SetAsDefaultCommunicationDevice, item.GetArgument());
 				item.DropDownClosed += OnDropDownClosed;
@@ -93,7 +93,7 @@ namespace AudioSwitcher.UI.Presenters
 
 		private void OnDropDownClosed(object sender, EventArgs e)
 		{
-			ToolStripMenuItem item = (ToolStripMenuItem)sender;
+			var item = (ToolStripMenuItem)sender;
 			item.DropDownClosed -= OnDropDownClosed;
 			item.DropDown.Items.Clear();
 		}

@@ -22,7 +22,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public IconDirEntry ToIconDirEntry(int imageOffiset)
         {
-            IconDirEntry entry = new IconDirEntry();
+            var entry = new IconDirEntry();
             entry.Width = Width;
             entry.Height = Height;
             entry.ColorCount = ColorCount;

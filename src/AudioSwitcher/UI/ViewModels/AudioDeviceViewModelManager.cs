@@ -77,7 +77,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         private AudioDeviceViewModel AddViewModel(AudioDevice device)
         {
-            AudioDeviceViewModel model = new AudioDeviceViewModel(device);
+            var model = new AudioDeviceViewModel(device);
             model.UpdateStatus(_deviceManager);
 
             _viewModels.Add(model);

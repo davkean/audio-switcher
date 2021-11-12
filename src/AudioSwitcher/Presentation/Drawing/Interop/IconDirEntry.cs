@@ -22,7 +22,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public GroupIconDirEntry ToGroupIconDirEntry(int id)
         {
-            GroupIconDirEntry grpEntry = new GroupIconDirEntry();
+            var grpEntry = new GroupIconDirEntry();
             grpEntry.Width = Width;
             grpEntry.Height = Height;
             grpEntry.ColorCount = ColorCount;

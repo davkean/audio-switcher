@@ -25,7 +25,7 @@ namespace AudioSwitcher.IO
 
             Marshal.Copy(buffer, 0, ptr, size);
 
-            T result = (T)Marshal.PtrToStructure(ptr, typeof(T));
+            var result = (T)Marshal.PtrToStructure(ptr, typeof(T));
 
             Marshal.FreeHGlobal(ptr);
 
