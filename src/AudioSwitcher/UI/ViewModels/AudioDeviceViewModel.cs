@@ -1,9 +1,9 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
-using System;
 using System.Drawing;
 using System.Windows.Forms;
+
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.Drawing;
 using AudioSwitcher.Presentation.UI;

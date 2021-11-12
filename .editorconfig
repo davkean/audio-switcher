@@ -200,6 +200,10 @@ csharp_preserve_single_line_blocks = true
 # Code block
 csharp_prefer_braces = false:none
 
+# Microsoft.CodeAnalysis.VisualBasic.CodeStyle/Microsoft.CodeAnalysis.CSharp.CodeStyle
+dotnet_diagnostic.IDE0073.severity = error      # Enforce file header
+file_header_template = -----------------------------------------------------------------------\nCopyright (c) David Kean. All rights reserved.\n-----------------------------------------------------------------------
+
 [src/*Tests/**/*.cs]
 # We allow usage of "var" inside tests as it reduces churn as we remove/rename types
 csharp_style_var_for_built_in_types = true:none

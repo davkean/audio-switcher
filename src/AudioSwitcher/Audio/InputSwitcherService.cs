@@ -1,10 +1,11 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 using System;
 using System.ComponentModel.Composition;
+
 using AudioSwitcher.ApplicationModel;
-using AudioSwitcher.Audio;
 
 namespace AudioSwitcher.Audio
 {

@@ -1,9 +1,8 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 using System;
-using System.Linq;
-using System.ComponentModel;
 using System.Windows.Forms;
 using AudioSwitcher.ComponentModel;
 using AudioSwitcher.Presentation.CommandModel;

@@ -1,9 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 using System;
 using System.Runtime.InteropServices;
-using AudioSwitcher.Audio.Interop;
+
 using AudioSwitcher.Interop;
 
 namespace AudioSwitcher.Presentation.UI.Interop

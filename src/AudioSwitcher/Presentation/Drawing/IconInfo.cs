@@ -1,6 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean and Abdallah Gomah.
+﻿#pragma warning disable IDE0073 // The file header does not match the required text
 // -----------------------------------------------------------------------
+// Copyright (c) David Kean and Abdallah Gomah.  All rights reserved.
+// -----------------------------------------------------------------------
+#pragma warning restore IDE0073 // The file header does not match the required text
+
 using System;
 using System.Collections.Generic;
 using System.IO;

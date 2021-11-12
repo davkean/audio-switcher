@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean. All rights reserved.
+// -----------------------------------------------------------------------
+
+using System.Collections;
 /*
   LICENSE
   -------

@@ -1,4 +1,8 @@
-﻿/*
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean. All rights reserved.
+// -----------------------------------------------------------------------
+
+/*
   LICENSE
   -------
   Copyright (C) 2007 Ray Molenkamp
@@ -21,9 +25,7 @@
 */
 // adapted for use in AudioSwitcher
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Runtime.InteropServices;
 
 namespace AudioSwitcher.Audio.Interop

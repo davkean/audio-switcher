@@ -3,7 +3,6 @@
 // -----------------------------------------------------------------------
 using System;
 using System.ComponentModel.Composition;
-using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.Presentation.CommandModel
 {

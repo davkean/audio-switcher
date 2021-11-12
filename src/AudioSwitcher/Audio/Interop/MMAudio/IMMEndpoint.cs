@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean. All rights reserved.
+// -----------------------------------------------------------------------
+
+using System;
 using System.Runtime.InteropServices;
-using AudioSwitcher.Audio;
 
 namespace AudioSwitcher.Audio.Interop
 {

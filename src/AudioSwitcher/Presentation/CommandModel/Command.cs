@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 using System;
-using System.ComponentModel;
 using System.Drawing;
-using System.Runtime.CompilerServices;
+
 using AudioSwitcher.ComponentModel;
 
 namespace AudioSwitcher.Presentation.CommandModel

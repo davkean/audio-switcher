@@ -1,6 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+// -----------------------------------------------------------------------
+// Copyright (c) David Kean. All rights reserved.
+// -----------------------------------------------------------------------
+
 using System.Runtime.InteropServices;
 using BYTE = System.Byte;
 using WORD = System.Int16;

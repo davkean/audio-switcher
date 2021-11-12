@@ -1,8 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
-using System;
-using AudioSwitcher.Win32.InteropServices;
 
 namespace AudioSwitcher.Interop
 {

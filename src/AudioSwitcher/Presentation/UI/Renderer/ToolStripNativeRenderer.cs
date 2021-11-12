@@ -1,6 +1,7 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 // Thanks for fixes:
 //  * Marco Minerva, jachymko - http://www.codeplex.com/windowsformsaero
 //  * Ben Ryves - http://www.benryves.com///
@@ -12,9 +13,9 @@
 
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+
 using AudioSwitcher.Presentation.UI.Interop;
 
 namespace AudioSwitcher.Presentation.UI
