@@ -270,10 +270,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
         private void LoadIconInfo(Icon icon)
         {
-            if (icon == null)
-                throw new ArgumentNullException("icon");
-
-            SourceIcon = icon;
+            SourceIcon = icon ?? throw new ArgumentNullException("icon");
             var inputStream = new MemoryStream();
             SourceIcon.Save(inputStream);
 

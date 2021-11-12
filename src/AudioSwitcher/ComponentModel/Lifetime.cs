@@ -12,10 +12,7 @@ namespace AudioSwitcher.ComponentModel
 
         public Lifetime(Func<T> instanceGetter, Action disposer)
         {
-            if (instanceGetter == null)
-                throw new ArgumentNullException("instanceGetter");
-
-            _instanceGetter = instanceGetter;
+            _instanceGetter = instanceGetter ?? throw new ArgumentNullException("instanceGetter");
             _disposer = disposer;
         }
 
