@@ -18,7 +18,7 @@ namespace AudioSwitcher.ApplicationModel
             _presenterHost = presenterHost;
         }
 
-        public bool Startup()
+        public bool Run()
         {
             _presenterHost.Show(PresenterId.NotificationIcon);
             return true;

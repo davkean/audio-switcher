@@ -21,7 +21,7 @@ namespace AudioSwitcher.ApplicationModel
             _mutex = new Mutex(true, mutexName, out _isFirstInstance);
         }
 
-        public bool Startup()
+        public bool Run()
         {
             return _isFirstInstance;
         }
