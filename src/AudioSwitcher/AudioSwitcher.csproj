@@ -73,6 +73,11 @@
     <Compile Include="Presentation\CommandModel\CommandAttribute.cs" />
     <Compile Include="Presentation\UI\DpiServices.cs" />
     <Compile Include="Presentation\UI\Renderer\DeviceFlyoutRenderer.cs" />
+    <Compile Include="Resources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StringComparers.cs" />
     <Compile Include="UI\Commands\CommandId.cs" />
     <Compile Include="ApplicationModel\IApplication.cs" />
@@ -184,11 +189,6 @@
     <Compile Include="Win32\InteropServices\Win32Marshal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Resources\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -214,15 +214,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images\Disabled_16x16.png" />
-    <None Include="Resources\Images\Unplugged_16x16.png" />
     <None Include="Resources\Images\NotificationArea.ico" />
     <None Include="Resources\Images\DefaultCommunicationsDevice_16x16.png" />
     <None Include="Resources\Images\DefaultMultimediaDevice_16x16.png" />
     <None Include="Resources\Images\Executable.ico" />
-    <None Include="Resources\Images\PlaybackDevice_16x16.png" />
-    <None Include="Resources\Images\RecordingDevice_16x16.png" />
-    <None Include="Resources\Images\NotPresent_16x16.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

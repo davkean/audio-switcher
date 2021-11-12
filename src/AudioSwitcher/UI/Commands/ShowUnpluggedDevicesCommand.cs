@@ -15,7 +15,6 @@ namespace AudioSwitcher.UI.Commands
         public ShowUnpluggedDevicesCommand()
         {
             Text = Resources.ShowUnpluggedDevices;
-            Image = Resources.Unplugged;
         }
 
         public override void Refresh()
