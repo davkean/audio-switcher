@@ -122,8 +122,8 @@ namespace AudioSwitcher.Presentation.UI
         {
 
             foreach (Control control in toolStripPanel.Controls)
-                if (control is ToolStrip)
-                    Initialize((ToolStrip)control);
+                if (control is ToolStrip strip)
+                    Initialize(strip);
 
             base.InitializePanel(toolStripPanel);
         }
