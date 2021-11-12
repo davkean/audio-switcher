@@ -431,7 +431,6 @@ namespace AudioSwitcher.Presentation.UI
             if (!(item is ToolStripMenuItem menuItem))
                 return false;
 
-
             return (menuItem.Owner is ToolStripDropDownMenu menu && !menu.ShowCheckMargin && menuItem.Image != null);
         }
 

@@ -59,7 +59,7 @@ namespace AudioSwitcher.Presentation.UI.Renderer
 			base.OnRenderItemText(new ToolStripItemTextRenderEventArgs(e.Graphics, e.Item, string.Concat(text[0], Environment.NewLine, Environment.NewLine), e.TextRectangle, e.TextColor, e.TextFont, e.TextFormat));
 
 			// Then render, the bottom two lines in gray text
-			TextRenderer.DrawText(e.Graphics, string.Concat(Environment.NewLine, text[1], Environment.NewLine, text[2]), e.TextFont, e.TextRectangle, SystemColors.GrayText, e.TextFormat);
+			TextRenderer.DrawText(e.Graphics, string.Concat(Environment.NewLine, text[1], Environment.NewLine, text[2]), e.TextFont, e.TextRectangle, e.Item.Selected ? SystemColors.HighlightText : SystemColors.GrayText, e.TextFormat);
         }
 
         protected override Rectangle GetBackgroundRectangle(ToolStripItem item)
