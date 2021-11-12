@@ -18,8 +18,7 @@ namespace AudioSwitcher.Presentation.Drawing
             using (var g = Graphics.FromImage(copy))
             {
                 g.DrawImage(image, 0, 0);
-                // Overlay starting in the bottom right-hand corner
-                g.DrawImage(overlayImage, size.Width - overlayImage.Width, size.Height - overlayImage.Height, overlayImage.Width, overlayImage.Height);
+                g.DrawImage(overlayImage, 0, 0);
                 g.Save();
 
                 return copy;
