@@ -39,8 +39,7 @@ namespace AudioSwitcher.Presentation.UI
 
             if (refreshChildren)
             {
-                var menuItem = item as ToolStripMenuItem;
-                if (menuItem != null)
+                if (item is ToolStripMenuItem menuItem)
                 {
                     RefreshCommands(menuItem.DropDown);
                 }

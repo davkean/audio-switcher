@@ -142,8 +142,7 @@ namespace AudioSwitcher.Presentation.UI
                     break;
 
                 case CommandProperty.IsInvokable:
-                    var item = _item as AudioToolStripMenuItem;
-                    if (item != null)
+                    if (_item is AudioToolStripMenuItem item)
                     {
                         item.AutoCloseOnClick = command.IsInvokable;
                     }

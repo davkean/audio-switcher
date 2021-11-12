@@ -418,8 +418,7 @@ namespace AudioSwitcher.Presentation.UI
                     checkRect.Y = backgroundRectangle.Y + backgroundRectangle.Height / 2 - checkRect.Height / 2;
 
 
-                    var item = e.Item as ToolStripMenuItem;
-                    if (item != null && item.CheckState == CheckState.Indeterminate)
+                    if (e.Item is ToolStripMenuItem item && item.CheckState == CheckState.Indeterminate)
                     {
                         _renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheck, e.Item.Enabled ? (int)MenuPopupCheckStates.BulletNormal : (int)MenuPopupCheckStates.BulletDisabled);
                     }
@@ -439,13 +438,11 @@ namespace AudioSwitcher.Presentation.UI
 
         private bool IsRenderingImageCheck(ToolStripItem item)
         {
-            var menuItem = item as ToolStripMenuItem;
-            if (menuItem == null)
+            if (!(item is ToolStripMenuItem menuItem))
                 return false;
 
-            var menu = menuItem.Owner as ToolStripDropDownMenu;
 
-            return (menu != null && !menu.ShowCheckMargin && menuItem.Image != null);
+            return (menuItem.Owner is ToolStripDropDownMenu menu && !menu.ShowCheckMargin && menuItem.Image != null);
         }
 
         protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)

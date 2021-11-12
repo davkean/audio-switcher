@@ -61,8 +61,7 @@ namespace AudioSwitcher.Presentation.UI
 
         protected override void OnItemClicked(ToolStripItemClickedEventArgs e)
         {
-            var item = e.ClickedItem as AudioToolStripMenuItem;
-            if (item != null && !item.AutoCloseOnClick)
+            if (e.ClickedItem is AudioToolStripMenuItem item && !item.AutoCloseOnClick)
             {
                 _cancelNextAttemptedClose = true;
             }
