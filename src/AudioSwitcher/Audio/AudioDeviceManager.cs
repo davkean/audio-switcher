@@ -173,11 +173,7 @@ namespace AudioSwitcher.Audio
         {
             InvokeOnSynchronizationContext(() =>
             {
-                EventHandler<AudioDeviceRemovedEventArgs> handler = DeviceRemoved;
-                if (handler != null)
-                {
-                    handler(this, new AudioDeviceRemovedEventArgs(deviceId));
-                }
+                DeviceRemoved?.Invoke(this, new AudioDeviceRemovedEventArgs(deviceId));
             });
         }
 

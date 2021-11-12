@@ -26,10 +26,7 @@ namespace AudioSwitcher.ComponentModel
 
         public void Dispose()
         {
-            if (_disposer != null)
-            {
-                _disposer();
-            }
+            _disposer?.Invoke();
         }
     }
 }
