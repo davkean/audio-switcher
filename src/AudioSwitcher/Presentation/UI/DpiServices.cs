@@ -10,7 +10,7 @@ namespace AudioSwitcher.Presentation.UI
     internal static class DpiServices
     {
         private const double LogicalDpi = 96.0;
-        private static readonly Lazy<SizeF> _scalingFactor = new Lazy<SizeF>(CalculateScalingFactor);
+        private static readonly Lazy<SizeF> ScalingFactor = new Lazy<SizeF>(CalculateScalingFactor);
 
         public static Size Scale(Size size)
         {
@@ -19,12 +19,12 @@ namespace AudioSwitcher.Presentation.UI
 
         public static int ScaleX(int value)
         {
-            return (int)Math.Round(_scalingFactor.Value.Width * (float)value);
+            return (int)Math.Round(ScalingFactor.Value.Width * (float)value);
         }
 
         public static int ScaleY(int value)
         {
-            return (int)Math.Round(_scalingFactor.Value.Height * (float)value);
+            return (int)Math.Round(ScalingFactor.Value.Height * (float)value);
         }
 
         private static SizeF CalculateScalingFactor()
