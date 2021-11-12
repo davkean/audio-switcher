@@ -1,4 +1,8 @@
-﻿namespace AudioSwitcher.Audio
+﻿// -----------------------------------------------------------------------
+// Copyright (c) David Kean. All rights reserved.
+// -----------------------------------------------------------------------
+
+namespace AudioSwitcher.Audio
 {
     /// <summary>
     /// The EDataFlow enumeration defines constants that indicate the direction 

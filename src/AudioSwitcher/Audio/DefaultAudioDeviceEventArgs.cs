@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
 
 namespace AudioSwitcher.Audio

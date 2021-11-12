@@ -1,6 +1,7 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 using System;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;

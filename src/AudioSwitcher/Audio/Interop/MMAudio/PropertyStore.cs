@@ -1,7 +1,7 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
-// This source file was altered for use in AudioSwitcher.
+
 /*
   LICENSE
   -------

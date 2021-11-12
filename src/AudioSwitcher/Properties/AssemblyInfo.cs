@@ -1,6 +1,7 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;

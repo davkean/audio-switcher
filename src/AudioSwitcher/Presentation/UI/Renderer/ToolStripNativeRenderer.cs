@@ -1,6 +1,7 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 // Thanks for fixes:
 //  * Marco Minerva, jachymko - http://www.codeplex.com/windowsformsaero
 //  * Ben Ryves - http://www.benryves.com///

@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------
-// Copyright (c) David Kean and Abdallah Gomah.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+
 using System;
 using System.Runtime.InteropServices;
 

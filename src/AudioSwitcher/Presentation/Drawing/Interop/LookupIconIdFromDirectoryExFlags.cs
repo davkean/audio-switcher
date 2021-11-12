@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// Copyright (c) David Kean and Abdallah Gomah.
+// Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
 
 namespace AudioSwitcher.Presentation.Drawing.Interop

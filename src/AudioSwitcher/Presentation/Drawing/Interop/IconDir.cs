@@ -1,3 +1,7 @@
+// -----------------------------------------------------------------------
+// Copyright (c) David Kean. All rights reserved.
+// -----------------------------------------------------------------------
+
 using System.Runtime.InteropServices;
 
 using WORD = System.Int16;
