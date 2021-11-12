@@ -12,6 +12,7 @@
 // http://wyday.com/blog/2009/making-the-menus-in-your-net-app-look-professional/
 
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -392,46 +393,27 @@ namespace AudioSwitcher.Presentation.UI
                 if (e.Item.RightToLeft == RightToLeft.Yes)
                     backgroundRectangle = new Rectangle(e.ToolStrip.ClientSize.Width - backgroundRectangle.X - backgroundRectangle.Width, backgroundRectangle.Y, backgroundRectangle.Width, backgroundRectangle.Height);
 
-                bool isRendereringImageCheck = IsRenderingImageCheck(e.Item);
-
-                // WORKAROUND: On Windows 8.1 (not sure about anywhere else), the check background has the wrong 
-                // border, see #29, instead we just use the same border as the hover state of a menu item
-                //_renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheckBackground, e.Item.Enabled ? (isRendereringImageCheck ? (int)MenuPopupCheckBackgroundStates.Bitmap : (int)MenuPopupCheckBackgroundStates.Normal) : (int)MenuPopupCheckBackgroundStates.Disabled);
-
-                _renderer.SetParameters(MenuClass, (int)MenuParts.PopupItem, e.Item.Enabled ? (int)MenuPopupItemStates.Hover : (int)MenuPopupItemStates.DisabledHover);
                 _renderer.DrawBackground(e.Graphics, backgroundRectangle);
 
-                if (!isRendereringImageCheck)
+                Rectangle checkRect = e.ImageRectangle;
+                checkRect.X = backgroundRectangle.X + backgroundRectangle.Width / 2 - checkRect.Width / 2;
+                checkRect.Y = backgroundRectangle.Y + backgroundRectangle.Height / 2 - checkRect.Height / 2;
+
+                if (e.Item is ToolStripMenuItem item && item.CheckState == CheckState.Indeterminate)
                 {
-                    Rectangle checkRect = e.ImageRectangle;
-                    checkRect.X = backgroundRectangle.X + backgroundRectangle.Width / 2 - checkRect.Width / 2;
-                    checkRect.Y = backgroundRectangle.Y + backgroundRectangle.Height / 2 - checkRect.Height / 2;
-
-
-                    if (e.Item is ToolStripMenuItem item && item.CheckState == CheckState.Indeterminate)
-                    {
-                        _renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheck, e.Item.Enabled ? (int)MenuPopupCheckStates.BulletNormal : (int)MenuPopupCheckStates.BulletDisabled);
-                    }
-                    else
-                    {
-                        _renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheck, e.Item.Enabled ? (int)MenuPopupCheckStates.CheckmarkNormal : (int)MenuPopupCheckStates.CheckmarkDisabled);
-                    }
-
-                    _renderer.DrawBackground(e.Graphics, checkRect);
+                    _renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheck, e.Item.Enabled ? (int)MenuPopupCheckStates.BulletNormal : (int)MenuPopupCheckStates.BulletDisabled);
                 }
+                else
+                {
+                    _renderer.SetParameters(MenuClass, (int)MenuParts.PopupCheck, e.Item.Enabled ? (int)MenuPopupCheckStates.CheckmarkNormal : (int)MenuPopupCheckStates.CheckmarkDisabled);
+                }
+
+                _renderer.DrawBackground(e.Graphics, checkRect);
             }
             else
             {
                 base.OnRenderItemCheck(e);
             }
-        }
-
-        private bool IsRenderingImageCheck(ToolStripItem item)
-        {
-            if (!(item is ToolStripMenuItem menuItem))
-                return false;
-
-            return (menuItem.Owner is ToolStripDropDownMenu menu && !menu.ShowCheckMargin && menuItem.Image != null);
         }
 
         protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
