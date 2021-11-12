@@ -23,17 +23,11 @@ namespace AudioSwitcher.Presentation.UI
 
         public ToolStripItemCommandBinding(ToolStripDropDown dropDown, ToolStripItem item, Lifetime<ICommand> command, object argument)
         {
-            if (dropDown == null)
-                throw new ArgumentNullException("dropDown");
-
-            if (item == null)
-                throw new ArgumentNullException("item");
-
             if (command == null)
                 throw new ArgumentNullException("command");
 
-            _dropDown = dropDown;
-            _item = item;
+            _dropDown = dropDown ?? throw new ArgumentNullException("dropDown");
+            _item = item ?? throw new ArgumentNullException("item");
             _menuItem = item as ToolStripMenuItem;
             _command = command.Instance;
             _lifetime = command;
@@ -109,7 +103,7 @@ namespace AudioSwitcher.Presentation.UI
 
         private void OnCommandPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            Command command = (Command)sender;
+            var command = (Command)sender;
 
             SyncProperty(command, e.PropertyName);
         }
@@ -142,8 +136,7 @@ namespace AudioSwitcher.Presentation.UI
                     break;
 
                 case CommandProperty.IsInvokable:
-                    AudioToolStripMenuItem item = _item as AudioToolStripMenuItem;
-                    if (item != null)
+                    if (_item is AudioToolStripMenuItem item)
                     {
                         item.AutoCloseOnClick = command.IsInvokable;
                     }

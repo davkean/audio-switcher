@@ -46,7 +46,7 @@ namespace AudioSwitcher.UI.Commands
 
         private string GetDisplayText(AudioDeviceViewModel viewModel)
         {
-            StringBuilder text = new StringBuilder();
+            var text = new StringBuilder();
             text.AppendLine(viewModel.Description);         // Headphones (Black)
             text.AppendLine(viewModel.FriendlyName);        // High Definition Audio Device
             text.Append(viewModel.DeviceStateFriendlyName); // Ready

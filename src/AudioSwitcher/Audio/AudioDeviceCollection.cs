@@ -40,8 +40,7 @@ namespace AudioSwitcher.Audio
         {
             get
             {
-                int result;
-                Marshal.ThrowExceptionForHR(_underlyingCollection.GetCount(out result));
+                Marshal.ThrowExceptionForHR(_underlyingCollection.GetCount(out int result));
                 return result;
             }
         }
@@ -50,9 +49,8 @@ namespace AudioSwitcher.Audio
         {
             get
             {
-                IMMDevice underlyingDevice;
-                Marshal.ThrowExceptionForHR(_underlyingCollection.Item(index, out underlyingDevice));
-                
+                Marshal.ThrowExceptionForHR(_underlyingCollection.Item(index, out IMMDevice underlyingDevice));
+
                 return new AudioDevice(underlyingDevice);
             }
         }

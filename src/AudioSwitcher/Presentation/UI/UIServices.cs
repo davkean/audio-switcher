@@ -37,8 +37,8 @@ namespace AudioSwitcher.Presentation.UI
 
         public static bool BelongToSameScreen(Point point1, Point point2)
         {
-            Screen screen1 = Screen.FromPoint(point1);
-            Screen screen2 = Screen.FromPoint(point2);
+            var screen1 = Screen.FromPoint(point1);
+            var screen2 = Screen.FromPoint(point2);
 
             return screen1.Equals(screen2);
         }

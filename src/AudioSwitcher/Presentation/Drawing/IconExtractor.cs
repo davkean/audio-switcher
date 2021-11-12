@@ -69,7 +69,7 @@ namespace AudioSwitcher.Presentation.Drawing
             if (moduleHandle.IsInvalid)
                 throw Win32Marshal.GetExceptionForLastWin32Error(fileName);
 
-            List<ResourceName> iconNames = new List<ResourceName>();
+            var iconNames = new List<ResourceName>();
             DllImports.EnumResourceNames(moduleHandle, ResourceTypes.RT_GROUP_ICON, (hModule, lpszType, lpszName, lParam) =>
                 {
                     if (lpszType == ResourceTypes.RT_GROUP_ICON)
@@ -85,7 +85,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public static Icon ExtractIconByIndex(string fileName, int index)
         {
-            using (IconExtractor extractor = IconExtractor.Open(fileName))
+            using (var extractor = IconExtractor.Open(fileName))
             {
                 if (index < 0)
                     throw new ArgumentOutOfRangeException("index");
@@ -99,7 +99,7 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public static Icon ExtractIconById(string fileName, int id)
         {
-            using (IconExtractor extractor = IconExtractor.Open(fileName))
+            using (var extractor = IconExtractor.Open(fileName))
             {
                 if (id < 0)
                     throw new ArgumentOutOfRangeException("index");
@@ -125,10 +125,10 @@ namespace AudioSwitcher.Presentation.Drawing
         /// <returns>Returns System.Drawing.Icon.</returns>
         private Icon GetIconFromLib(int index)
         {
-            byte[] resourceData = GetResourceData(this.ModuleHandle, this.IconNames[index], ResourceTypes.RT_GROUP_ICON);
+            byte[] resourceData = GetResourceData(ModuleHandle, IconNames[index], ResourceTypes.RT_GROUP_ICON);
             //Convert the resouce into an .ico file image.
-            using (MemoryStream inputStream = new MemoryStream(resourceData))
-            using (MemoryStream destStream = new MemoryStream())
+            using (var inputStream = new MemoryStream(resourceData))
+            using (var destStream = new MemoryStream())
             {
                 //Read the GroupIconDir header.
                 GroupIconDir grpDir = inputStream.Read<GroupIconDir>();
@@ -147,7 +147,7 @@ namespace AudioSwitcher.Presentation.Drawing
                     destStream.Write<IconDirEntry>(grpEntry.ToIconDirEntry(iconImageOffset));
 
                     //Get the icon image raw data and write it to the stream.
-                    byte[] imgBuf = GetResourceData(this.ModuleHandle, grpEntry.ID, ResourceTypes.RT_ICON);
+                    byte[] imgBuf = GetResourceData(ModuleHandle, grpEntry.ID, ResourceTypes.RT_ICON);
                     destStream.Seek(iconImageOffset, SeekOrigin.Begin);
                     destStream.Write(imgBuf, 0, imgBuf.Length);
                     

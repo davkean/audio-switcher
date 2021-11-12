@@ -11,10 +11,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         public AudioDeviceViewModelEventArgs(AudioDeviceViewModel viewModel)
         {
-            if (viewModel == null)
-                throw new ArgumentNullException("viewModel");
-
-            _viewModel = viewModel;
+            _viewModel = viewModel ?? throw new ArgumentNullException("viewModel");
         }
 
         public AudioDeviceViewModel ViewModel

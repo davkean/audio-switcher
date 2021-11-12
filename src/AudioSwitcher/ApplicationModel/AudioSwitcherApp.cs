@@ -66,7 +66,7 @@ namespace AudioSwitcher.ApplicationModel
 
         private void RunStartupServices()
         {
-            foreach (var service in _startupServices)
+            foreach (Lazy<IStartupService, IPriorityMetadata> service in _startupServices)
             {
                 if (!service.Value.Startup())
                 {

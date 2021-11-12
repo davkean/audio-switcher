@@ -60,7 +60,7 @@ namespace AudioSwitcher.Presentation
 
         private bool CloseOpenContextMenu(string id)
         {
-            foreach (var contextMenu in _openContextMenus.ToArray())
+            foreach (ILifetime<ContextMenuPresenter, IPresenterMetadata> contextMenu in _openContextMenus.ToArray())
             {
                 // Current context menu is a toggle and is already
                 // open, let's close it instead of opening another
@@ -78,7 +78,7 @@ namespace AudioSwitcher.Presentation
         {
             ExportFactory<IPresenter, IPresenterMetadata> factory = FindPresenterFactory(id);
 
-            var presenter = factory.CreateExport();
+            ExportLifetimeContext<IPresenter> presenter = factory.CreateExport();
 
             return new PresenterLifetime<TPresenter>(presenter, factory.Metadata);
         }

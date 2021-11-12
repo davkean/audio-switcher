@@ -22,14 +22,14 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public GroupIconDirEntry ToGroupIconDirEntry(int id)
         {
-            GroupIconDirEntry grpEntry = new GroupIconDirEntry();
-            grpEntry.Width = this.Width;
-            grpEntry.Height = this.Height;
-            grpEntry.ColorCount = this.ColorCount;
-            grpEntry.Reserved = this.Reserved;
-            grpEntry.Planes = this.Planes;
-            grpEntry.BitCount = this.BitCount;
-            grpEntry.BytesInRes = this.BytesInRes;
+            var grpEntry = new GroupIconDirEntry();
+            grpEntry.Width = Width;
+            grpEntry.Height = Height;
+            grpEntry.ColorCount = ColorCount;
+            grpEntry.Reserved = Reserved;
+            grpEntry.Planes = Planes;
+            grpEntry.BitCount = BitCount;
+            grpEntry.BytesInRes = BytesInRes;
             grpEntry.ID = (short)id;
             return grpEntry;
         }

@@ -42,29 +42,17 @@ namespace AudioSwitcher.UI.ViewModels
 
         protected virtual void OnViewModelPropertyChanged(AudioDeviceViewModelEventArgs e)
         {
-            var handler = ViewModelPropertyChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            ViewModelPropertyChanged?.Invoke(this, e);
         }
 
         protected virtual void OnViewModelAdded(AudioDeviceViewModelEventArgs e)
         {
-            var handler = ViewModelAdded;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            ViewModelAdded?.Invoke(this, e);
         }
 
         protected virtual void OnViewModelRemoved(AudioDeviceViewModelEventArgs e)
         {
-            var handler = ViewModelRemoved;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            ViewModelRemoved?.Invoke(this, e);
         }
 
         private void AddAll()
@@ -77,7 +65,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         private AudioDeviceViewModel AddViewModel(AudioDevice device)
         {
-            AudioDeviceViewModel model = new AudioDeviceViewModel(device);
+            var model = new AudioDeviceViewModel(device);
             model.UpdateStatus(_deviceManager);
 
             _viewModels.Add(model);

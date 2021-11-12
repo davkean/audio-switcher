@@ -17,10 +17,10 @@ namespace AudioSwitcher.Presentation.Drawing
 
         public GroupIconDir ToGroupIconDir()
         {
-            GroupIconDir grpDir = new GroupIconDir();
-            grpDir.Reserved = this.Reserved;
-            grpDir.Type = this.Type;
-            grpDir.Count = this.Count;
+            var grpDir = new GroupIconDir();
+            grpDir.Reserved = Reserved;
+            grpDir.Type = Type;
+            grpDir.Count = Count;
             return grpDir;
         }
     }
