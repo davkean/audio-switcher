@@ -125,7 +125,7 @@ namespace AudioSwitcher.Presentation.Drawing
         /// <returns>Returns System.Drawing.Icon.</returns>
         private Icon GetIconFromLib(int index)
         {
-            byte[] resourceData = GetResourceData(this.ModuleHandle, this.IconNames[index], ResourceTypes.RT_GROUP_ICON);
+            byte[] resourceData = GetResourceData(ModuleHandle, IconNames[index], ResourceTypes.RT_GROUP_ICON);
             //Convert the resouce into an .ico file image.
             using (MemoryStream inputStream = new MemoryStream(resourceData))
             using (MemoryStream destStream = new MemoryStream())
@@ -147,7 +147,7 @@ namespace AudioSwitcher.Presentation.Drawing
                     destStream.Write<IconDirEntry>(grpEntry.ToIconDirEntry(iconImageOffset));
 
                     //Get the icon image raw data and write it to the stream.
-                    byte[] imgBuf = GetResourceData(this.ModuleHandle, grpEntry.ID, ResourceTypes.RT_ICON);
+                    byte[] imgBuf = GetResourceData(ModuleHandle, grpEntry.ID, ResourceTypes.RT_ICON);
                     destStream.Seek(iconImageOffset, SeekOrigin.Begin);
                     destStream.Write(imgBuf, 0, imgBuf.Length);
                     
