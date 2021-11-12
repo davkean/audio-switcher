@@ -1,9 +1,9 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.Drawing;
 using AudioSwitcher.Presentation.UI;
@@ -177,7 +177,7 @@ namespace AudioSwitcher.UI.ViewModels
             if (deviceImage == null)
                 return null;
 
-            Image overlayImage = GetOverlayImage();
+            Image overlayImage = GetOverlayImage(out bool bottomCorner);
             if (overlayImage == null)
                 return deviceImage;
 
@@ -185,7 +185,7 @@ namespace AudioSwitcher.UI.ViewModels
             using (overlayImage)
             {
                 // Makes a copy
-                return DrawingServices.CreateOverlayedImage(deviceImage, overlayImage, deviceImage.Size);
+                return DrawingServices.CreateOverlayedImage(deviceImage, overlayImage, deviceImage.Size, bottomCorner);
             }
         }
 
@@ -218,8 +218,10 @@ namespace AudioSwitcher.UI.ViewModels
             return icon;
         }
 
-        private Image GetOverlayImage()
+        private Image GetOverlayImage(out bool bottomCorner)
         {
+            bottomCorner = false;
+
             if (DefaultState.IsSet(AudioDeviceDefaultState.Multimedia))
             {   // Sound control panel shows the same icon between all and multimedia
                 return Resources.DefaultMultimediaDevice;
@@ -229,6 +231,8 @@ namespace AudioSwitcher.UI.ViewModels
             {
                 return Resources.DefaultCommunicationsDevice;
             }
+
+            bottomCorner = true;
 
             switch (State)
             {
