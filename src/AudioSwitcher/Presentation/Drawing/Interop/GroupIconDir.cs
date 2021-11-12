@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
-using BYTE = System.Byte;
+
 using WORD = System.Int16;
-using DWORD = System.Int32;
 
 namespace AudioSwitcher.Presentation.Drawing
 {

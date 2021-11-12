@@ -1,9 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
-using System;
-using System.ComponentModel;
-using AudioSwitcher.ComponentModel;
 
 namespace AudioSwitcher.Presentation
 {

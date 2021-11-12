@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AudioSwitcher.Audio
+﻿namespace AudioSwitcher.Audio
 {
     /// <summary>
     /// The ERole enumeration defines constants that indicate the role 

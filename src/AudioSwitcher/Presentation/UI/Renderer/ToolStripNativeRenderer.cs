@@ -12,9 +12,9 @@
 
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+
 using AudioSwitcher.Presentation.UI.Interop;
 
 namespace AudioSwitcher.Presentation.UI

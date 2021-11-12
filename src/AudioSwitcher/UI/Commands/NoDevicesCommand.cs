@@ -1,7 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // Copyright (c) David Kean. All rights reserved.
 // -----------------------------------------------------------------------
-using System;
 using AudioSwitcher.Presentation.CommandModel;
 
 namespace AudioSwitcher.UI.Commands

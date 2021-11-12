@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
+
 using AudioSwitcher.ComponentModel;
 
 namespace AudioSwitcher.Presentation

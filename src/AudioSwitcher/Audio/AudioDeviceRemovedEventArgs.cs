@@ -2,7 +2,6 @@
 // Copyright (c) David Kean.
 // -----------------------------------------------------------------------
 using System;
-using AudioSwitcher.Audio;
 
 namespace AudioSwitcher.Audio
 {

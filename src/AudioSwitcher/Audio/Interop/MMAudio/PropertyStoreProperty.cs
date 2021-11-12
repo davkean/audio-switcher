@@ -22,9 +22,6 @@
 // modified from Ray Molenkamp's original
 
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using AudioSwitcher.Audio.Interop;
 
 namespace AudioSwitcher.Audio
