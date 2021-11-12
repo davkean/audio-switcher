@@ -58,11 +58,6 @@ namespace AudioSwitcher.Presentation.UI
             get { return SubclassPrefix + "Rebar"; }
         }
 
-        private string ToolbarClass
-        {
-            get { return SubclassPrefix + "ToolBar"; }
-        }
-
         private string MenuClass
         {
             get { return SubclassPrefix + "Menu"; }
@@ -97,12 +92,6 @@ namespace AudioSwitcher.Presentation.UI
         public VisualStyleRenderer Renderer
         {
             get { return _renderer;}
-        }
-
-        private VisualStyleElement Subclass(VisualStyleElement element)
-        {
-            return VisualStyleElement.CreateElement(SubclassPrefix + element.ClassName,
-                    element.Part, element.State);
         }
 
         protected bool EnsureRenderer()
