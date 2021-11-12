@@ -82,7 +82,7 @@ namespace AudioSwitcher.UI.Commands
                 {
                     if (key.TryGetValue(RunAtWindowsStartupValueName, out string value))
                     {
-                        return String.Equals(value, RunAtWindowsStartupValue, StringComparison.OrdinalIgnoreCase);
+                        return string.Equals(value, RunAtWindowsStartupValue, StringComparison.OrdinalIgnoreCase);
                     }
                 }
             }

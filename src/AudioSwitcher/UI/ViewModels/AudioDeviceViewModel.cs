@@ -168,7 +168,7 @@ namespace AudioSwitcher.UI.ViewModels
                     return Resources.DeviceState_Unplugged;
             }
 
-            return String.Empty;
+            return string.Empty;
         }
 
         private Image GetImage(string iconPath)
@@ -209,10 +209,10 @@ namespace AudioSwitcher.UI.ViewModels
 
         private Icon GetIconFromDeviceIconPath(string iconPath)
         {
-            if (String.IsNullOrEmpty(iconPath))
+            if (string.IsNullOrEmpty(iconPath))
                 return null;
 
-            if (String.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, IconSize, out Icon icon))
+            if (string.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, IconSize, out Icon icon))
                 return new Icon(Resources.FallbackDevice, IconSize);
 
             return icon;

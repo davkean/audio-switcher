@@ -50,7 +50,7 @@ namespace AudioSwitcher.Presentation.Drawing
             if (parts.Length == 1)
                 return ExtractIcon(parts[0]);
 
-            if (!Int32.TryParse(parts[1], out int index))
+            if (!int.TryParse(parts[1], out int index))
                 throw new FormatException();
 
             if (index >= 0)

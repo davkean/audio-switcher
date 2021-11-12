@@ -106,7 +106,7 @@ namespace AudioSwitcher.Audio
             if (defaultDevice == null)
                 return false;
 
-            return String.Equals(defaultDevice.Id, device.Id, StringComparison.OrdinalIgnoreCase);
+            return string.Equals(defaultDevice.Id, device.Id, StringComparison.OrdinalIgnoreCase);
         }
 
         public AudioDevice GetDefaultAudioDevice(AudioDeviceKind kind, AudioDeviceRole role)
