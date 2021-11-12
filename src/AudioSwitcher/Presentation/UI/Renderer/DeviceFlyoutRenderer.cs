@@ -13,7 +13,7 @@ namespace AudioSwitcher.Presentation.UI.Renderer
     internal class DeviceFlyoutRenderer : ToolStripNativeRenderer
     {
         private readonly static string[] NewLine = new[] { Environment.NewLine };
-        private readonly VisualStyleElement FlyoutWindow = VisualStyleElement.CreateElement("Flyout", 6, 0);
+        private readonly VisualStyleElement _flyoutWindow = VisualStyleElement.CreateElement("Flyout", 6, 0);
 
         public DeviceFlyoutRenderer()
             : base(ToolbarTheme.Toolbar)
@@ -36,7 +36,7 @@ namespace AudioSwitcher.Presentation.UI.Renderer
         {
             if (EnsureRenderer())
             {
-                Renderer.SetParameters(FlyoutWindow);
+                Renderer.SetParameters(_flyoutWindow);
                 Renderer.DrawBackground(e.Graphics, e.AffectedBounds);
             }
         }
