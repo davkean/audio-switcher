@@ -22,7 +22,7 @@ namespace AudioSwitcher.Presentation.UI.Views
         public DeviceFlyoutView()
         {
             DropShadowEnabled = false;
-            Renderer = new DeviceToolStripNativeRender();
+            Renderer = new DeviceFlyoutRenderer();
             WorkingAreaConstrained = true;
         }
 

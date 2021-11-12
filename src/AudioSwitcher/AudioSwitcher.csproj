@@ -72,7 +72,7 @@
     <Compile Include="Presentation\CommandModel\Command.cs" />
     <Compile Include="Presentation\CommandModel\CommandAttribute.cs" />
     <Compile Include="Presentation\UI\DpiServices.cs" />
-    <Compile Include="Presentation\UI\Renderer\DeviceToolStripNativeRender.cs" />
+    <Compile Include="Presentation\UI\Renderer\DeviceFlyoutRenderer.cs" />
     <Compile Include="StringComparers.cs" />
     <Compile Include="UI\Commands\CommandId.cs" />
     <Compile Include="ApplicationModel\IApplication.cs" />

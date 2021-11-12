@@ -9,12 +9,13 @@ using System.Windows.Forms.VisualStyles;
 
 namespace AudioSwitcher.Presentation.UI.Renderer
 {
-    internal class DeviceToolStripNativeRender : ToolStripNativeRenderer
+    // A tool strip renderer that handles rendering the device flyout
+    internal class DeviceFlyoutRenderer : ToolStripNativeRenderer
     {
         private readonly static string[] NewLine = new[] { Environment.NewLine };
         private readonly VisualStyleElement FlyoutWindow = VisualStyleElement.CreateElement("Flyout", 6, 0);
 
-        public DeviceToolStripNativeRender()
+        public DeviceFlyoutRenderer()
             : base(ToolbarTheme.Toolbar)
         {
         }
