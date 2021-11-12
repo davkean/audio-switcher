@@ -55,8 +55,7 @@ namespace AudioSwitcher.Audio
 
         public AudioDeviceCollection GetAudioDevices(AudioDeviceKind kind, AudioDeviceState state)
         {
-            IMMDeviceCollection underlyingCollection;
-            int hr = _deviceEnumerator.EnumAudioEndpoints(kind, state, out underlyingCollection);
+            int hr = _deviceEnumerator.EnumAudioEndpoints(kind, state, out IMMDeviceCollection underlyingCollection);
             if (hr == HResult.OK)
                 return new AudioDeviceCollection(underlyingCollection);
 
@@ -113,8 +112,7 @@ namespace AudioSwitcher.Audio
 
         public AudioDevice GetDefaultAudioDevice(AudioDeviceKind kind, AudioDeviceRole role)
         {
-            IMMDevice underlyingDevice;
-            int hr = _deviceEnumerator.GetDefaultAudioEndpoint(kind, role, out underlyingDevice);
+            int hr = _deviceEnumerator.GetDefaultAudioEndpoint(kind, role, out IMMDevice underlyingDevice);
             if (hr == HResult.OK)
                 return new AudioDevice(underlyingDevice);
 
@@ -129,8 +127,7 @@ namespace AudioSwitcher.Audio
             if (id == null)
                 throw new ArgumentNullException("id");
 
-            IMMDevice underlyingDevice;
-            int hr = _deviceEnumerator.GetDevice(id, out underlyingDevice);
+            int hr = _deviceEnumerator.GetDevice(id, out IMMDevice underlyingDevice);
             if (hr == HResult.OK)
                 return new AudioDevice(underlyingDevice);
 

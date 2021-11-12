@@ -54,8 +54,7 @@ namespace AudioSwitcher.Audio
         {
             get
             {
-                int result;
-                Marshal.ThrowExceptionForHR(_underlyingStore.GetCount(out result));
+                Marshal.ThrowExceptionForHR(_underlyingStore.GetCount(out int result));
                 return result;
             }
         }
@@ -69,9 +68,8 @@ namespace AudioSwitcher.Audio
         {
             get
             {
-                PropVariant result;
                 PropertyKey key = Get(index);
-                Marshal.ThrowExceptionForHR(_underlyingStore.GetValue(ref key, out result));
+                Marshal.ThrowExceptionForHR(_underlyingStore.GetValue(ref key, out PropVariant result));
                 return new PropertyStoreProperty(key, result);
             }
         }
@@ -103,13 +101,12 @@ namespace AudioSwitcher.Audio
         {
             get
             {
-                PropVariant result;
                 for (int i = 0; i < Count; i++)
                 {
                     PropertyKey other = Get(i);
                     if ((other.formatId == key.formatId) && (other.propertyId == key.propertyId))
                     {
-                        Marshal.ThrowExceptionForHR(_underlyingStore.GetValue(ref other, out result));
+                        Marshal.ThrowExceptionForHR(_underlyingStore.GetValue(ref other, out PropVariant result));
                         return new PropertyStoreProperty(other, result);
                     }
                 }
@@ -124,8 +121,7 @@ namespace AudioSwitcher.Audio
         /// <returns>Property key</returns>
         public PropertyKey Get(int index)
         {
-            PropertyKey key;
-            Marshal.ThrowExceptionForHR(_underlyingStore.GetAt(index, out key));
+            Marshal.ThrowExceptionForHR(_underlyingStore.GetAt(index, out PropertyKey key));
             return key;
         }
 
@@ -164,9 +160,8 @@ namespace AudioSwitcher.Audio
         /// <returns>Property value</returns>
         public PropVariant GetValue(int index)
         {
-            PropVariant result;
             PropertyKey key = Get(index);
-            Marshal.ThrowExceptionForHR(_underlyingStore.GetValue(ref key, out result));
+            Marshal.ThrowExceptionForHR(_underlyingStore.GetValue(ref key, out PropVariant result));
             return result;
         }
     }

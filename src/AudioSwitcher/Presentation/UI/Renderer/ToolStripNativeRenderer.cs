@@ -490,8 +490,7 @@ namespace AudioSwitcher.Presentation.UI
             {
                 IntPtr hDC = dc.GetHdc();
 
-                MARGINS margins;
-                if (DllImports.GetThemeMargins(_renderer.Handle, hDC, _renderer.Part, _renderer.State, (int)marginType, IntPtr.Zero, out margins) == 0)
+                if (DllImports.GetThemeMargins(_renderer.Handle, hDC, _renderer.Part, _renderer.State, (int)marginType, IntPtr.Zero, out MARGINS margins) == 0)
                     return new Padding(margins.cxLeftWidth, margins.cyTopHeight, margins.cxRightWidth, margins.cyBottomHeight);
 
                 return new Padding(0);

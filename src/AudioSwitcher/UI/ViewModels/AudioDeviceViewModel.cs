@@ -88,8 +88,7 @@ namespace AudioSwitcher.UI.ViewModels
                 FriendlyName = TryGetOrDefault(_device.TryDeviceFriendlyName, FriendlyName);
                 DeviceStateFriendlyName = GetDeviceStateFriendlyName();
 
-                string iconPath;
-                if (_device.TryGetDeviceClassIconPath(out iconPath))
+                if (_device.TryGetDeviceClassIconPath(out string iconPath))
                 {
                     Image = GetImage(iconPath);
                 }
@@ -213,8 +212,7 @@ namespace AudioSwitcher.UI.ViewModels
             if (String.IsNullOrEmpty(iconPath))
                 return null;
 
-            Icon icon;
-            if (String.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, IconSize, out icon))
+            if (String.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, IconSize, out Icon icon))
                 return new Icon(Resources.FallbackDevice, IconSize);
 
             return icon;
@@ -266,8 +264,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         private static string TryGetOrDefault(TryDelegate getter, string defaultValue)
         {
-            string result;
-            if (getter(out result))
+            if (getter(out string result))
             {
                 return result;
             }

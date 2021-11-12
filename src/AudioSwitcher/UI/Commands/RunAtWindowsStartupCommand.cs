@@ -25,8 +25,7 @@ namespace AudioSwitcher.UI.Commands
 
         public override void Refresh()
         {
-            bool localMachine;
-            IsChecked = IsRunAtWindowsStartup(out localMachine);
+            IsChecked = IsRunAtWindowsStartup(out bool localMachine);
 
             // We don't let the user uncheck IsChecked if its machine-wide
             if (IsChecked)
@@ -81,8 +80,7 @@ namespace AudioSwitcher.UI.Commands
             {
                 if (key != null)
                 {
-                    string value;
-                    if (key.TryGetValue(RunAtWindowsStartupValueName, out value))
+                    if (key.TryGetValue(RunAtWindowsStartupValueName, out string value))
                     {
                         return String.Equals(value, RunAtWindowsStartupValue, StringComparison.OrdinalIgnoreCase);
                     }
@@ -121,8 +119,7 @@ namespace AudioSwitcher.UI.Commands
 
         private RegistryKey GetRunAtWindowsStartupRegistryKey(RegistryKey root, bool writable)
         {
-            RegistryKey key;
-            root.TryOpenSubkey(@"Software\Microsoft\Windows\CurrentVersion\Run", writable, out key);
+            root.TryOpenSubkey(@"Software\Microsoft\Windows\CurrentVersion\Run", writable, out RegistryKey key);
 
             return key;
         }

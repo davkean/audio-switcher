@@ -26,14 +26,12 @@ namespace AudioSwitcher.Presentation.CommandModel
             if (id == null)
                 throw new ArgumentNullException("id");
 
-            Lifetime<ICommand> command;
-            if (!_commandCache.TryGetValue(id, out command))
+            if (!_commandCache.TryGetValue(id, out Lifetime<ICommand> command))
             {
-                bool cache;
-                command = CreateCommand(id, out cache);
+                command = CreateCommand(id, out bool cache);
 
                 if (cache)
-                {   
+                {
                     _commandCache.Add(id, command);
                 }
             }
