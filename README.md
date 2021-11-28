@@ -31,4 +31,4 @@ NAudio (http://naudio.codeplex.com)
 * Provided the original code to manipulate and query the Windows Core Audio API
  
 svotar (https://code.google.com/p/szotar)
-* Provided the original code for the native Toolstrip renderer
+* Provided the original code for the native Toolstrip renderer 
