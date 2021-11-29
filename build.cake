@@ -1,0 +1,41 @@
+#tool nuget:?package=NuGet.CommandLine&version=5.11.0
+
+///////////////////////////////////////////////////////////////////////////////
+// ARGUMENTS
+///////////////////////////////////////////////////////////////////////////////
+
+var target = Argument("target", "Default");
+var configuration = Argument("configuration", "Release");
+
+//////////////////////////////////////////////////////////////////////
+// PREPARATION
+//////////////////////////////////////////////////////////////////////
+
+var slnFile = @"./src/AudioSwitcher.sln";
+
+///////////////////////////////////////////////////////////////////////////////
+// TASKS
+///////////////////////////////////////////////////////////////////////////////
+
+Task("Default")
+.Does(() => {
+   Information("Tasks:");
+   Information("- Build: Build the project");
+});
+
+Task("Restore-NuGet-Packages")
+.Does(() =>
+{
+   NuGetRestore(slnFile);
+});
+
+Task("Build")
+.IsDependentOn("Restore-NuGet-Packages")
+.Does(() => {
+   MSBuild(slnFile, new MSBuildSettings {
+      Verbosity = Verbosity.Minimal,
+      Configuration = configuration,
+   });
+});
+
+RunTarget(target);
