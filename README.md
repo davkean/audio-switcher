@@ -8,9 +8,13 @@ Tired of having to perform a song and dance through the Windows Sound dialogs ju
 ![ScreenShot](resources/AudioSwitcher.png)
 
 ## How do I install this thing?
-Currently, there is no installer or binary that you can run or download. You'll need to build the project yourself. Open the solution in Visual Studio 2013, build and then run `AudioSwitcher.exe` from the bin directory.
+Currently, there is no installer or binary that you can run or download. You'll need to build the project yourself and then run `AudioSwitcher.exe` from the bin directory.
+
+## Building
+Either open the solution with Visual Studio 2013 or higher and just build it or use cake to build it with by executing: `.\build.ps1 --Target "Build"`.
 
 ## FAQ
+
 #### How do I hide microphones or unplugged devices?
 Right-click on the __Audio Switcher__ icon in the notification area, and expand __Appearance__.
 
